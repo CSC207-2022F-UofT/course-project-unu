@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Player {
 
-    private String name;
-    private List<Card> hand;
+    private final String name;
+    private List<Card> hand = new ArrayList<>();
 
     public Player(String name){
         this.name = name;
@@ -18,11 +18,11 @@ public class Player {
         return this.hand;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void drawCards(List<Card> cards) {
+        hand.addAll(cards);
     }
 
-    public void setHand(List<Card> hand) {
-        this.hand = hand;
+    public void playCard(int index) {
+        hand.remove(index);
     }
 }
