@@ -1,7 +1,9 @@
+package entities;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public abstract class Player {
 
     private final String name;
     private List<Card> hand = new ArrayList<>();
@@ -22,7 +24,7 @@ public class Player {
         hand.addAll(cards);
     }
 
-    public void playCard(int index) {
-        hand.remove(index);
+    public void playCard(int n) {
+        hand.remove(n);
     }
 }
