@@ -16,6 +16,8 @@ public abstract class Player {
         return this.name;
     }
 
+    public abstract String getPlayerType();
+
     public List<Card> getHand() {
         return this.hand;
     }
@@ -24,7 +26,9 @@ public abstract class Player {
         hand.addAll(cards);
     }
 
-    public void playCard(int n) {
+    public Card playCard(int n) {
+        Card toPlay = hand.get(n);
         hand.remove(n);
+        return toPlay;
     }
 }
