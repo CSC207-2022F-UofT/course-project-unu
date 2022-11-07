@@ -27,8 +27,6 @@ public abstract class Player {
     }
 
     public Card playCard(int n) {
-        Card toPlay = hand.get(n);
-        hand.remove(n);
-        return toPlay;
+        return hand.remove(n);
     }
 }
