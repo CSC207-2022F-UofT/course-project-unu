@@ -1,5 +1,6 @@
 package entities;
 
+import cards.Card;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,6 @@ public abstract class Player {
     public String getName() {
         return this.name;
     }
-
-    public abstract String getPlayerType();
 
     public List<Card> getHand() {
         return this.hand;
