@@ -1,6 +1,6 @@
 package cards;
 
-import Game.Game;
+import game.Game;
 
 public class NumberCard extends Card {
 

@@ -1,6 +1,6 @@
 package cards;
 
-import Game.Game;
+import game.Game;
 
 public abstract class Card {
     private final String cardType;
