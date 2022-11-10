@@ -1,4 +1,5 @@
-import package.cards;
+import java.util.List;
+import cards.Card;
 
 interface Moves {
     List<Card> getPossibleMoves();
