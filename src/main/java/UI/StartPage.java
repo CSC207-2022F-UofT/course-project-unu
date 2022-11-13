@@ -38,11 +38,11 @@ public class StartPage {
         window.add(myLabel);
 
         startGameButton = new JButton("Start");
-        startGameButton.setBounds(130, 300, 100, 50);
+        startGameButton.setBounds(120, 300, 100, 50);
         instruction = new JButton("Instruction");
-        instruction.setBounds(130, 365, 100, 50);
+        instruction.setBounds(120, 365, 100, 50);
         exitButton = new JButton("Exit");
-        exitButton.setBounds(130, 430, 100, 50);
+        exitButton.setBounds(120, 430, 100, 50);
 
         //startGameButton.addActionListener();
 
@@ -53,4 +53,6 @@ public class StartPage {
 //        messageText = new JTextArea();
 //        messageText.setBounds();
     }
+
+
 }
