@@ -1,7 +1,9 @@
 package moves;
 
-public interface ComputerMoves extends Moves {
-    void makeBestMove();
+import cards.Card;
 
-    void makeRandomMove();
+public interface ComputerMoves extends Moves {
+    Card getBestMove();
+
+    Card getRandomMove();
 }

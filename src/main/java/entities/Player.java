@@ -4,7 +4,6 @@ import cards.Card;
 import moves.Moves;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class Player implements Moves {
 
@@ -31,20 +30,23 @@ public abstract class Player implements Moves {
         return hand.remove(n);
     }
 
-    public List<Card> getPossibleMoves(Card lastPlayed) {
-        List<Card> possibleMoves = new ArrayList<>();
+    public ArrayList<Card> getPossibleMoves(Card lastPlayed) {
+        ArrayList<Card> possibleMoves = new ArrayList<>();
 
         for (Card card: this.hand) {
-            if (card.getCardType().equals(lastPlayed.getCardType())) {
+            String cardType = card.getCardType();
+
+            if (cardType.equals(lastPlayed.getCardType())) {
                 possibleMoves.add(card);
             }
             else if (card.getColour().equals(lastPlayed.getColour())) {
+                possibleMoves.add(card);
+            }
+            else if (cardType.equals("Wild")) {
                 possibleMoves.add(card);
             }
         }
 
         return possibleMoves;
     }
-
-    public void makeMove(Card lastPlayed) {}
 }
