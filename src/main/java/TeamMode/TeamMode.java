@@ -1,12 +1,13 @@
-package TeamMode;
+/*package TeamMode;
 
+
+import game.Game;
 
 import java.util.List;
 
-public class TeamMode extends Game{
+public class TeamMode extends Game {
     private TeamPlayer[] players;
     public TeamMode(){
-
     }
     public TeamMode(TeamPlayer[] players){
         this.players=players;
@@ -17,4 +18,4 @@ public class TeamMode extends Game{
     }
     //override of checkGameOver
     //start
-}
+}*/

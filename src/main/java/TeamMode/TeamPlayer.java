@@ -1,6 +1,8 @@
 package TeamMode;
 
-public class TeamPlayer extends RealPlayer{
+import entities.RealPlayer;
+
+public class TeamPlayer extends RealPlayer {
         private Team teamOfPlayer;
         public TeamPlayer(String name, Team team){
                 super(name);
