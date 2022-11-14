@@ -1,21 +1,19 @@
-/*package TeamMode;
+package TeamMode;
 
-
+import cards.Card;
+import entities.Player;
 import game.Game;
 
 import java.util.List;
 
 public class TeamMode extends Game {
-    private TeamPlayer[] players;
-    public TeamMode(){
-    }
-    public TeamMode(TeamPlayer[] players){
-        this.players=players;
-    }
+    List<Team> teams;
+    public TeamMode(List<Player> players, List<Card> deck, boolean isClockwise) {
+        super(players, deck, isClockwise);
 
-    public TeamPlayer[] getAllPlayers(){
-        return players;
     }
-    //override of checkGameOver
-    //start
-}*/
+    public List<Player> getTeamOfWinners(TeamPlayer wonPlayer){
+        return wonPlayer.getTeam().getTeamPlayers();
+
+    }
+}

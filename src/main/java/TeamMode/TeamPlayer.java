@@ -4,9 +4,9 @@ import entities.RealPlayer;
 
 public class TeamPlayer extends RealPlayer {
         private Team teamOfPlayer;
-        public TeamPlayer(String name, String teamName){
+        public TeamPlayer(String name, Team team){
                 super(name);
-                teamOfPlayer=new Team(teamName);
+                teamOfPlayer= team;
         }
 
         public String getTeamName() {
@@ -23,5 +23,8 @@ public class TeamPlayer extends RealPlayer {
 
         public void setTeamOfPlayer(Team teamOfPlayer) {
                 this.teamOfPlayer = teamOfPlayer;
+        }
+        public Team getTeam(){
+                return this.teamOfPlayer;
         }
 }
