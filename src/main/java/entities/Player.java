@@ -21,6 +21,8 @@ public abstract class Player {
         return this.hand;
     }
 
+    public abstract String getPlayerType();
+
     public void drawCards(List<Card> cards) {
         hand.addAll(cards);
     }
