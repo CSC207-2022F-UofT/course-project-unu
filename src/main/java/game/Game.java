@@ -60,6 +60,7 @@ public class Game {
     // If the deck is empty, shuffle the discard pile into the deck
     public void reshuffle() {
         deck = new ArrayList<>(discardPile);
+        deck.remove(lastPlayed);
 
         discardPile.clear();
         discardPile.add(lastPlayed);
