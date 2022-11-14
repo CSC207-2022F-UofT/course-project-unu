@@ -12,7 +12,7 @@ public abstract class Card {
 
     /**
      * The colour this card is.
-     * Can be: Red, BLue, Green, or Yellow.
+     * Can be: Red, Blue, Green, or Yellow.
      */
     private String colour;
 
