@@ -1,6 +1,7 @@
 package game;
 
 import entities.Player;
+import entities.RealPlayer;
 import cards.Card;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -103,6 +104,14 @@ public class Game {
         lastPlayed = played;
 
         discardPile.add(played);
+    }
+
+    /**
+     * Return the list of cards the player can play from their deck
+     * @param player Player
+     */
+    public List<Card> getPlayerOptions(Player player) {
+        return player.getPossibleMoves(lastPlayed);
     }
 
     public boolean checkGameOver() {
