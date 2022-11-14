@@ -8,8 +8,13 @@ public class WildCard extends Card {
         super(cardType);
     }
 
+    /**
+     * Allows the player to change the colour of this card.
+     *
+     * @param game the Game object this card is affecting
+     */
     @Override
     public void playedEffect(Game game) {
-        // super.setColour( /* User input */ );
+        // TODO: Implement with User Inputs - super.setColour( /* User input */ );
     }
 }
