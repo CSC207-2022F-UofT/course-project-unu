@@ -7,15 +7,18 @@ import javax.swing.*;
  */
 public class GameManager {
 
-    //StartPage ui = new StartPage(this);
+    ActionHandler aHandler;
+    ViewMethods ui;
 
-    public GameManager() {new StartPage(this);}
+    public GameManager() {
+        this.ui = new ViewMethods(this);
+        this.aHandler = new ActionHandler(this);
+    }
 
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(GameManager::new);
 
-        //new GameManager();
     }
     
 

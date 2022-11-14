@@ -5,17 +5,21 @@ package UI;
  */
 public interface View {
 
-    void createStartPage();
+    void createMainField();
 
-    void createGamePage();
+    void createBackground(int panelNum, String bgFileName);
 
-    /**
-     * update the card deck of the player in the view
-     */
-    void updateCardDeck();
-
-    /**
-     * display a choose colour page with three buttons after a wildCard is played
-     */
-    void chooseColour();
+//    void createStartPage();
+//
+//    void createGamePage();
+//
+//    /**
+//     * update the card deck of the player in the view
+//     */
+//    void updateCardDeck();
+//
+//    /**
+//     * display a choose colour page with three buttons after a wildCard is played
+//     */
+//    void chooseColour();
 }

@@ -1,4 +1,4 @@
-package UI;
+package interfaceAdapters;
 
 import game.Game;
 
@@ -14,5 +14,9 @@ public class Controller {
          * change the theme colour after a wildCard has been played
          */
     }
+
+//    public Card cardPlayed();
+//    public Card cardDrawed();
+    //
 
 }

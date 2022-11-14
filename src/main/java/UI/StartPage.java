@@ -1,58 +1,58 @@
 package UI;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartPage {
 
-    GameManager gm;
     JFrame window;
-    ImageIcon startBG;
-    JLabel myLabel;
+    ViewMethods vm;
 
-    JButton startGameButton;
-    JButton exitButton;
-    JButton instruction;
+    public JPanel gamePanel[];
+    public JLabel gameLabel[];
 
-    public StartPage(GameManager gm){
 
-        this.gm = gm;
 
-        createStartPage();
+    public StartPage(ViewMethods vm, JFrame window, JPanel gamePanel[], JLabel gameLabel[]){
 
-        window.setVisible(true);
+        this.vm = vm;
+        this.window = window;
+        this.gamePanel = gamePanel;
+        this.gameLabel = gameLabel;
+
+        generateScreen();
 
     }
 
-    public void createStartPage() {
-
-        startBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
-        myLabel = new JLabel(startBG);
-        myLabel.setSize(800, 600);
-
-        window = new JFrame();
-        window.setSize(800, 600);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close the windows properly
-        //window.getContentPane().setBackground(black);
-        window.setLayout(null);
-        window.setLocationRelativeTo(null);
-        window.add(myLabel);
-
+    public void createStartPageButtons() {
+        //panelNum = 1 by default
+        JButton startGameButton;
+        JButton exitButton;
+        JButton instruction;
         startGameButton = new JButton("Start");
         startGameButton.setBounds(120, 300, 100, 50);
+        startGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
+        //startGameButton.a
         instruction = new JButton("Instruction");
         instruction.setBounds(120, 365, 100, 50);
         exitButton = new JButton("Exit");
         exitButton.setBounds(120, 430, 100, 50);
+        gameLabel[0].add(startGameButton);
+        gameLabel[0].add(exitButton);
+        gameLabel[0].add(instruction);
 
-        //startGameButton.addActionListener();
-
-        myLabel.add(startGameButton);
-        myLabel.add(exitButton);
-        myLabel.add(instruction);
-
-//        messageText = new JTextArea();
-//        messageText.setBounds();
     }
 
+    public void generateScreen() {
+        vm.createBackground(0,"/bg.jpg");
+        createStartPageButtons();
+    }
 
 }
