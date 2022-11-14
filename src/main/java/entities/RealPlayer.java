@@ -4,7 +4,6 @@ import cards.Card;
 import moves.Moves;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RealPlayer extends Player implements Moves{
 
@@ -18,10 +17,14 @@ public class RealPlayer extends Player implements Moves{
         return playerType;
     }
 
-    public void makeMove(Card lastPlayed) {
-        List<Card> possibleMoves = getPossibleMoves(lastPlayed);
+    /**
+     * Return whether a user can play a desired move.
+     * @param playerChoice the index of the selected card in the player's hand
+     * @param lastPlayed the last played card in Game
+     */
+    public boolean isAllowedMove(int playerChoice, Card lastPlayed) {
+        ArrayList<Card> allowedMoves = this.getPossibleMoves(lastPlayed);
 
-        // Implementation depends on how player input is retrieved from UI
-        }
+        return allowedMoves.contains(this.getHand().get(playerChoice));
     }
 }
