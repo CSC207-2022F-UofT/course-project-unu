@@ -1,7 +1,6 @@
 package game;
 
 import entities.Player;
-import entities.RealPlayer;
 import cards.Card;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -113,6 +112,12 @@ public class Game {
     public List<Card> getPlayerOptions(Player player) {
         return player.getPossibleMoves(lastPlayed);
     }
+
+    /**
+     * Return the Player's default move
+     * @param player Player
+     */
+    public List<Card> getPlayerDefault(Player player) {return player.getDefaultMove(lastPlayed);}
 
     public boolean checkGameOver() {
         return players.get(toMove).getHand().isEmpty();
