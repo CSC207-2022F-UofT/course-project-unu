@@ -8,11 +8,6 @@ public class ReverseCard extends Card {
         super(cardType, colour);
     }
 
-
-    @Override
-    public void playedEffect(Game game) {
-        //TODO: Change direction of play in game
-
     /**
      * Reverses the direction of play.
      *
@@ -21,6 +16,5 @@ public class ReverseCard extends Card {
     @Override
     public void playedEffect(Game game) {
         game.changeDirection();
-
     }
 }

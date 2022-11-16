@@ -8,11 +8,6 @@ public class SkipCard extends Card {
         super(cardType, colour);
     }
 
-
-    @Override
-    public void playedEffect(Game game) {
-        //TODO: Skip next player in the game
-
     /**
      * Skips the next player's turn.
      *
@@ -25,6 +20,5 @@ public class SkipCard extends Card {
         Once the turn actually ends, it will be as if the next player had just gone.
          */
         game.setToMove(game.getNextPlayer());
-
     }
 }
