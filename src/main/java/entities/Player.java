@@ -22,6 +22,8 @@ public abstract class Player implements Moves {
         return this.hand;
     }
 
+    public abstract String getPlayerType();
+
     public void drawCards(List<Card> cards) {
         hand.addAll(cards);
     }

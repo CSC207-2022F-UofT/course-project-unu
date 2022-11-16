@@ -23,6 +23,7 @@ public class Game {
         this.lastPlayed = deck.remove(0);
         this.toMove = 0;
         this.isClockwise = isClockwise;
+        discardPile.add(lastPlayed);
     }
 
     public int getToMove() {
@@ -60,7 +61,11 @@ public class Game {
     // If the deck is empty, shuffle the discard pile into the deck
     public void reshuffle() {
         deck = new ArrayList<>(discardPile);
+        deck.remove(lastPlayed);
+
         discardPile.clear();
+        discardPile.add(lastPlayed);
+
         shuffleDeck();
     }
 
