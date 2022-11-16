@@ -8,6 +8,12 @@ public class PlusFourCard extends WildCard{
         super(cardType);
     }
 
+
+    @Override
+    public void playedEffect(Game game) {
+        super.playedEffect(game);
+        //TODO: Force next player to draw four times
+
     /**
      * Allows the player to change the colour of this card.
      * Also forces the next player to draw four cards.
@@ -18,5 +24,6 @@ public class PlusFourCard extends WildCard{
     public void playedEffect(Game game) {
         super.playedEffect(game);
         game.draw(4, game.getNextPlayer());
+
     }
 }
