@@ -7,6 +7,7 @@ import javax.swing.*;
  */
 public interface View {
 
+    void generateGame();
     void updateCardDrawn();
 
     void updateCardPlayed();

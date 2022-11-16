@@ -6,16 +6,15 @@ import java.awt.*;
 public class ViewMethods implements View{
 
     GameManager gm;
-    JFrame window;
-
-    public JPanel gamePanel[] = new JPanel[5];
-    public JLabel gameLabel[] = new JLabel[5];
 
     public ViewMethods(GameManager gm) {
         this.gm = gm;
         StartPage sp = new StartPage();
+    }
 
-        //window.setVisible(true);
+    @Override
+    public void generateGame() {
+
     }
 
     @Override
