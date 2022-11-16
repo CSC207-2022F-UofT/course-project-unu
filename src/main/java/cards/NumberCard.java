@@ -8,6 +8,12 @@ public class NumberCard extends Card {
         super(cardType, colour);
     }
 
+    /**
+     * Has no effect on the game.
+     *
+     * @param game the Game object this card is affecting
+     */
+
     @Override
     public void playedEffect(Game game) {}
 }
