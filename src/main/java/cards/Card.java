@@ -6,11 +6,13 @@ public abstract class Card {
 
     /**
      * The type of card this object is. Can be numbers ranging from 0 to 9, or the names of special cards.
+     * Can be: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, Skip, Reverse, Plus2, Plus4, Wild
      */
     private final String cardType;
 
     /**
-     * The colour this card is. Can be Red, BLue, Green, or Yellow.
+     * The colour this card is.
+     * Can be: Red, Blue, Green, or Yellow.
      */
     private String colour;
 
