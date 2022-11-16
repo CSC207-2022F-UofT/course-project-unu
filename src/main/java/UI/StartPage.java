@@ -8,51 +8,69 @@ import java.awt.event.ActionListener;
 public class StartPage {
 
     JFrame window;
-    ViewMethods vm;
+    JPanel startPanel;
+    JLabel startLabel;
+    JButton regularButton;
+    JButton teamButton;
 
-    public JPanel gamePanel[];
-    public JLabel gameLabel[];
-
-
-
-    public StartPage(ViewMethods vm, JFrame window, JPanel gamePanel[], JLabel gameLabel[]){
-
-        this.vm = vm;
-        this.window = window;
-        this.gamePanel = gamePanel;
-        this.gameLabel = gameLabel;
+    public StartPage(){
 
         generateScreen();
 
     }
 
-    public void createStartPageButtons() {
-        //panelNum = 1 by default
-        JButton startGameButton;
-        JButton exitButton;
-        JButton instruction;
-        startGameButton = new JButton("Start");
-        startGameButton.setBounds(120, 300, 100, 50);
-        startGameButton.addActionListener(new ActionListener() {
+    public void createStartPageButtons(JLabel bg) {
+        regularButton = new JButton("Regular Mode");
+        regularButton.setBounds(300, 300, 120, 70);
+        regularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                new RegularModeSetup();
+                window.setVisible(false);
             }
         });
-        //startGameButton.a
-        instruction = new JButton("Instruction");
-        instruction.setBounds(120, 365, 100, 50);
-        exitButton = new JButton("Exit");
-        exitButton.setBounds(120, 430, 100, 50);
-        gameLabel[0].add(startGameButton);
-        gameLabel[0].add(exitButton);
-        gameLabel[0].add(instruction);
+        teamButton = new JButton("Team Mode");
+        teamButton.setBounds(530, 300, 120, 70);
+        teamButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TeamModeSetup();
+                window.setVisible(false);
+            }
+        });
+        bg.add(regularButton);
+        bg.add(teamButton);
 
     }
 
     public void generateScreen() {
-        vm.createBackground(0,"/bg.jpg");
-        createStartPageButtons();
+        //create a main field
+        window = new JFrame();
+        window.setSize(1000, 700);
+        window.setTitle("Start Page");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close the windows properly
+        window.setLayout(null);
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+
+        //set background
+        startPanel = new JPanel();
+        startPanel.setBounds(0, 0, 1000, 700);
+        startPanel.setLayout(null);
+        window.add(startPanel);
+        startLabel = new JLabel();
+        startLabel.setBounds(0, 0, 1000, 700);
+        ImageIcon startBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
+        startLabel.setIcon(startBG);
+        startPanel.add(startLabel);
+        createStartPageButtons(startLabel);
+
+//        JLabel logo = new JLabel();
+//        ImageIcon unoLogo = new ImageIcon(this.getClass().getResource("/UNO_logo.jpg"));
+//        logo.setBounds(100, 100, 300, 300);
+//        logo.setIcon(unoLogo);
+//        startLabel.add(logo);
+
     }
 
 }

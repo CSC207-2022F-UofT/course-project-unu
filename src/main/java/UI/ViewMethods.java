@@ -13,10 +13,7 @@ public class ViewMethods implements View{
 
     public ViewMethods(GameManager gm) {
         this.gm = gm;
-
-        //createMainField();
-        StartPage sp = new StartPage(this, window, gamePanel, gameLabel);
-        sp.generateScreen();
+        StartPage sp = new StartPage();
 
         //window.setVisible(true);
     }
