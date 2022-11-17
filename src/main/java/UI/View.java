@@ -8,7 +8,7 @@ import javax.swing.*;
 public interface View {
 
     //generate a game board
-    void generateGame();
+    void generateGameBoard();
 
     //update the last card played in the game
     void updateLastCardPlayed();
@@ -19,6 +19,8 @@ public interface View {
     //update user's cards on hand after playing card
     void updateCardPlayed();
 
+    void updateMyLastPlayedCard();
+
     //update the last card that bot1 played
     void updateBot1Card();
 
@@ -27,6 +29,10 @@ public interface View {
 
     //update the last card that bot3 played
     void updateBot3Card();
+
+    void requestColorChange();
+
+
 
 
 }
