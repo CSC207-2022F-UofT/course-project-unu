@@ -18,7 +18,7 @@ public class TeamModeSetup {
 
         generateScreen();
         c = new Controller();
-        c.setTeamMode(false);//may delete this if useless
+        c.setTeamMode(true);//may delete this if useless
     }
 
     public void createTeamButtons(JLabel bg) {
