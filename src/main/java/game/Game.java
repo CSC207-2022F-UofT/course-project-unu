@@ -10,14 +10,14 @@ import java.util.List;
 
 public class Game {
 
-    private List<Player> players;
+    private Player[] players;
     private List<Card> deck;
     private Card lastPlayed;
     private List<Card> discardPile = new ArrayList<>();
     private int toMove;
     private boolean isClockwise;
 
-    public Game(List<Player> players, boolean isClockwise) {
+    public Game(Player[] players, boolean isClockwise) {
         this.players = players;
         this.deck = newDeck();
         this.lastPlayed = deck.remove(0);
@@ -26,7 +26,7 @@ public class Game {
         discardPile.add(lastPlayed);
     }
 
-    public Game(List<Player> players, List<Card> deck, boolean isClockwise) {
+    public Game(Player[] players, List<Card> deck, boolean isClockwise) {
         this.players = players;
         this.deck = deck;
         this.lastPlayed = deck.remove(0);
@@ -39,7 +39,7 @@ public class Game {
         return this.toMove;
     }
 
-    public List<Player> getPlayers() {
+    public Player[] getPlayers() {
         return this.players;
     }
 
@@ -47,9 +47,9 @@ public class Game {
         int nextPlayer;
 
         if (isClockwise) {
-            nextPlayer = (toMove + 1) % players.size();
+            nextPlayer = (toMove + 1) % players.length;
         } else {
-            nextPlayer = (toMove - 1) % players.size();
+            nextPlayer = (toMove - 1) % players.length;
         }
 
         return nextPlayer;
@@ -127,7 +127,7 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
-        players.get(player).drawCards(cards);
+        players[player].drawCards(cards);
     }
 
     /**
@@ -137,7 +137,7 @@ public class Game {
      * @param n Card to play
      */
     public void play(int n) {
-        Card played = players.get(toMove).playCard(n);
+        Card played = players[toMove].playCard(n);
 
         played.playedEffect(this);
 
@@ -155,6 +155,6 @@ public class Game {
     }
 
     public boolean checkGameOver() {
-        return players.get(toMove).getHand().isEmpty();
+        return players[toMove].getHand().isEmpty();
     }
 }
