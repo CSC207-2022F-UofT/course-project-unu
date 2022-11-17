@@ -15,7 +15,7 @@ public class UserProfile{
     }
 
     public void UserProfile(boolean outcome){
-        //takes a input of win/loss and records a game
+        //takes an input of win/loss and records a game
         this.GamesPlayed ++;
         if (outcome){
             this.GamesWon ++;
