@@ -1,5 +1,7 @@
 package UI;
 
+import game.Game;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +16,8 @@ public class ViewMethods implements View{
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        GameBoard gameBoard = new GameBoard();
+        GameBoard gameBoard = new GameBoard(this);
+
     }
 
     @Override
@@ -52,4 +55,11 @@ public class ViewMethods implements View{
 
     }
 
+    @Override
+    public void requestColourChange() {
+        /*
+        Interface stuff here eventually calls on the controller
+        to change the colour of the lastPlayed card.
+         */
+    }
 }

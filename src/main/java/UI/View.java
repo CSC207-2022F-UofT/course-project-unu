@@ -1,7 +1,5 @@
 package UI;
 
-import javax.swing.*;
-
 /**
  * View Interface with methods that the Presenter calls to pass values for display
  */
@@ -28,5 +26,6 @@ public interface View {
     //update the last card that bot3 played
     void updateBot3Card();
 
-
+    //Create a colour change prompt for the user
+    void requestColourChange();
 }

@@ -2,6 +2,8 @@ package UI;
 
 import game.Game;
 import interfaceAdapters.Controller;
+import interfaceAdapters.Presenter;
+import interfaceAdapters.Presenter_Interface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,12 +19,22 @@ public class GameBoard{
 
     Controller c;
     ViewMethods vm;
+    Presenter_Interface p;
 
     JFrame window;
     JPanel gamePanel;
     JLabel gameLabel;
 
-    public GameBoard() {
+    public GameBoard(ViewMethods vm) {
+
+        this.vm = vm;
+
+        /*
+        From my understanding, the GameBoard is part of the Frameworks and Drivers Layer.
+        Therefore, this depends on the interface adapters below.
+         */
+        c = new Controller();
+        p = new Presenter(vm);
 
         generateScreen();
 
