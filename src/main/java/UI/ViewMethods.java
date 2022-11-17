@@ -9,11 +9,21 @@ public class ViewMethods implements View{
 
     public ViewMethods(GameManager gm) {
         this.gm = gm;
-        StartPage sp = new StartPage();
+        //StartPage sp = new StartPage();
+        /**
+         * only comment out start page for testing
+         * TODO: Change back to start page
+         */
+        GameBoard gameBoard = new GameBoard();
     }
 
     @Override
     public void generateGame() {
+
+    }
+
+    @Override
+    public void updateLastCardPlayed() {
 
     }
 
@@ -27,31 +37,19 @@ public class ViewMethods implements View{
 
     }
 
+    @Override
+    public void updateBot1Card() {
 
-//    @Override
-//    public void createMainField() {
-//        window = new JFrame();
-//        window.setSize(800, 600);
-//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close the windows properly
-//        //window.getContentPane().setBackground(black);
-//        window.setLayout(null);
-//        window.setLocationRelativeTo(null);
-//        window.setVisible(true);
-//    }
-//
-//    @Override
-//    public void createBackground(int panelNum, String bgFileName) {
-//        ImageIcon startBG = new ImageIcon(this.getClass().getResource(bgFileName));
-//        gamePanel[panelNum] = new JPanel();
-//        gamePanel[panelNum].setBounds(0, 0, 800, 600);
-//        gamePanel[panelNum].setBackground(Color.blue);
-//        gamePanel[panelNum].setLayout(null);
-//        window.add(gamePanel[panelNum]);
-//
-//        gameLabel[panelNum] = new JLabel();
-//        gameLabel[panelNum].setBounds(0, 0, 800, 600);
-//        gameLabel[panelNum].setIcon(startBG);
-//
-//        gamePanel[panelNum].add(gameLabel[panelNum]);
-//    }
+    }
+
+    @Override
+    public void updateBot2Card() {
+
+    }
+
+    @Override
+    public void updateBot3Card() {
+
+    }
+
 }
