@@ -1,9 +1,10 @@
 package moves;
-
-import cards.Card;
+// import cards.Card;
 
 public interface ComputerMoves extends Moves {
-    Card getBestMove();
+    int getBestMove();
 
-    Card getRandomMove();
+    int getRandomMove();
+    
+    int getMovesFromWeights();
 }
