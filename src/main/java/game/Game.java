@@ -2,11 +2,11 @@ package game;
 
 import entities.Player;
 import entities.RealPlayer;
+import entities.CardFactory;
 import cards.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 
 public class Game {
 
@@ -16,6 +16,15 @@ public class Game {
     private List<Card> discardPile = new ArrayList<>();
     private int toMove;
     private boolean isClockwise;
+
+    public Game(List<Player> players, boolean isClockwise) {
+        this.players = players;
+        this.deck = newDeck();
+        this.lastPlayed = deck.remove(0);
+        this.toMove = 0;
+        this.isClockwise = isClockwise;
+        discardPile.add(lastPlayed);
+    }
 
     public Game(List<Player> players, List<Card> deck, boolean isClockwise) {
         this.players = players;
@@ -52,6 +61,32 @@ public class Game {
 
     public void changeDirection() {
         isClockwise = !isClockwise;
+    }
+
+    public List<Card> newDeck() {
+        CardFactory cardFactory = new CardFactory();
+
+        String[] colours = {"red", "yellow", "blue", "green"};
+        String[] cardTypes = {"reverse", "plusTwo", "skip",
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String[] wildCardTypes = {"wild", "plusFour"};
+
+        List<Card> newDeck = new ArrayList<>();
+
+        for (String colour: colours) {
+            for (String cardType : cardTypes) {
+                newDeck.add(cardFactory.getCard(cardType, colour));
+                newDeck.add(cardFactory.getCard(cardType, colour));
+            }
+
+            for (String wildCardType : wildCardTypes) {
+                for (int i = 0; i < 4; i++) {
+                    newDeck.add(cardFactory.getCard(wildCardType));
+                }
+            }
+        }
+
+        return newDeck;
     }
 
     public void shuffleDeck() {
