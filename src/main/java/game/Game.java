@@ -2,6 +2,8 @@ package game;
 
 import entities.Player;
 import cards.Card;
+import interfaceAdapters.Presenter_Interface;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,13 +17,15 @@ public class Game {
     private List<Card> discardPile = new ArrayList<>();
     private int toMove;
     private boolean isClockwise;
+    private Presenter_Interface presenter;
 
-    public Game(List<Player> players, List<Card> deck, boolean isClockwise) {
+    public Game(List<Player> players, List<Card> deck, boolean isClockwise, Presenter_Interface presenter) {
         this.players = players;
         this.deck = deck;
         this.lastPlayed = deck.remove(0);
         this.toMove = 0;
         this.isClockwise = isClockwise;
+        this.presenter = presenter;
     }
 
     public int getToMove() {
@@ -30,6 +34,10 @@ public class Game {
 
     public List<Player> getPlayers() {
         return this.players;
+    }
+
+    public Presenter_Interface getPresenter() {
+        return presenter;
     }
 
     public int getNextPlayer() {
