@@ -23,5 +23,6 @@ public class WildCard extends Card {
         Current Flow of Code:
         WildCard > RequestColourChange (Use Case) > Presenter (Interface) > View (Interface)
         */
+
     }
 }
