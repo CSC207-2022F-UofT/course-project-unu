@@ -10,6 +10,9 @@ public abstract class Card {
      */
     private final String cardType;
 
+
+    private final int botPriority;
+
     /**
      * The colour this card is.
      * Can be: Red, Blue, Green, or Yellow.
@@ -34,9 +37,10 @@ public abstract class Card {
      * @param cardType  the String representing the card's type
      * @param colour    the String representing the card's colour
      */
-    public Card(String cardType, String colour) {
+    public Card(String cardType, String colour, int botPriority) {
         this.cardType = cardType;
         this.colour = colour;
+        this.botPriority = botPriority;
     }
 
     /**
