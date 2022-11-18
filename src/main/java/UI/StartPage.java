@@ -1,56 +1,76 @@
 package UI;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartPage {
 
-    GameManager gm;
     JFrame window;
-    ImageIcon startBG;
-    JLabel myLabel;
+    JPanel startPanel;
+    JLabel startLabel;
+    JButton regularButton;
+    JButton teamButton;
 
-    JButton startGameButton;
-    JButton exitButton;
-    JButton instruction;
+    public StartPage(){
 
-    public StartPage(GameManager gm){
-
-        this.gm = gm;
-
-        createStartPage();
-
-        window.setVisible(true);
+        generateScreen();
 
     }
 
-    public void createStartPage() {
+    public void createStartPageButtons(JLabel bg) {
+        regularButton = new JButton("Regular Mode");
+        regularButton.setBounds(300, 300, 120, 70);
+        regularButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RegularModeSetup();
+                window.setVisible(false);
+            }
+        });
+        teamButton = new JButton("Team Mode");
+        teamButton.setBounds(530, 300, 120, 70);
+        teamButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TeamModeSetup();
+                window.setVisible(false);
+            }
+        });
+        bg.add(regularButton);
+        bg.add(teamButton);
 
-        startBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
-        myLabel = new JLabel(startBG);
-        myLabel.setSize(800, 600);
+    }
 
+    public void generateScreen() {
+        //create a main field
         window = new JFrame();
-        window.setSize(800, 600);
+        window.setSize(1000, 700);
+        window.setTitle("Start Page");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close the windows properly
-        //window.getContentPane().setBackground(black);
         window.setLayout(null);
         window.setLocationRelativeTo(null);
-        window.add(myLabel);
+        window.setVisible(true);
 
-        startGameButton = new JButton("Start");
-        startGameButton.setBounds(130, 300, 100, 50);
-        instruction = new JButton("Instruction");
-        instruction.setBounds(130, 365, 100, 50);
-        exitButton = new JButton("Exit");
-        exitButton.setBounds(130, 430, 100, 50);
+        //set background
+        startPanel = new JPanel();
+        startPanel.setBounds(0, 0, 1000, 700);
+        startPanel.setLayout(null);
+        window.add(startPanel);
+        startLabel = new JLabel();
+        startLabel.setBounds(0, 0, 1000, 700);
+        ImageIcon startBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
+        startLabel.setIcon(startBG);
+        startPanel.add(startLabel);
+        createStartPageButtons(startLabel);
 
-        //startGameButton.addActionListener();
+//        JLabel logo = new JLabel();
+//        ImageIcon unoLogo = new ImageIcon(this.getClass().getResource("/UNO_logo.jpg"));
+//        logo.setBounds(100, 100, 300, 300);
+//        logo.setIcon(unoLogo);
+//        startLabel.add(logo);
 
-        myLabel.add(startGameButton);
-        myLabel.add(exitButton);
-        myLabel.add(instruction);
-
-//        messageText = new JTextArea();
-//        messageText.setBounds();
     }
+
 }
