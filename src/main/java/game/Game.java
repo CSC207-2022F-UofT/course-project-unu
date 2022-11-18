@@ -1,6 +1,7 @@
 package game;
 
 import entities.Player;
+import entities.RealPlayer;
 import cards.Card;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +23,7 @@ public class Game {
         this.lastPlayed = deck.remove(0);
         this.toMove = 0;
         this.isClockwise = isClockwise;
+        discardPile.add(lastPlayed);
     }
 
     public int getToMove() {
@@ -59,7 +61,11 @@ public class Game {
     // If the deck is empty, shuffle the discard pile into the deck
     public void reshuffle() {
         deck = new ArrayList<>(discardPile);
+        deck.remove(lastPlayed);
+
         discardPile.clear();
+        discardPile.add(lastPlayed);
+
         shuffleDeck();
     }
 
@@ -103,6 +109,14 @@ public class Game {
         lastPlayed = played;
 
         discardPile.add(played);
+    }
+
+    /**
+     * Return the list of cards the player can play from their deck
+     * @param player Player
+     */
+    public List<Card> getPlayerOptions(Player player) {
+        return player.getPossibleMoves(lastPlayed);
     }
 
     public boolean checkGameOver() {

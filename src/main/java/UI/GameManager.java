@@ -1,11 +1,13 @@
 package UI;
 
+
 import javax.swing.*;
 
 /**
  * the Main class that the users interact with
  */
 public class GameManager {
+
 
     ActionHandler aHandler;
     ViewMethods ui;
@@ -20,6 +22,4 @@ public class GameManager {
         SwingUtilities.invokeLater(GameManager::new);
 
     }
-    
-
 }
