@@ -117,7 +117,25 @@ public class Game {
      * Return the Player's default move
      * @param player Player
      */
-    public List<Card> getPlayerDefault(Player player) {return player.getDefaultMove(lastPlayed);}
+    public List<Card> getPlayerDefault(Player player) {
+        return player.getDefaultMove(lastPlayed);
+    }
+
+    /**
+     * Allow a Player to make a move, based on their input
+     * move = -1 refers to drawing a card
+     * Any other integer refers to the card they would like to play
+     * @param player Player
+     * @param move Player's desired move
+     */
+    public void makeMove(int player, int move) {
+        if (move == -1) {
+            draw(1, player);
+        }
+        else {
+            play(move);
+        }
+    }
 
     public boolean checkGameOver() {
         return players.get(toMove).getHand().isEmpty();
