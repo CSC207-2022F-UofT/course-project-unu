@@ -1,14 +1,20 @@
 package UI;
 
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PlayCardWindow {
 
     JFrame window;
     JPanel playPanel;
+    Controller c;
 
-    public PlayCardWindow() {
+    public PlayCardWindow(Controller c) {
+        this.c = c;
         generateScreen();
     }
 
@@ -32,6 +38,12 @@ public class PlayCardWindow {
 
     }
 
+    public void createAvailableMoves(String[] availableMoves) {
+        JButton[] cardButtons = new JButton[availableMoves.length];
+
+    }
+
+
     public JButton createCardButtons(int cardX, int cardY, int width, int height, String cardStr) {
 
         JButton card = new JButton();
@@ -47,7 +59,6 @@ public class PlayCardWindow {
             cardColor = Color.black;
         } else {
             String[] splitedCard = cardStr.split("-");
-            System.out.println(splitedCard);
             String text = splitedCard[0];
             String colour = splitedCard[1];
             cardText = text;
@@ -73,6 +84,13 @@ public class PlayCardWindow {
         card.setFont(new Font("Monospace", Font.PLAIN, 30));
         card.setHorizontalAlignment(SwingConstants.CENTER);
         card.setBorder(BorderFactory.createLineBorder(Color.white));
+        card.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                c.playCard(cardStr);
+                window.setVisible(false);
+            }
+        });
 
         return card;
     }

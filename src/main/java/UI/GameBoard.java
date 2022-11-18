@@ -57,13 +57,6 @@ public class GameBoard{
         createPlayers(gameLabel);
         addGameButtons(gameLabel);
 
-        updatePlayer1Card(gameLabel);
-        updatePlayer2Card(gameLabel);
-        updatePlayer3Card(gameLabel);
-        updatePlayer4Card(gameLabel);
-        updateLastPlayed(gameLabel);
-
-
     }
 
     public void createPlayers(JLabel bg) {
@@ -95,38 +88,38 @@ public class GameBoard{
         bg.add(bot3);
     }
 
-    public void updatePlayer1Card(JLabel bg) {
-        JLabel card = createCardLabel(80, 460, 85, 120, "R-green");
-        bg.add(card);
+    public void updatePlayer1Card(String cardStr) {
+        JLabel card = createCardLabel(80, 460, 85, 120, cardStr);
+        gameLabel.add(card);
         JLabel lastCardText = new JLabel("My Last Played Card");
         lastCardText.setBounds(60, 420, 125, 40);
         lastCardText.setForeground(Color.white);
-        bg.add(lastCardText);
+        gameLabel.add(lastCardText);
     }
 
-    public void updatePlayer2Card(JLabel bg) {
-        JLabel card = createCardLabel(200, 60, 85, 120, "+4");
-        bg.add(card);
+    public void updatePlayer2Card(String cardStr) {
+        JLabel card = createCardLabel(200, 60, 85, 120, cardStr);
+        gameLabel.add(card);
     }
 
-    public void updatePlayer3Card(JLabel bg) {
-        JLabel card = createCardLabel(500, 60, 85, 120, "W");
-        bg.add(card);
+    public void updatePlayer3Card(String cardStr) {
+        JLabel card = createCardLabel(500, 60, 85, 120, cardStr);
+        gameLabel.add(card);
     }
 
-    public void updatePlayer4Card(JLabel bg) {
+    public void updatePlayer4Card(String cardStr) {
 
-        JLabel card = createCardLabel(800, 60, 85, 120, "R-green");
-        bg.add(card);
+        JLabel card = createCardLabel(800, 60, 85, 120, cardStr);
+        gameLabel.add(card);
     }
 
-    public void updateLastPlayed(JLabel bg) {
-        JLabel card = createCardLabel(300, 250, 85, 120, "R-green");
-        bg.add(card);
+    public void updateLastPlayed(String cardStr) {
+        JLabel card = createCardLabel(300, 250, 85, 120, cardStr);
+        gameLabel.add(card);
         JLabel lastCardText = new JLabel("Last Card Played");
         lastCardText.setBounds(290, 210, 105, 40);
         lastCardText.setForeground(Color.white);
-        bg.add(lastCardText);
+        gameLabel.add(lastCardText);
     }
 
     public void addGameButtons(JLabel bg) {
@@ -135,7 +128,7 @@ public class GameBoard{
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                new PlayCardWindow();
+                new PlayCardWindow(c);
             }
         });
         bg.add(playButton);
@@ -188,7 +181,6 @@ public class GameBoard{
             cardColor = Color.black;
         } else {
             String[] splitedCard = cardStr.split("-");
-            System.out.println(splitedCard);
             String text = splitedCard[0];
             String colour = splitedCard[1];
             cardText = text;
