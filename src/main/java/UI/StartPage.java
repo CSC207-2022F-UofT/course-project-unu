@@ -1,5 +1,7 @@
 package UI;
 
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,9 +14,10 @@ public class StartPage {
     JLabel startLabel;
     JButton regularButton;
     JButton teamButton;
+    Controller c;
 
-    public StartPage(){
-
+    public StartPage(Controller c){
+        this.c = c;
         generateScreen();
 
     }
@@ -25,7 +28,7 @@ public class StartPage {
         regularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new RegularModeSetup();
+                new RegularModeSetup(c);
                 window.setVisible(false);
             }
         });
@@ -34,7 +37,7 @@ public class StartPage {
         teamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TeamModeSetup();
+                new TeamModeSetup(c);
                 window.setVisible(false);
             }
         });

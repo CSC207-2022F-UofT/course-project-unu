@@ -14,10 +14,10 @@ public class TeamModeSetup {
     JPanel teamSetupPanel;
     JLabel teamSetupLabel;
 
-    public TeamModeSetup() {
+    public TeamModeSetup(Controller c) {
 
         generateScreen();
-        c = new Controller();
+        this.c = c;
         c.setTeamMode(true);//may delete this if useless
     }
 
