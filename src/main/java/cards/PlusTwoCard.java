@@ -8,8 +8,14 @@ public class PlusTwoCard extends Card {
         super(cardType, colour);
     }
 
+    /**
+     * Forces the next player to draw two cards and skips their turn.
+     *
+     * @param game the Game object this card is affecting
+     */
     @Override
     public void playedEffect(Game game) {
-        //TODO: Force next player in game to draw
+        game.draw(2, game.getNextPlayer());
+        game.setToMove(game.getNextPlayer());
     }
 }
