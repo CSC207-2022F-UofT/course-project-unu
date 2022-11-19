@@ -1,6 +1,8 @@
 package game;
 
 import entities.Player;
+import entities.RealPlayer;
+import entities.CardFactory;
 import cards.Card;
 import interfaceAdapters.Presenter_Interface;
 
@@ -8,10 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Game {
 
-    private List<Player> players;
+    private Player[] players;
     private List<Card> deck;
     private Card lastPlayed;
     private List<Card> discardPile = new ArrayList<>();
@@ -19,20 +20,21 @@ public class Game {
     private boolean isClockwise;
     private Presenter_Interface presenter;
 
-    public Game(List<Player> players, List<Card> deck, boolean isClockwise, Presenter_Interface presenter) {
+    public Game(Player[] players, boolean isClockwise, Presenter_Interface presenter) {
         this.players = players;
-        this.deck = deck;
+        this.deck = newDeck();
         this.lastPlayed = deck.remove(0);
         this.toMove = 0;
         this.isClockwise = isClockwise;
         this.presenter = presenter;
+        discardPile.add(lastPlayed);
     }
 
     public int getToMove() {
         return this.toMove;
     }
 
-    public List<Player> getPlayers() {
+    public Player[] getPlayers() {
         return this.players;
     }
 
@@ -44,9 +46,9 @@ public class Game {
         int nextPlayer;
 
         if (isClockwise) {
-            nextPlayer = (toMove + 1) % players.size();
+            nextPlayer = (toMove + 1) % players.length;
         } else {
-            nextPlayer = (toMove - 1) % players.size();
+            nextPlayer = (toMove - 1) % players.length;
         }
 
         return nextPlayer;
@@ -60,6 +62,32 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
+    public List<Card> newDeck() {
+        CardFactory cardFactory = new CardFactory();
+
+        String[] colours = {"red", "yellow", "blue", "green"};
+        String[] cardTypes = {"reverse", "plusTwo", "skip",
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String[] wildCardTypes = {"wild", "plusFour"};
+
+        List<Card> newDeck = new ArrayList<>();
+
+        for (String colour: colours) {
+            for (String cardType : cardTypes) {
+                newDeck.add(cardFactory.getCard(cardType, colour));
+                newDeck.add(cardFactory.getCard(cardType, colour));
+            }
+
+            for (String wildCardType : wildCardTypes) {
+                for (int i = 0; i < 4; i++) {
+                    newDeck.add(cardFactory.getCard(wildCardType));
+                }
+            }
+        }
+
+        return newDeck;
+    }
+
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }
@@ -67,7 +95,11 @@ public class Game {
     // If the deck is empty, shuffle the discard pile into the deck
     public void reshuffle() {
         deck = new ArrayList<>(discardPile);
+        deck.remove(lastPlayed);
+
         discardPile.clear();
+        discardPile.add(lastPlayed);
+
         shuffleDeck();
     }
 
@@ -94,7 +126,7 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
-        players.get(player).drawCards(cards);
+        players[player].drawCards(cards);
     }
 
     /**
@@ -104,7 +136,7 @@ public class Game {
      * @param n Card to play
      */
     public void play(int n) {
-        Card played = players.get(toMove).playCard(n);
+        Card played = players[toMove].playCard(n);
 
         played.playedEffect(this);
 
@@ -113,7 +145,39 @@ public class Game {
         discardPile.add(played);
     }
 
+    /**
+     * Return the list of cards the player can play from their deck
+     * @param player Player
+     */
+    public List<Card> getPlayerOptions(Player player) {
+        return player.getPossibleMoves(lastPlayed);
+    }
+
+    /**
+     * Return the Player's default move
+     * @param player Player
+     */
+    public List<Card> getPlayerDefault(Player player) {
+        return player.getDefaultMove(lastPlayed);
+    }
+
+    /**
+     * Allow a Player to make a move, based on their input
+     * move = -1 refers to drawing a card
+     * Any other integer refers to the card they would like to play
+     * @param player Player
+     * @param move Player's desired move
+     */
+    public void makeMove(int player, int move) {
+        if (move == -1) {
+            draw(1, player);
+        }
+        else {
+            play(move);
+        }
+    }
+
     public boolean checkGameOver() {
-        return players.get(toMove).getHand().isEmpty();
+        return players[toMove].getHand().isEmpty();
     }
 }

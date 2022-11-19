@@ -1,5 +1,8 @@
 package UI;
 
+
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 
 /**
@@ -7,12 +10,13 @@ import javax.swing.*;
  */
 public class GameManager {
 
-    ActionHandler aHandler;
+
+    Controller c;
     ViewMethods ui;
 
     public GameManager() {
-        this.ui = new ViewMethods(this);
-        this.aHandler = new ActionHandler(this);
+        this.c = new Controller();
+        this.ui = new ViewMethods(this, c);
     }
 
     public static void main(String[] args) {
@@ -20,6 +24,4 @@ public class GameManager {
         SwingUtilities.invokeLater(GameManager::new);
 
     }
-    
-
 }

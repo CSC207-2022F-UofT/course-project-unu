@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 /**
  * when creating colour choosing page, use JPopMenu
@@ -25,15 +26,10 @@ public class GameBoard{
     JPanel gamePanel;
     JLabel gameLabel;
 
-    public GameBoard(ViewMethods vm) {
+    public GameBoard(ViewMethods vm, Controller c) {
 
         this.vm = vm;
-
-        /*
-        From my understanding, the GameBoard is part of the Frameworks and Drivers Layer.
-        Therefore, this depends on the interface adapters below.
-         */
-        c = new Controller();
+        this.c = c;
         p = new Presenter(vm);
 
         generateScreen();
@@ -58,10 +54,16 @@ public class GameBoard{
         gameLabel = new JLabel();
         gameLabel.setBounds(0, 0, 1000, 700);
         ImageIcon startBG = new ImageIcon(this.getClass().getResource("/gameBoardBG.png"));
+        Image bgImg = startBG.getImage();
+        Image adjustedBg = bgImg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
+        startBG = new ImageIcon(adjustedBg);
+
         gameLabel.setIcon(startBG);
         gamePanel.add(gameLabel);
 
         createPlayers(gameLabel);
+        addGameButtons(gameLabel);
+
     }
 
     public void createPlayers(JLabel bg) {
@@ -69,7 +71,7 @@ public class GameBoard{
         ImageIcon bot1Icon = new ImageIcon(this.getClass().getResource("/RedBot.png"));
         Image bot1Img = bot1Icon.getImage();
         Image adjustedBot1 = bot1Img.getScaledInstance(60, 70, Image.SCALE_SMOOTH);
-        bot1.setBounds(100, 100, 60, 70);
+        bot1.setBounds(100, 80, 60, 70);
         bot1Icon = new ImageIcon(adjustedBot1);
         bot1.setIcon(bot1Icon);
 
@@ -77,7 +79,7 @@ public class GameBoard{
         ImageIcon bot2Icon = new ImageIcon(this.getClass().getResource("/StripeBot.png"));
         Image bot2Img = bot2Icon.getImage();
         Image adjustedBot2 = bot2Img.getScaledInstance(60, 70, Image.SCALE_SMOOTH);
-        bot2.setBounds(400, 100, 60, 70);
+        bot2.setBounds(400, 80, 60, 70);
         bot2Icon = new ImageIcon(adjustedBot2);
         bot2.setIcon(bot2Icon);
 
@@ -85,33 +87,79 @@ public class GameBoard{
         ImageIcon bot3Icon = new ImageIcon(this.getClass().getResource("/WhiteBot.png"));
         Image bot3Img = bot3Icon.getImage();
         Image adjustedBot3 = bot3Img.getScaledInstance(60, 70, Image.SCALE_SMOOTH);
-        bot3.setBounds(700, 100, 60, 70);
+        bot3.setBounds(700, 80, 60, 70);
         bot3Icon = new ImageIcon(adjustedBot3);
         bot3.setIcon(bot3Icon);
         bg.add(bot1);
         bg.add(bot2);
         bg.add(bot3);
-
-        JLabel textMessage = new JLabel("Hello World");
-        textMessage.setBackground(Color.black);
-        bg.add(textMessage);
-
-
-        JLabel bot4 = new JLabel();
-        bot4.setBounds(200, 400, 100, 100);
-
-        bg.add(bot4);
-
-        //JLabel card1 = createCardLabel(500, 500, "1-red");
-        //bg.add(card1);
-        JLabel cardTest = new JLabel();
-        cardTest.setText("1");
-        cardTest.setIcon(bot2Icon);
-        cardTest.setBounds(500, 500, 50, 100);
-        cardTest.setBackground(Color.red);
-        bg.add(cardTest);
-
     }
+
+    public void updatePlayer1Card(String cardStr) {
+        JLabel card = createCardLabel(80, 460, 85, 120, cardStr);
+        gameLabel.add(card);
+        JLabel lastCardText = new JLabel("My Last Played Card");
+        lastCardText.setBounds(60, 420, 125, 40);
+        lastCardText.setForeground(Color.white);
+        gameLabel.add(lastCardText);
+    }
+
+    public void updatePlayer2Card(String cardStr) {
+        JLabel card = createCardLabel(200, 60, 85, 120, cardStr);
+        gameLabel.add(card);
+    }
+
+    public void updatePlayer3Card(String cardStr) {
+        JLabel card = createCardLabel(500, 60, 85, 120, cardStr);
+        gameLabel.add(card);
+    }
+
+    public void updatePlayer4Card(String cardStr) {
+
+        JLabel card = createCardLabel(800, 60, 85, 120, cardStr);
+        gameLabel.add(card);
+    }
+
+    public void updateLastPlayed(String cardStr) {
+        JLabel card = createCardLabel(300, 250, 85, 120, cardStr);
+        gameLabel.add(card);
+        JLabel lastCardText = new JLabel("Last Card Played");
+        lastCardText.setBounds(290, 210, 105, 40);
+        lastCardText.setForeground(Color.white);
+        gameLabel.add(lastCardText);
+    }
+
+    public void addGameButtons(JLabel bg) {
+        JButton playButton = new JButton("Play Card");
+        playButton.setBounds(800, 450, 100, 60);
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                new PlayCardWindow(c);
+            }
+        });
+        bg.add(playButton);
+        JButton drawButton = new JButton("Draw Card");
+        drawButton.setBounds(800, 540, 100, 60);
+        drawButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                c.drawCard();
+            }
+        });
+        bg.add(drawButton);
+    }
+
+    public void displayAvailableCards(JLabel[] cardList) {
+        JLabel availableCardText = new JLabel("My Cards");
+        availableCardText.setBounds(260, 400, 70, 40);
+        availableCardText.setForeground(Color.white);
+        gameLabel.add(availableCardText);
+        for (JLabel jLabel : cardList) {
+            gameLabel.add(jLabel);
+        }
+    }
+
 
     /**
      * number card
@@ -126,9 +174,10 @@ public class GameBoard{
      * skip card "S-red"
      * wild card "W"
      */
-    public JLabel createCardLabel(int cardX, int cardY, String cardStr) {
+    public JLabel createCardLabel(int cardX, int cardY, int width, int height, String cardStr) {
         JLabel card = new JLabel();
-        card.setBounds(cardX, cardY, 50, 100);
+        card.setBounds(cardX, cardY, width, height);
+        card.setForeground(Color.white);
         String cardText = "";
         Color cardColor = Color.white;
         if (cardStr.equals("+4")) {
@@ -138,7 +187,7 @@ public class GameBoard{
             cardText = cardStr;
             cardColor = Color.black;
         } else {
-            String[] splitedCard = cardText.split("-");
+            String[] splitedCard = cardStr.split("-");
             String text = splitedCard[0];
             String colour = splitedCard[1];
             cardText = text;
@@ -160,6 +209,10 @@ public class GameBoard{
 
         card.setText(cardText);
         card.setBackground(cardColor);
+        card.setOpaque(true);
+        card.setFont(new Font("Monospace", Font.PLAIN, 30));
+        card.setHorizontalAlignment(SwingConstants.CENTER);
+        card.setBorder(BorderFactory.createLineBorder(Color.white));
 
         return card;
     }
