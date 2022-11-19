@@ -3,6 +3,7 @@ import TeamMode.Team;
 import TeamMode.TeamPlayer;
 import cards.Card;
 import entities.Player;
+import entities.RealPlayer;
 import game.Game;
 
 import java.util.ArrayList;
@@ -50,7 +51,6 @@ public class Controller {
      * @param playerName
      */
     public void addPlayerName(String playerName) {
-
         playerNames.add(playerName);
     }
 
@@ -75,7 +75,7 @@ public class Controller {
         List<Player> teamPlayers = new ArrayList<>();
         for(int i=0; i<teamNames.size();i++){
             Team team = new Team(teamNames.get(i));
-            for(int k=0;i<playerNames.size();i++){
+            for(int k=0;k<playerNames.size();k++){
                 TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
                 team.addTeamPlayer(player);
                 teamPlayers.add(player);
@@ -83,10 +83,21 @@ public class Controller {
         }
         return teamPlayers;
     }
+
+    /**
+     * returns the list of players that can be used to initialize the game
+     * @return
+     */
     private List<Player> regularPlayerList() {
-        //TODO: return the list of players that can be used to initialize the game
-        // Can use playerNames and botLevels
-        return new ArrayList<>();
+        List<Player> playerList = new ArrayList<>();
+        Player player = new RealPlayer(playerNames.get(0));
+        playerList.add(player);
+        for(int k=1;k<playerNames.size();k++){
+            player = new RealPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+            };
+            playerList.add(player);
+        }
+        return playerList;
     }
     private List<Card> standardCardDeck() {
         //TODO: create a standard card deck that initializes the game
