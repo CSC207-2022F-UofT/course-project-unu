@@ -8,7 +8,7 @@ public interface ComputerMoves extends Moves {
      * If a move doesn't exist, return -1.
      * @param playedCards the entire list of played cards. 
      */
-    public int getBestMove(ArrayList<Card> playedCards);
+    public int getBestMove(ArrayList<Card> playedCards, ArrayList<Card> nextPlayerHand);
 
     /**
      * Return the index of the from Player's hand of a random Card that Player can play.
