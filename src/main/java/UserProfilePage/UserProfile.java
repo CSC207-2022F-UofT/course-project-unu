@@ -7,15 +7,21 @@ public class UserProfile{
     public float WinRate;
 
 
+    /**
+     * Creates a new player with the given name.
+     * @param name
+     */
     public void UserProfile(String name){
-        //Creates a new player
         this.name = name;
         this.GamesPlayed = 0;
         this.GamesWon = 0;
     }
 
-    public void UserProfile(boolean outcome){
-        //takes an input of win/loss and records a game
+    /**
+     * Record a new game to the profile of the player.
+     * @param outcome
+     */
+    public void newGameResult(boolean outcome){
         this.GamesPlayed ++;
         if (outcome){
             this.GamesWon ++;
