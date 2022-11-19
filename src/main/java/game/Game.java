@@ -1,22 +1,32 @@
 package game;
 
 import entities.Player;
+import entities.RealPlayer;
+import entities.CardFactory;
 import cards.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Game {
 
-    private List<Player> players;
+    private Player[] players;
     private List<Card> deck;
     private Card lastPlayed;
     private List<Card> discardPile = new ArrayList<>();
     private int toMove;
     private boolean isClockwise;
 
-    public Game(List<Player> players, List<Card> deck, boolean isClockwise) {
+    public Game(Player[] players, boolean isClockwise) {
+        this.players = players;
+        this.deck = newDeck();
+        this.lastPlayed = deck.remove(0);
+        this.toMove = 0;
+        this.isClockwise = isClockwise;
+        discardPile.add(lastPlayed);
+    }
+
+    public Game(Player[] players, List<Card> deck, boolean isClockwise) {
         this.players = players;
         this.deck = deck;
         this.lastPlayed = deck.remove(0);
@@ -29,7 +39,7 @@ public class Game {
         return this.toMove;
     }
 
-    public List<Player> getPlayers() {
+    public Player[] getPlayers() {
         return this.players;
     }
 
@@ -37,9 +47,9 @@ public class Game {
         int nextPlayer;
 
         if (isClockwise) {
-            nextPlayer = (toMove + 1) % players.size();
+            nextPlayer = (toMove + 1) % players.length;
         } else {
-            nextPlayer = (toMove - 1) % players.size();
+            nextPlayer = (toMove - 1) % players.length;
         }
 
         return nextPlayer;
@@ -51,6 +61,32 @@ public class Game {
 
     public void changeDirection() {
         isClockwise = !isClockwise;
+    }
+
+    public List<Card> newDeck() {
+        CardFactory cardFactory = new CardFactory();
+
+        String[] colours = {"red", "yellow", "blue", "green"};
+        String[] cardTypes = {"reverse", "plusTwo", "skip",
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String[] wildCardTypes = {"wild", "plusFour"};
+
+        List<Card> newDeck = new ArrayList<>();
+
+        for (String colour: colours) {
+            for (String cardType : cardTypes) {
+                newDeck.add(cardFactory.getCard(cardType, colour));
+                newDeck.add(cardFactory.getCard(cardType, colour));
+            }
+
+            for (String wildCardType : wildCardTypes) {
+                for (int i = 0; i < 4; i++) {
+                    newDeck.add(cardFactory.getCard(wildCardType));
+                }
+            }
+        }
+
+        return newDeck;
     }
 
     public void shuffleDeck() {
@@ -91,7 +127,7 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
-        players.get(player).drawCards(cards);
+        players[player].drawCards(cards);
     }
 
     /**
@@ -101,7 +137,7 @@ public class Game {
      * @param n Card to play
      */
     public void play(int n) {
-        Card played = players.get(toMove).playCard(n);
+        Card played = players[toMove].playCard(n);
 
         played.playedEffect(this);
 
@@ -143,6 +179,6 @@ public class Game {
     }
 
     public boolean checkGameOver() {
-        return players.get(toMove).getHand().isEmpty();
+        return players[toMove].getHand().isEmpty();
     }
 }
