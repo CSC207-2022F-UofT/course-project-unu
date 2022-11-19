@@ -84,7 +84,7 @@ public class BotPlayer extends Player implements ComputerMoves {
    * @param nextPlayerCards
    */
   private int upsetNextPlayerWeight(ArrayList<Card> nextPlayerCards) {
-    if (nextPlayerCards.size() == 1 || nextPlayerCards.size() == 2) {
+    if (nextPlayerCards.size() <= 2) {
       return 10;
     }
 
