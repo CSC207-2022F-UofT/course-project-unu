@@ -14,10 +14,10 @@ public class RegularModeSetup {
     JPanel regularSetupPanel;
     JLabel regularSetupLabel;
 
-    public RegularModeSetup(){
+    public RegularModeSetup(Controller c){
 
         generateScreen();
-        c = new Controller();
+        this.c = c;
         c.setTeamMode(false);//may delete this if useless
 
     }

@@ -23,8 +23,8 @@ public class GameBoard{
     JPanel gamePanel;
     JLabel gameLabel;
 
-    public GameBoard() {
-
+    public GameBoard(Controller c) {
+        this.c = c;
         generateScreen();
 
     }

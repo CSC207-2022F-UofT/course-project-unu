@@ -1,5 +1,7 @@
 package UI;
 
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 
 /**
@@ -8,7 +10,7 @@ import javax.swing.*;
 public interface View {
 
     //generate a game board
-    void generateGameBoard();
+    void generateGameBoard(Controller c);
 
     //update the last card played in the game
     void updateLastCardPlayed(String card);

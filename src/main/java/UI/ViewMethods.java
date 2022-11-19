@@ -1,5 +1,7 @@
 package UI;
 
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,34 +9,37 @@ public class ViewMethods implements View{
 
     GameManager gm;
     GameBoard gameBoard;
+    Controller c;
 
-    public ViewMethods(GameManager gm) {
+    public ViewMethods(GameManager gm, Controller c) {
         this.gm = gm;
-        //StartPage sp = new StartPage();
+        StartPage sp = new StartPage(c);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        generateGameBoard();
-        String[] str = new String[7];
-        str[0] = "W";
-        str[1] = "+4";
-        str[2] = "1-red";
-        str[3] = "+2-green";
-        str[4] = "R-blue";
-        str[5] = "S-yellow";
-        str[6] = "0-red";
-        updateAvailableCards(str);
-        updateMyLastPlayedCard("R-green");
-        updateLastCardPlayed("S-blue");
-        updateBot1Card("+4");
-        updateBot2Card("W");
-        updateBot3Card("9-red");
+        this.c = c;
+//        generateGameBoard(c);
+//        String[] str = new String[7];
+//        str[0] = "W";
+//        str[1] = "+4";
+//        str[2] = "1-red";
+//        str[3] = "+2-green";
+//        str[4] = "R-blue";
+//        str[5] = "S-yellow";
+//        str[6] = "0-red";
+//        updateAvailableCards(str);
+//        updateMyLastPlayedCard("R-green");
+//        updateLastCardPlayed("S-blue");
+//        updateBot1Card("+4");
+//        updateBot2Card("W");
+//        updateBot3Card("9-red");
+//        requestColorChange();
     }
 
     @Override
-    public void generateGameBoard() {
-        gameBoard = new GameBoard();
+    public void generateGameBoard(Controller c) {
+        gameBoard = new GameBoard(c);
     }
 
     @Override
@@ -74,7 +79,7 @@ public class ViewMethods implements View{
 
     @Override
     public void requestColorChange() {
-
+        new ChooseColourPage(c);
     }
 
 }
