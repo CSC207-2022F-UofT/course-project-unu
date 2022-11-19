@@ -4,8 +4,8 @@ import game.Game;
 
 public class SkipCard extends Card {
 
-    public SkipCard(String cardType, String colour) {
-        super(cardType, colour);
+    public SkipCard(String cardType, String colour, int botPriority) {
+        super(cardType, colour, botPriority);
     }
 
     /**

@@ -3,9 +3,8 @@ package cards;
 import game.Game;
 
 public class PlusTwoCard extends Card {
-
-    public PlusTwoCard(String cardType, String colour) {
-        super(cardType, colour);
+    public PlusTwoCard(String cardType, String colour, int botPriority) {
+        super(cardType, colour, botPriority);
     }
 
     /**

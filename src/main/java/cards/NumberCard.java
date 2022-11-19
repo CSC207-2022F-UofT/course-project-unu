@@ -4,8 +4,8 @@ import game.Game;
 
 public class NumberCard extends Card {
 
-    public NumberCard(String cardType, String colour) {
-        super(cardType, colour);
+    public NumberCard(String cardType, String colour, int botPriority) {
+        super(cardType, colour, botPriority);
     }
 
     /**

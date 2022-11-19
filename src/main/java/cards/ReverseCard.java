@@ -4,8 +4,8 @@ import game.Game;
 
 public class ReverseCard extends Card {
 
-    public ReverseCard(String cardType, String colour) {
-        super(cardType, colour);
+    public ReverseCard(String cardType, String colour, int botPriority) {
+        super(cardType, colour, botPriority);
     }
 
     /**
