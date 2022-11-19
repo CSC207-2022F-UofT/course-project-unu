@@ -2,6 +2,8 @@ package UI;
 
 import game.Game;
 import interfaceAdapters.Controller;
+import interfaceAdapters.Presenter;
+import interfaceAdapters.Presenter_Interface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +20,18 @@ public class GameBoard{
 
     Controller c;
     ViewMethods vm;
+    Presenter_Interface p;
 
     JFrame window;
     JPanel gamePanel;
     JLabel gameLabel;
 
-    public GameBoard(Controller c) {
+    public GameBoard(ViewMethods vm, Controller c) {
+
+        this.vm = vm;
         this.c = c;
+        p = new Presenter(vm);
+
         generateScreen();
 
     }
