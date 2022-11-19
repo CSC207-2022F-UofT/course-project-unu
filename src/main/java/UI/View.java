@@ -33,5 +33,6 @@ public interface View {
 
 
 
-
+    //Create a colour change prompt for the user
+    void requestColourChange();
 }
