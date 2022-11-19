@@ -3,6 +3,7 @@ import moves.ComputerMoves;
 import cards.Card;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BotPlayer extends Player implements ComputerMoves {
   private final static String playerType = "bot";
@@ -15,17 +16,31 @@ public class BotPlayer extends Player implements ComputerMoves {
     return playerType;
   }
 
-
-  public int getBestMove(ArrayList<Card> playedCards) {
+  public int getBestMove(ArrayList<Card> playedCards, ArrayList<Card> nextPlayerHand) {
     int numberOfPlayed = playedCards.size();
     Card lastPlayed = playedCards.get(numberOfPlayed - 1);
     ArrayList<Card> possibleMoves = this.getPossibleMoves(lastPlayed);
 
-    if (possibleMoves.size() == 0) {
-      return -1;
+    int bestMove = -1;
+    int bestMovePriority = 0;
+
+    for (int i = 0; i < possibleMoves.size(); i++) {
+      Card card = possibleMoves.get(i);
+
+      int cardPriority = card.getBotPriority();
+
+      // Make sure the next player doesn't win
+      if (Arrays.asList("Plus4", "Plus2", "Skip", "Reverse").contains(card.getCardType())) {
+        cardPriority += upsetNextPlayerWeight(nextPlayerHand);
+      }
+
+      if (cardPriority > bestMovePriority) {
+        bestMovePriority = cardPriority;
+        bestMove = i;
+      }
     }
 
-    return getRandomMove(lastPlayed);
+    return bestMove;
   }
 
   public int getMovesFromWeights(Card lastPlayed) {
@@ -68,7 +83,11 @@ public class BotPlayer extends Player implements ComputerMoves {
    * Is the next player about to Uno?
    * @param nextPlayerCards
    */
-  private boolean isNextPlayerUno(ArrayList<Card> nextPlayerCards) {
-    return nextPlayerCards.size() == 1;
+  private int upsetNextPlayerWeight(ArrayList<Card> nextPlayerCards) {
+    if (nextPlayerCards.size() == 1 || nextPlayerCards.size() == 2) {
+      return 10;
+    }
+
+    return 0;
   }
 }
