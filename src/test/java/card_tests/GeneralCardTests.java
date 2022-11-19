@@ -3,10 +3,10 @@ package card_tests;
 import cards.Card;
 import cards.NumberCard;
 import cards.WildCard;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GeneralCardTests {
 
@@ -14,14 +14,14 @@ public class GeneralCardTests {
     Card card2;
     Card card3;
 
-    @Before
+    @BeforeEach
     public void setup() {
          card1 = new NumberCard("0", "Red");
          card2 = new NumberCard("1", "Red");
          card3 = new NumberCard("1", "Blue");
     }
 
-    @After
+    @AfterEach
     public void teardown() {
 
     }
@@ -35,13 +35,13 @@ public class GeneralCardTests {
         String colour = "Red";
         Card card = new NumberCard(type, colour);
 
-        Assert.assertEquals(card.getCardType(), type);
-        Assert.assertEquals(card.getColour(), colour);
+        Assertions.assertEquals(card.getCardType(), type);
+        Assertions.assertEquals(card.getColour(), colour);
 
         Card wild = new WildCard(type);
 
-        Assert.assertEquals(wild.getCardType(), type);
-        Assert.assertEquals(wild.getColour(), type);
+        Assertions.assertEquals(wild.getCardType(), type);
+        Assertions.assertEquals(wild.getColour(), type);
 
     }
 
@@ -51,9 +51,10 @@ public class GeneralCardTests {
     @Test
     public void testMatchingType() {
 
-        Assert.assertNotEquals(card1.getCardType(), card2.getCardType());
+        Assertions.assertNotEquals(card1.getCardType(),
+                card2.getCardType());
 
-        Assert.assertEquals(card2.getCardType(), card3.getCardType());
+        Assertions.assertEquals(card2.getCardType(), card3.getCardType());
     }
 
     /**
@@ -62,9 +63,10 @@ public class GeneralCardTests {
     @Test
     public void testMatchingColour() {
 
-        Assert.assertEquals(card1.getColour(), card2.getColour());
+        Assertions.assertEquals(card1.getColour(),
+                card2.getColour());
 
-        Assert.assertNotEquals(card2.getColour(), card3.getColour());
+        Assertions.assertNotEquals(card2.getColour(), card3.getColour());
     }
 
     /**
@@ -77,10 +79,10 @@ public class GeneralCardTests {
 
         Card wild = new WildCard(oldColour);
 
-        Assert.assertEquals(wild.getColour(), oldColour);
+        Assertions.assertEquals(wild.getColour(), oldColour);
 
         wild.setColour(newColour);
 
-        Assert.assertEquals(wild.getColour(), newColour);
+        Assertions.assertEquals(wild.getColour(), newColour);
     }
 }

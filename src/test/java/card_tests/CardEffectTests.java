@@ -4,16 +4,17 @@ import cards.*;
 import entities.Player;
 import entities.RealPlayer;
 import game.Game;
-import org.junit.*;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardEffectTests {
 
     Game game;
 
-    @Before
+    @BeforeEach
     public void setup() {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new RealPlayer("Player 1"));
@@ -31,7 +32,7 @@ public class CardEffectTests {
         game = new Game(players, cards, true);
     }
 
-    @After
+    @AfterEach
     public void teardown() {
 
     }
@@ -49,11 +50,11 @@ public class CardEffectTests {
     public void testReverse() {
         Card card = new ReverseCard("Reverse", "Red");
 
-        Assert.assertEquals(game.getNextPlayer(), 1);
+        Assertions.assertEquals(game.getNextPlayer(), 1);
 
         card.playedEffect(game);
 
-        Assert.assertEquals(game.getNextPlayer(), 3);
+        Assertions.assertEquals(game.getNextPlayer(), 3);
     }
 
     /**
@@ -63,11 +64,11 @@ public class CardEffectTests {
     public void testSkip() {
         Card card = new SkipCard("Skip", "Red");
 
-        Assert.assertEquals(game.getNextPlayer(), 1);
+        Assertions.assertEquals(game.getNextPlayer(), 1);
 
         card.playedEffect(game);
 
-        Assert.assertEquals(game.getNextPlayer(), 2);
+        Assertions.assertEquals(game.getNextPlayer(), 2);
 
     }
 
@@ -76,13 +77,13 @@ public class CardEffectTests {
      */
     @Test
     public void testPlus2() {
+
+        int size = game.getPlayers().get(game.getNextPlayer()).getHand().size();
+
         Card card = new PlusTwoCard("Plus2", "Red");
-
-        Assert.assertEquals(game.getNextPlayer(), 1);
-
         card.playedEffect(game);
 
-        Assert.assertEquals(game.getNextPlayer(), 2);
+        Assertions.assertEquals(game.getPlayers().get(game.getNextPlayer() - 1).getHand().size(), size + 2);
 
     }
 
@@ -91,6 +92,8 @@ public class CardEffectTests {
      */
     @Test
     public void testWild() {
+        Card card = new PlusTwoCard("Plus2", "Red");
+        card.playedEffect(game);
 
     }
 
@@ -99,7 +102,12 @@ public class CardEffectTests {
      */
     @Test
     public void testPlus4() {
+        int size = game.getPlayers().get(game.getNextPlayer()).getHand().size();
 
+        Card card = new PlusTwoCard("Plus2", "Red");
+        card.playedEffect(game);
+
+        Assertions.assertEquals(game.getPlayers().get(game.getNextPlayer() - 1).getHand().size(), size + 4);
     }
 
 }
