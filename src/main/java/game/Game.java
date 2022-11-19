@@ -11,8 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
-
-    private Player[] players;
+    private List<Player> players;
     private List<Card> deck;
     private Card lastPlayed;
     private List<Card> discardPile = new ArrayList<>();
