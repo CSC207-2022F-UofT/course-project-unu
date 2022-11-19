@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Game {
-
     private List<Player> players;
     private List<Card> deck;
     private Card lastPlayed;
