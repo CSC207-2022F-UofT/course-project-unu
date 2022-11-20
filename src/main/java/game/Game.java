@@ -19,7 +19,7 @@ public class Game {
     private boolean isClockwise;
     private Presenter_Interface presenter;
 
-    public Game(Player[] players, boolean isClockwise, Presenter_Interface presenter) {
+    public Game(List<Player> players, boolean isClockwise, Presenter_Interface presenter) {
         this.players = players;
         this.deck = newDeck();
         this.lastPlayed = deck.remove(0);

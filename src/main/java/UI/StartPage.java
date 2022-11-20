@@ -75,5 +75,4 @@ public class StartPage {
 //        startLabel.add(logo);
 
     }
-
 }
