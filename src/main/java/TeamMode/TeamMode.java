@@ -17,7 +17,6 @@ public class TeamMode extends Game {
      */
     public TeamMode(List<Player> players, List<Card> deck, boolean isClockwise) {
         super(players, deck, isClockwise);
-
     }
 
     /**
