@@ -5,4 +5,6 @@ package interfaceAdapters;
  */
 public interface Presenter_Interface {
     void requestNewColour();
+
+    void updateAvailableCards(String[] cards);
 }

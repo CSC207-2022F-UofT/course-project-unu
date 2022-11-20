@@ -2,6 +2,8 @@ package interfaceAdapters;
 import cards.Card;
 import entities.Player;
 import game.Game;
+import use_cases.GameDataTransferObject;
+import use_cases.InputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,12 @@ public class Controller {
         return new ArrayList<>() {};
     }
     private Game game;
+
+    private InputBoundary drawInput;
+
+    public void initializeInputBoundary(InputBoundary drawInput) {
+        this.drawInput = drawInput;
+    }
     public void startGame() {
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
@@ -83,6 +91,10 @@ public class Controller {
     }
     public void drawCard() {
         //TODO: let the game draw a card after the user clicks the draw button
+
+        GameDataTransferObject gameData = new GameDataTransferObject(game.getPlayers(), game.getDeck(),
+                game.getLastPlayed(), game.getToMove(), game.getIsClockwise(), game.getDiscardPile());
+        this.drawInput.draw(gameData);
     }
     /**
      * pass the new theme colour to the game use cases

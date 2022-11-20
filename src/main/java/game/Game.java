@@ -1,56 +1,75 @@
 package game;
 
 import entities.Player;
-import entities.RealPlayer;
 import entities.CardFactory;
 import cards.Card;
 import interfaceAdapters.Presenter_Interface;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Collections;
 
 public class Game {
     private List<Player> players;
     private List<Card> deck;
     private Card lastPlayed;
-    private List<Card> discardPile = new ArrayList<>();
     private int toMove;
     private boolean isClockwise;
-    private Presenter_Interface presenter;
+    private List<Card> discardPile = new ArrayList<>();
 
-    public Game(Player[] players, boolean isClockwise, Presenter_Interface presenter) {
+    public Game(List<Player> players, boolean isClockwise) {
         this.players = players;
         this.deck = newDeck();
-        this.lastPlayed = deck.remove(0);
         this.toMove = 0;
         this.isClockwise = isClockwise;
-        this.presenter = presenter;
-        discardPile.add(lastPlayed);
+    }
+
+    public Game(List<Player> players, List<Card> deck, boolean isClockwise) {
+        this.players = players;
+        this.deck = newDeck();
+        this.toMove = 0;
+        this.isClockwise = isClockwise;
+    }
+
+    public Game(List<Player> players, List<Card> deck, Card lastPlayed, int toMove, boolean isClockwise, List<Card> discardPile) {
+        this.players = players;
+        this.deck = deck;
+        this.lastPlayed = lastPlayed;
+        this.toMove = toMove;
+        this.isClockwise = isClockwise;
+        this.discardPile = discardPile;
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    public List<Card> getDeck() {
+        return this.deck;
+    }
+
+    public Card getLastPlayed() {
+        return this.lastPlayed;
     }
 
     public int getToMove() {
         return this.toMove;
     }
 
-    public Player[] getPlayers() {
-        return this.players;
+    public boolean getIsClockwise() {
+        return this.isClockwise;
     }
 
-    public Presenter_Interface getPresenter() {
-        return presenter;
+    public List<Card> getDiscardPile() {
+        return this.discardPile;
     }
 
-    public int getNextPlayer() {
-        int nextPlayer;
+    public void setDeck(List<Card> deck) {
+        this.deck = deck;
+    }
 
-        if (isClockwise) {
-            nextPlayer = (toMove + 1) % players.length;
-        } else {
-            nextPlayer = (toMove - 1) % players.length;
-        }
-
-        return nextPlayer;
+    public void setLastPlayed(Card card) {
+        this.lastPlayed = card;
     }
 
     public void setToMove(int toMove) {
@@ -61,30 +80,20 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
-    public List<Card> newDeck() {
-        CardFactory cardFactory = new CardFactory();
+    public void setDiscardPile(List<Card> discardPile) {
+        this.discardPile = discardPile;
+    }
 
-        String[] colours = {"red", "yellow", "blue", "green"};
-        String[] cardTypes = {"reverse", "plusTwo", "skip",
-                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        String[] wildCardTypes = {"wild", "plusFour"};
+    public int getNextPlayer() {
+        int nextPlayer;
 
-        List<Card> newDeck = new ArrayList<>();
-
-        for (String colour: colours) {
-            for (String cardType : cardTypes) {
-                newDeck.add(cardFactory.getCard(cardType, colour));
-                newDeck.add(cardFactory.getCard(cardType, colour));
-            }
-
-            for (String wildCardType : wildCardTypes) {
-                for (int i = 0; i < 4; i++) {
-                    newDeck.add(cardFactory.getCard(wildCardType));
-                }
-            }
+        if (isClockwise) {
+            nextPlayer = (toMove + 1) % players.size();
+        } else {
+            nextPlayer = (toMove + players.size() - 1) % players.size();
         }
 
-        return newDeck;
+        return nextPlayer;
     }
 
     public void shuffleDeck() {
@@ -125,17 +134,17 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
-        players[player].drawCards(cards);
+        players.get(player).drawCards(cards);
     }
 
     /**
      * From current player's hand, remove card at index n
-     * Do card effect?
+     * Do card effect
      * Update lastPlayed and discardPile accordingly
      * @param n Card to play
      */
     public void play(int n) {
-        Card played = players[toMove].playCard(n);
+        Card played = players.get(toMove).playCard(n);
 
         played.playedEffect(this);
 
@@ -177,6 +186,32 @@ public class Game {
     }
 
     public boolean checkGameOver() {
-        return players[toMove].getHand().isEmpty();
+        return players.get(toMove).getHand().isEmpty();
+    }
+
+    public List<Card> newDeck() {
+        CardFactory cardFactory = new CardFactory();
+
+        String[] colours = {"red", "yellow", "blue", "green"};
+        String[] cardTypes = {"reverse", "plusTwo", "skip",
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String[] wildCardTypes = {"wild", "plusFour"};
+
+        List<Card> newDeck = new ArrayList<>();
+
+        for (String colour: colours) {
+            for (String cardType : cardTypes) {
+                newDeck.add(cardFactory.getCard(cardType, colour));
+                newDeck.add(cardFactory.getCard(cardType, colour));
+            }
+
+            for (String wildCardType : wildCardTypes) {
+                for (int i = 0; i < 4; i++) {
+                    newDeck.add(cardFactory.getCard(wildCardType));
+                }
+            }
+        }
+
+        return newDeck;
     }
 }

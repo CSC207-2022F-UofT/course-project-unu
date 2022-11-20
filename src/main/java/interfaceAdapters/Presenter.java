@@ -20,5 +20,9 @@ public class Presenter implements Presenter_Interface {
         Calls a View Interface and a method in it.
          */
     }
+    @Override
+    public void updateAvailableCards(String[] cards) {
+        viewMethods.updateAvailableCards(cards);
+    }
 
 }
