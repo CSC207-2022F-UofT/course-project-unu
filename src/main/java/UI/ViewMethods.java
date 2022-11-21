@@ -1,5 +1,8 @@
 package UI;
 
+import game.Game;
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,86 +10,85 @@ public class ViewMethods implements View{
 
     GameManager gm;
     GameBoard gameBoard;
+    Controller c;
 
-    public ViewMethods(GameManager gm) {
+    public ViewMethods(GameManager gm, Controller c) {
         this.gm = gm;
-        //StartPage sp = new StartPage();
+        StartPage sp = new StartPage(c);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        generateGameBoard();
-        String[] str = new String[7];
-        str[0] = "W";
-        str[1] = "+4";
-        str[2] = "1-red";
-        str[3] = "+2-green";
-        str[4] = "R-blue";
-        str[5] = "S-yellow";
-        str[6] = "0-red";
-        displayAvailableCards(str);
+        GameBoard gameBoard = new GameBoard(this);
+        this.c = c;
+//        generateGameBoard(c);
+//        String[] str = new String[7];
+//        str[0] = "W";
+//        str[1] = "+4";
+//        str[2] = "1-red";
+//        str[3] = "+2-green";
+//        str[4] = "R-blue";
+//        str[5] = "S-yellow";
+//        str[6] = "0-red";
+//        updateAvailableCards(str);
+//        updateMyLastPlayedCard("R-green");
+//        updateLastCardPlayed("S-blue");
+//        updateBot1Card("+4");
+//        updateBot2Card("W");
+//        updateBot3Card("9-red");
+//        requestColorChange();
     }
 
     @Override
-    public void generateGameBoard() {
-        gameBoard = new GameBoard();
+    public void generateGameBoard(Controller c) {
+        gameBoard = new GameBoard(c);
     }
 
-    public void displayAvailableCards(String[] cardList) {
+    @Override
+    public void updateLastCardPlayed(String card) {
+        gameBoard.updateLastPlayed(card);
+    }
+
+    @Override
+    public void updateMyLastPlayedCard(String card) {
+        gameBoard.updatePlayer1Card(card);
+    }
+
+    @Override
+    public void updateBot1Card(String card) {
+        gameBoard.updatePlayer2Card(card);
+    }
+
+    @Override
+    public void updateBot2Card(String card) {
+        gameBoard.updatePlayer3Card(card);
+    }
+
+    @Override
+    public void updateBot3Card(String card) {
+        gameBoard.updatePlayer4Card(card);
+    }
+
+    public void updateAvailableCards(String[] cardList) {
         JLabel[] cardLabels = new JLabel[cardList.length];
         for (int i=0; i<cardList.length; i++) {
-            System.out.println(i);
             int cardX = 260 + 70*(i / 2);
-            System.out.println(cardX);
             int cardY = 440 + 90*(i % 2);
-            System.out.println(cardY);
             cardLabels[i] = gameBoard.createCardLabel(cardX, cardY, 60, 80, cardList[i]);
         }
         gameBoard.displayAvailableCards(cardLabels);
     }
 
-
-    @Override
-    public void updateLastCardPlayed() {
-
-    }
-
-    @Override
-    public void updateCardDrawn() {
-
-    }
-
-    @Override
-    public void updateCardPlayed() {
-
-    }
-
-    @Override
-    public void updateMyLastPlayedCard() {
-
-    }
-
-    @Override
-    public void updateBot1Card() {
-
-    }
-
-    @Override
-    public void updateBot2Card() {
-
-    }
-
-    @Override
-    public void updateBot3Card() {
-
-    }
-    
-    
-
     @Override
     public void requestColorChange() {
-
+        new ChooseColourPage(c);
     }
 
-
+    @Override
+    public void requestColourChange() {
+        /*
+        Interface stuff here eventually calls on the controller
+        to change the colour of the lastPlayed card.
+         */
+    }
 }

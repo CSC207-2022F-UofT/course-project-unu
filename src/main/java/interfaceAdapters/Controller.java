@@ -108,6 +108,11 @@ public class Controller {
     public void startGame() {
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
+
+        //TODO: (this can also be done in the Game class) deal 7 cards to each player.
+        // Flip the first of the deck. If it is a draw card, return the card to the deck and repeat.
+        // If it is a wild card, let the player who goes first choose its color. Alternatively, if
+        // it's easier to implement, we could also just return the wild card to the deck and repeat.
     }
 
 
@@ -123,8 +128,11 @@ public class Controller {
      * skip card "S-red"
      * wild card "W"
      */
+
+    //Convert string representation into the index of the card.
+
     public void playCard(String card) {
-        //TODO: use method in game class to play the card
+        game.play(card);
     }
     public void drawCard() {
         //TODO: let the game draw a card after the user clicks the draw button

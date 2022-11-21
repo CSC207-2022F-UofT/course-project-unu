@@ -1,23 +1,30 @@
 package UI;
 
+import interfaceAdapters.Controller;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PlayCardWindow {
 
     JFrame window;
     JPanel playPanel;
+    Controller c;
 
-    public PlayCardWindow() {
+    public PlayCardWindow(Controller c) {
+        //TODO: figure out why can the parameter passed be null
+        this.c = c;
+        this.window = new JFrame();
         generateScreen();
     }
 
     public void generateScreen() {
 
         //create a main field
-        window = new JFrame();
-        window.setSize(400, 300);
-        window.setTitle("Game Board");
+        window.setSize(250, 200);
+        window.setTitle("Choose Cards");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close the windows properly
         window.setLayout(null);
         window.setLocationRelativeTo(null);
@@ -25,12 +32,30 @@ public class PlayCardWindow {
 
         //set background
         playPanel = new JPanel();
-        playPanel.setBounds(0, 0, 1000, 700);
+        playPanel.setBounds(0, 0, 250, 200);
         playPanel.setLayout(null);
         window.add(playPanel);
-        playPanel.add(createCardButtons(100, 100, 50, 50, "W"));
-
+        String[] str = new String[7];
+        str[0] = "W";
+        str[1] = "+4";
+        str[2] = "1-red";
+        str[3] = "+2-green";
+        str[4] = "R-blue";
+        str[5] = "S-yellow";
+        str[6] = "0-red";
+        createAvailableMoves(str);
     }
+
+    public void createAvailableMoves(String[] availableMoves) {
+        JButton[] cardButtons = new JButton[availableMoves.length];
+        for (int i=0; i< cardButtons.length; i++) {
+            int cardX = 50*(i / 3);
+            int cardY = 50*(i % 3);
+            cardButtons[i] = createCardButtons(cardX, cardY, 50, 50, availableMoves[i]);
+            playPanel.add(cardButtons[i]);
+        }
+    }
+
 
     public JButton createCardButtons(int cardX, int cardY, int width, int height, String cardStr) {
 
@@ -47,7 +72,6 @@ public class PlayCardWindow {
             cardColor = Color.black;
         } else {
             String[] splitedCard = cardStr.split("-");
-            System.out.println(splitedCard);
             String text = splitedCard[0];
             String colour = splitedCard[1];
             cardText = text;
@@ -73,6 +97,13 @@ public class PlayCardWindow {
         card.setFont(new Font("Monospace", Font.PLAIN, 30));
         card.setHorizontalAlignment(SwingConstants.CENTER);
         card.setBorder(BorderFactory.createLineBorder(Color.white));
+        card.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                c.playCard(cardStr);
+                window.setVisible(false);
+            }
+        });
 
         return card;
     }
