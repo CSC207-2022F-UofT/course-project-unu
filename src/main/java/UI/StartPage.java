@@ -15,10 +15,14 @@ public class StartPage {
     JButton regularButton;
     JButton teamButton;
     Controller c;
+    ViewMethods ui;
 
-    public StartPage(Controller c){
+
+    public StartPage(ViewMethods ui, Controller c){
         this.c = c;
+        this.ui = ui;
         generateScreen();
+
 
     }
 
@@ -28,7 +32,7 @@ public class StartPage {
         regularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new RegularModeSetup(c);
+                new RegularModeSetup(ui,c);
                 window.setVisible(false);
             }
         });

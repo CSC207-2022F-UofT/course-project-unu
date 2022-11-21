@@ -13,6 +13,7 @@ public class TeamModeSetup {
     JFrame window;
     JPanel teamSetupPanel;
     JLabel teamSetupLabel;
+    ViewMethods ui;
 
     public TeamModeSetup(Controller c) {
 
@@ -167,7 +168,7 @@ public class TeamModeSetup {
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                c.startGame();
+                c.startGame(ui);
             }
         });
         bg.add(startGame);

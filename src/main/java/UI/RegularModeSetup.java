@@ -13,8 +13,9 @@ public class RegularModeSetup {
     JFrame window;
     JPanel regularSetupPanel;
     JLabel regularSetupLabel;
+    ViewMethods ui;
 
-    public RegularModeSetup(Controller c){
+    public RegularModeSetup(ViewMethods ui,Controller c){
 
         generateScreen();
         this.c = c;
@@ -149,7 +150,7 @@ public class RegularModeSetup {
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                c.startGame();
+                c.startGame(ui);
             }
         });
         bg.add(startGame);

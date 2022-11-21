@@ -1,6 +1,7 @@
 package interfaceAdapters;
 import TeamMode.Team;
 import TeamMode.TeamPlayer;
+import UI.View;
 import cards.Card;
 import entities.Player;
 import entities.RealPlayer;
@@ -105,7 +106,8 @@ public class Controller {
         return new ArrayList<>();
     }
     private Game game;
-    public void startGame() {
+    public void startGame(View ui) {
+        this.game = new Game(regularPlayerList(),true,new Presenter(ui));
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
 
