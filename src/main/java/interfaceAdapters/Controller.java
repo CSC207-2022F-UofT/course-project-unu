@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-
     private boolean isTeamMode;
     /**
      * If the user clicks on team mode, then teamMode = true, otherwise = false
