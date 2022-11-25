@@ -1,7 +1,6 @@
 package game;
 
 import entities.Player;
-import entities.RealPlayer;
 import entities.CardFactory;
 import cards.Card;
 import interfaceAdapters.Presenter_Interface;
@@ -59,8 +58,6 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
-
-
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }
@@ -99,6 +96,11 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
+        if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
+            String[] hand = convertHand(players.get(player).getHand());
+            presenter.updateHand(hand);
+        }
+
         players.get(player).drawCards(cards);
     }
 
@@ -116,17 +118,10 @@ public class Game {
         lastPlayed = played;
         discardPile.add(played);
 
-        presenter.updateLastPlayed(convert(played), this.toMove);
+        presenter.updateLastPlayed(convert(played), players.indexOf(toMove));
 
-        //Assuming for now that only the first player is real
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
-
-            String[] cards = new String[players.get(toMove).getHand().size()];
-
-            for (int i = 0; i < cards.length; i++) {
-                cards[0] = convert(players.get(toMove).getHand().get(i));
-            }
-
+            String[] cards = convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
         }
 
@@ -135,6 +130,11 @@ public class Game {
 
     public void play(String card) {
         play(getIndexOf(card));
+    }
+
+    //Set colour of the played WildCard
+    public void setColour(String colour) {
+        lastPlayed.setColour(colour);
     }
 
     /**
@@ -229,6 +229,16 @@ public class Game {
         }
 
         return type + card.getColour();
+    }
+
+    private String[] convertHand(List<Card> hand) {
+        String[] cards = new String[hand.size()];
+
+        for (int i = 0; i < cards.length; i++) {
+            cards[0] = convert(hand.get(i));
+        }
+
+        return cards;
     }
 
     private List<Card> newDeck() {

@@ -90,13 +90,13 @@ public class Controller {
         game.play(card);
     }
     public void drawCard() {
-        //TODO: let the game draw a card after the user clicks the draw button
+        game.draw(1, game.getToMove());
     }
     /**
      * pass the new theme colour to the game use cases
      * @param colour the colour that the player chooses after a wild card or plus four card is played
      */
     public void changeColour(String colour) {
-        //TODO: update the game mechanism about the new chosen colour by the user
+        game.setColour(colour);
     }
 }
