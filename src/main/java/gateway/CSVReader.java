@@ -12,7 +12,18 @@ public class CSVReader {
   public CSVReader(String filename) {
     try {
       this.csvReader = new BufferedReader(new FileReader(filename));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
+  public void listCSVLines() {
+    String row;
+    try {
+      while ((row = this.csvReader.readLine()) != null) {
+        String[] data = row.split(",");
+        System.out.println(data[0]);
+      }
     } catch (IOException e) {
       e.printStackTrace();
     }
