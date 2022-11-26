@@ -15,7 +15,7 @@ public class CardFactory {
      * @param cardType the type of Card
      * @param colour the colour of Card
      */
-    public Card getCard(String cardType, String colour, int botPriority) {
+    public Card getCard(String cardType, String colour) {
         if (cardType.equalsIgnoreCase("REVERSE")) {
             return new ReverseCard(cardType, colour, 5);
         } else if (cardType.equalsIgnoreCase("PLUSTWOCARD")) {
