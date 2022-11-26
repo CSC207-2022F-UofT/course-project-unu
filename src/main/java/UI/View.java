@@ -1,14 +1,11 @@
 package UI;
-
 import interfaceAdapters.Controller;
-
 import javax.swing.*;
 
 /**
  * View Interface with methods that the Presenter calls to pass values for display
  */
 public interface View {
-
     //generate a game board
     void generateGameBoard(Controller c);
 
@@ -28,10 +25,6 @@ public interface View {
 
     //update the last card that bot3 played
     void updateBot3Card(String card);
-
-    void requestColorChange();
-
-
 
     //Create a colour change prompt for the user
     void requestColourChange();
