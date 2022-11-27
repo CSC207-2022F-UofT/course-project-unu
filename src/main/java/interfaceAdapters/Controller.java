@@ -64,10 +64,7 @@ public class Controller {
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
 
-        //TODO: (this can also be done in the Game class) deal 7 cards to each player.
-        // Flip the first of the deck. If it is a draw card, return the card to the deck and repeat.
-        // If it is a wild card, let the player who goes first choose its color. Alternatively, if
-        // it's easier to implement, we could also just return the wild card to the deck and repeat.
+        game.setup();
     }
 
 

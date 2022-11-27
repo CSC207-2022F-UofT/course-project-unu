@@ -21,7 +21,7 @@ public class Game {
     public Game(List<Player> players, boolean isClockwise, Presenter_Interface presenter) {
         this.players = players;
         this.deck = newDeck();
-        this.toMove = 0;
+        this.toMove = 3;
         this.isClockwise = isClockwise;
         this.presenter = presenter;
     }
@@ -173,6 +173,27 @@ public class Game {
         return players.get(toMove).getHand().isEmpty();
     }
 
+    /**
+     * Game Setup: Each player draws 7 cards.
+     * The top card of the deck is flipped over if it isn't a Wild card.
+     * Do effect of flipped card as if the player before the first player had just played it
+     */
+    public void setup() {
+        for (int i = 0; i < players.size(); i++) {
+            draw(7, i);
+        }
+
+        while (deck.get(0).getCardType().equalsIgnoreCase("plusFour") ||
+                deck.get(0).getCardType().equalsIgnoreCase("wild")) {
+            shuffleDeck();
+        }
+
+        lastPlayed = deck.remove(0);
+        lastPlayed.playedEffect(this);
+        setToMove(getNextPlayer());
+
+    }
+
     //Return the index of the card with the given string representation.
     private int getIndexOf(String card) {
         String cardType;
@@ -263,6 +284,8 @@ public class Game {
                 }
             }
         }
+
+        shuffleDeck();
 
         return newDeck;
     }
