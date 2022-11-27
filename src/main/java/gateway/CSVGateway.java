@@ -57,7 +57,7 @@ public class CSVGateway implements DBGateway {
    * Finds the col index with given heading name
    * @param String colName
    */
-  public int findColIndexByHeading(String colName) {
+  private int findColIndexByHeading(String colName) {
     if (this.headings == null) {
       return -1;
     }
@@ -76,7 +76,7 @@ public class CSVGateway implements DBGateway {
    * @param String colName
    * @return Int
    */
-  public String getColValue(String colName) {
+  private String getColValue(String colName) {
     int colOfVal = this.findColIndexByHeading(colName);
     if (colOfVal == -1) {
       return "0";
@@ -90,7 +90,7 @@ public class CSVGateway implements DBGateway {
    * @param String colName
    * @param Int newValue
    */
-  public void setColValue(String colName, String newValue) {
+  private void setColValue(String colName, String newValue) {
     int colOfVal = this.findColIndexByHeading(colName);
     if (colOfVal == -1) {
       return;
@@ -101,33 +101,25 @@ public class CSVGateway implements DBGateway {
   }
 
   /**
-   * Get the total number of games played
-   * @param boolean isWin
+   * Increase the total number of wins by the specified amount 
+   * @param amount
    */
+  private void increaseTotalWins(int amount) {
+    this.setColValue("Total Wins", Integer.toString(this.getTotalWins() + amount));
+  }
+
+
+  // =================
+  // Interface Methods
+  // =================
   public int getTotalGames() {
     return Integer.parseInt(getColValue("Total Games"));
   }
 
-  /**
-   * Get the total number of wins
-   */
   public int getTotalWins() {
     return Integer.parseInt(getColValue("Total Wins"));
   }
 
-  /**
-   * Increase the total number of wins by the specified amount 
-   * @param amount
-   */
-  public void increaseTotalWins(int amount) {
-    this.setColValue("Total Wins", Integer.toString(this.getTotalWins() + amount));
-  }
-
-  /**
-   * Record a new game and increment the total number of games played by 1
-   * If the game was a win, increment the total number of wins by 1
-   * @param isWin
-   */
   public void recordNewGame(boolean isWin) {
     this.setColValue("Total Games", Integer.toString(this.getTotalGames() + 1));
     if (isWin) {
