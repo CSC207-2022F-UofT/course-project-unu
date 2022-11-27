@@ -86,7 +86,7 @@ public class ViewMethods implements View{
     }
 
     @Override
-    public void requestColorChange() {
+    public void requestColourChange() {
         new ChooseColourPage(c);
     }
 

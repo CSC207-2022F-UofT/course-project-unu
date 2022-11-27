@@ -21,4 +21,26 @@ public class Presenter implements Presenter_Interface {
          */
     }
 
+    @Override
+    public void updateHand(String[] cards) {
+        viewMethods.updateAvailableCards(cards);
+    }
+
+    @Override
+    public void updateLastPlayed(String card, int toMove) {
+        viewMethods.updateLastCardPlayed(card);
+
+        switch (toMove) {
+            case 0:
+                viewMethods.updateMyLastPlayedCard(card);
+            case 1:
+                viewMethods.updateBot1Card(card);
+            case 2:
+                viewMethods.updateBot2Card(card);
+            case 3:
+                viewMethods.updateBot3Card(card);
+        }
+    }
+
+
 }

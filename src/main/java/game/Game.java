@@ -11,30 +11,27 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
-
-    private Player[] players;
+    private final List<Player> players;
     private List<Card> deck;
     private Card lastPlayed;
     private List<Card> discardPile = new ArrayList<>();
     private int toMove;
     private boolean isClockwise;
-    private Presenter_Interface presenter;
+    private final Presenter_Interface presenter;
 
-    public Game(Player[] players, boolean isClockwise, Presenter_Interface presenter) {
+    public Game(List<Player> players, boolean isClockwise, Presenter_Interface presenter) {
         this.players = players;
         this.deck = newDeck();
-        this.lastPlayed = deck.remove(0);
         this.toMove = 0;
         this.isClockwise = isClockwise;
         this.presenter = presenter;
-        discardPile.add(lastPlayed);
     }
 
     public int getToMove() {
         return this.toMove;
     }
 
-    public Player[] getPlayers() {
+    public List<Player> getPlayers() {
         return this.players;
     }
 
@@ -46,9 +43,9 @@ public class Game {
         int nextPlayer;
 
         if (isClockwise) {
-            nextPlayer = (toMove + 1) % players.length;
+            nextPlayer = (toMove + 1) % players.size();
         } else {
-            nextPlayer = (toMove - 1) % players.length;
+            nextPlayer = (toMove + players.size() - 1) % players.size();
         }
 
         return nextPlayer;
@@ -62,31 +59,7 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
-    public List<Card> newDeck() {
-        CardFactory cardFactory = new CardFactory();
 
-        String[] colours = {"red", "yellow", "blue", "green"};
-        String[] cardTypes = {"reverse", "plusTwo", "skip",
-                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        String[] wildCardTypes = {"wild", "plusFour"};
-
-        List<Card> newDeck = new ArrayList<>();
-
-        for (String colour: colours) {
-            for (String cardType : cardTypes) {
-                newDeck.add(cardFactory.getCard(cardType, colour));
-                newDeck.add(cardFactory.getCard(cardType, colour));
-            }
-
-            for (String wildCardType : wildCardTypes) {
-                for (int i = 0; i < 4; i++) {
-                    newDeck.add(cardFactory.getCard(wildCardType));
-                }
-            }
-        }
-
-        return newDeck;
-    }
 
     public void shuffleDeck() {
         Collections.shuffle(deck);
@@ -126,23 +99,42 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
-        players[player].drawCards(cards);
+        players.get(player).drawCards(cards);
     }
 
     /**
-     * From current player's hand, remove card at index n
-     * Do card effect?
-     * Update lastPlayed and discardPile accordingly
-     * @param n Card to play
+     * From current player's hand, remove the card at index n
+     * Do card effect
+     * Update lastPlayed and discardPile
+     * Update View with presenter
+     * @param n index of Card to play
      */
     public void play(int n) {
-        Card played = players[toMove].playCard(n);
 
-        played.playedEffect(this);
+        Card played = players.get(toMove).playCard(n);
 
         lastPlayed = played;
-
         discardPile.add(played);
+
+        presenter.updateLastPlayed(convert(played), this.toMove);
+
+        //Assuming for now that only the first player is real
+        if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
+
+            String[] cards = new String[players.get(toMove).getHand().size()];
+
+            for (int i = 0; i < cards.length; i++) {
+                cards[0] = convert(players.get(toMove).getHand().get(i));
+            }
+
+            presenter.updateHand(cards);
+        }
+
+        played.playedEffect(this);
+    }
+
+    public void play(String card) {
+        play(getIndexOf(card));
     }
 
     /**
@@ -178,6 +170,90 @@ public class Game {
     }
 
     public boolean checkGameOver() {
-        return players[toMove].getHand().isEmpty();
+        return players.get(toMove).getHand().isEmpty();
+    }
+
+    //Return the index of the card with the given string representation.
+    private int getIndexOf(String card) {
+        String cardType;
+        String colour;
+        Card check;
+        CardFactory cardFactory = new CardFactory();
+
+        if (card.contains("W")) {
+            check = cardFactory.getCard("wild");
+            return players.get(toMove).getHand().indexOf(check);
+        } else if (card.contains("+4")) {
+            check = cardFactory.getCard("plusFour");
+            return players.get(toMove).getHand().indexOf(check);
+        } else if (card.contains("R")) {
+            cardType = "reverse";
+        } else if (card.contains("+2")) {
+            cardType = "plusTwo";
+        } else if (card.contains("S")) {
+            cardType = "skip";
+        } else {
+            cardType = card.substring(0, 1);
+        }
+
+        if (card.contains("red")) {
+            colour = "red";
+        } else if (card.contains("yellow")) {
+            colour = "yellow";
+        } else if (card.contains("blue")) {
+            colour = "blue";
+        } else {
+            colour = "green";
+        }
+
+        check = cardFactory.getCard(cardType, colour);
+        return players.get(toMove).getHand().indexOf(check);
+    }
+
+    //Return the string representation of the given card.
+    private String convert(Card card) {
+        String type;
+
+        if (card.getCardType().equalsIgnoreCase("wild")) {
+            return "W";
+        } else if (card.getCardType().equalsIgnoreCase("plusFour")) {
+            return "+4";
+        } else if (card.getCardType().equalsIgnoreCase("reverse")) {
+            type = "R";
+        } else if (card.getCardType().equalsIgnoreCase("plusTwo")) {
+            type = "+2";
+        } else if (card.getCardType().equalsIgnoreCase("skip")) {
+            type = "S";
+        } else {
+            type = card.getCardType();
+        }
+
+        return type + card.getColour();
+    }
+
+    private List<Card> newDeck() {
+        CardFactory cardFactory = new CardFactory();
+
+        String[] colours = {"red", "yellow", "blue", "green"};
+        String[] cardTypes = {"reverse", "plusTwo", "skip",
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String[] wildCardTypes = {"wild", "plusFour"};
+
+        List<Card> newDeck = new ArrayList<>();
+
+        for (String colour: colours) {
+            for (String cardType : cardTypes) {
+                newDeck.add(cardFactory.getCard(cardType, colour));
+                newDeck.add(cardFactory.getCard(cardType, colour));
+            }
+
+            for (String wildCardType : wildCardTypes) {
+                for (int i = 0; i < 4; i++) {
+                    newDeck.add(cardFactory.getCard(wildCardType));
+                }
+            }
+        }
+
+        return newDeck;
     }
 }

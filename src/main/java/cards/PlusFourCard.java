@@ -4,8 +4,8 @@ import game.Game;
 
 public class PlusFourCard extends WildCard{
 
-    public PlusFourCard(String cardType) {
-        super(cardType);
+    public PlusFourCard(String cardType, int botPriority) {
+        super(cardType, botPriority);
     }
 
     /**

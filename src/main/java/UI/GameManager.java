@@ -1,10 +1,6 @@
 package UI;
 
-
-import interfaceAdapters.Controller;
-
 import javax.swing.*;
-
 /**
  * the Main class that the users interact with
  */

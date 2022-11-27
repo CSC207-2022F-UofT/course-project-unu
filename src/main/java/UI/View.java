@@ -39,6 +39,6 @@ public interface View {
     //update the last card that bot3 played
     void updateBot3Card(String card);
 
-    void requestColorChange();
+    void requestColourChange();
 
 }
