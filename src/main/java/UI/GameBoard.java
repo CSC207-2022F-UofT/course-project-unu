@@ -1,27 +1,20 @@
 package UI;
 
-import game.Game;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Arrays;
 
-/**
- * when creating colour choosing page, use JPopMenu
- */
 public class GameBoard{
 
     Controller c;
-    ViewMethods vm;
 
     JFrame window;
     JPanel gamePanel;
     JLabel gameLabel;
+    JLabel player1Card = new JLabel();
 
     public GameBoard(Controller c) {
         this.c = c;
@@ -56,6 +49,7 @@ public class GameBoard{
 
         createPlayers(gameLabel);
         addGameButtons(gameLabel);
+        gameLabel.add(player1Card);
 
     }
 
@@ -89,8 +83,14 @@ public class GameBoard{
     }
 
     public void updatePlayer1Card(String cardStr) {
-        JLabel card = createCardLabel(80, 460, 85, 120, cardStr);
-        gameLabel.add(card);
+        JLabel card;
+        if (cardStr.equals("D")) {
+            card = drawSymbol(80, 460, 85, 120);
+        } else {
+            card = createCardLabel(80, 460, 85, 120, cardStr);
+        }
+        //gameLabel.add(card);
+        player1Card = card;
         JLabel lastCardText = new JLabel("My Last Played Card");
         lastCardText.setBounds(60, 420, 125, 40);
         lastCardText.setForeground(Color.white);
@@ -98,18 +98,32 @@ public class GameBoard{
     }
 
     public void updatePlayer2Card(String cardStr) {
-        JLabel card = createCardLabel(200, 60, 85, 120, cardStr);
+        JLabel card;
+        if (cardStr.equals("D")) {
+            card = drawSymbol(200, 60, 85, 120);
+        } else {
+            card = createCardLabel(200, 60, 85, 120, cardStr);
+        }
         gameLabel.add(card);
     }
 
     public void updatePlayer3Card(String cardStr) {
-        JLabel card = createCardLabel(500, 60, 85, 120, cardStr);
+        JLabel card;
+        if (cardStr.equals("D")) {
+            card = drawSymbol(500, 60, 85, 120);
+        } else {
+            card = createCardLabel(500, 60, 85, 120, cardStr);
+        }
         gameLabel.add(card);
     }
 
     public void updatePlayer4Card(String cardStr) {
-
-        JLabel card = createCardLabel(800, 60, 85, 120, cardStr);
+        JLabel card;
+        if (cardStr.equals("D")) {
+            card = drawSymbol(800, 60, 85, 120);
+        } else {
+            card = createCardLabel(800, 60, 85, 120, cardStr);
+        }
         gameLabel.add(card);
     }
 
@@ -210,57 +224,16 @@ public class GameBoard{
         return card;
     }
 
-    /**
-     * special card
-     * @param cardX
-     * @param cardY
-     * @param colour
-     * @param label
-     */
-    public void createCardLabel(int cardX, int cardY, String colour, String label) {
-        //TODO:imageicon
+    public JLabel drawSymbol(int cardX, int cardY, int width, int height) {
+        JLabel card = new JLabel();
+        ImageIcon cardBack = new ImageIcon(this.getClass().getResource("/CardBackSide.png"));
+        Image cardBackImg = cardBack.getImage();
+        Image adjustedCardBack = cardBackImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        cardBack = new ImageIcon(adjustedCardBack);
+        card.setIcon(cardBack);
+        card.setBounds(cardX, cardY, width, height);
+        return card;
     }
 
-    /**
-     * create a colour choosing menu after the
-     * @param wildCard
-     */
-    public void createColourChoosingMenu(JLabel wildCard) {
-        JPopupMenu colourMenu = new JPopupMenu();
-        JMenuItem colours[] = new JMenuItem[4];//0=red, 1=yellow, 2=green, 3=blue
-        Color color[] = {Color.red, Color.yellow, Color.green, Color.blue};
-        for (int i=0; i<colours.length; i++) {
-            colours[i] = new JMenuItem();
-            colours[i].setBackground(color[0]);
-            //colours[i].addActionListener(gm.aHandler);
-            colourMenu.add(colours[i]);
-        }
-        wildCard.addMouseListener(new MouseListener() {
-            //see Video 3
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                colourMenu.show(wildCard, e.getX(), e.getY());
-            }
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-    }
 }
