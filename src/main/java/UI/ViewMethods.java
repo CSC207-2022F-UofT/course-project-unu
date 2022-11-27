@@ -11,30 +11,42 @@ public class ViewMethods implements View{
     GameBoard gameBoard;
     Controller c;
 
-    public ViewMethods(GameManager gm, Controller c) {
+    public ViewMethods(GameManager gm) {
         this.gm = gm;
         //StartPage sp = new StartPage(c);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        this.c = c;
-        generateGameBoard(c);
-        String[] str = new String[7];
-        str[0] = "W";
-        str[1] = "+4";
-        str[2] = "1-red";
-        str[3] = "+2-green";
-        str[4] = "R-blue";
-        str[5] = "S-yellow";
-        str[6] = "0-red";
-        updateAvailableCards(str);
-        updateMyLastPlayedCard("R-green");
-        updateLastCardPlayed("S-blue");
-        updateBot1Card("+4");
-        updateBot1Card("D");
-        updateBot2Card("W");
-        updateBot3Card("D");
+        this.c = new Controller();
+//        generateGameBoard(c);
+//        String[] str = new String[7];
+//        str[0] = "W";
+//        str[1] = "+4";
+//        str[2] = "1-red";
+//        str[3] = "+2-green";
+//        str[4] = "R-blue";
+//        str[5] = "S-yellow";
+//        str[6] = "0-red";
+//        updateAvailableCards(str);
+//        String[] str1 = new String[6];
+//        str1[0] = "W";
+//        str1[1] = "+4";
+//        str1[2] = "1-red";
+//        str1[3] = "+2-green";
+//        str1[4] = "R-blue";
+//        str1[5] = "S-yellow";
+//
+//        updateAvailableCards(str1);
+//        updateMyLastPlayedCard("R-green");
+//        updateMyLastPlayedCard("R-blue");
+//        updateLastCardPlayed("S-blue");
+//        updateBot1Card("+2-yellow");
+//        updateBot1Card("D");
+//        updateBot2Card("W");
+//        updateBot2Card("D");
+//        updateBot3Card("D");
+//        updateBot3Card("+4");
         //requestColorChange();
     }
 
@@ -68,14 +80,9 @@ public class ViewMethods implements View{
         gameBoard.updatePlayer4Card(card);
     }
 
+    @Override
     public void updateAvailableCards(String[] cardList) {
-        JLabel[] cardLabels = new JLabel[cardList.length];
-        for (int i=0; i<cardList.length; i++) {
-            int cardX = 260 + 70*(i / 2);
-            int cardY = 440 + 90*(i % 2);
-            cardLabels[i] = gameBoard.createCardLabel(cardX, cardY, 60, 80, cardList[i]);
-        }
-        gameBoard.displayAvailableCards(cardLabels);
+        gameBoard.displayAvailableCards(cardList);
     }
 
     @Override
