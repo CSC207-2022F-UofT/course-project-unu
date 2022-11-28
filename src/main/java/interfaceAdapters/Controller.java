@@ -99,15 +99,11 @@ public class Controller {
         }
         return playerList;
     }
-    private List<Card> standardCardDeck() {
-        //TODO: create a standard card deck that initializes the game
-        // we can ask Paul if he wants to create a more general constructer that initializes a standard card deck in
-        // the constructor, if so, we don't have to create a standard card deck as one of its parameters
-        return new ArrayList<>();
-    }
     private Game game;
     public void startGame(View ui) {
         this.game = new Game(regularPlayerList(),true,new Presenter(ui));
+
+        this.game.draw(7,for each player);
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
 
