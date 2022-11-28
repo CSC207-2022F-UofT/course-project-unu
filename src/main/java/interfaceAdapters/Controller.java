@@ -46,18 +46,18 @@ public class Controller {
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        return new ArrayList<>() {};
+        return new ArrayList<>() ;
     }
     private List<Player> regularPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use playerNames and botLevels
-        return new ArrayList<>() {};
+        return new ArrayList<>() ;
     }
     private List<Card> standardCardDeck() {
         //TODO: create a standard card deck that initializes the game
         // we can ask Paul if he wants to create a more general constructer that initializes a standard card deck in
         // the constructor, if so, we don't have to create a standard card deck as one of its parameters
-        return new ArrayList<>() {};
+        return new ArrayList<>();
     }
     private Game game;
     public void startGame() {
