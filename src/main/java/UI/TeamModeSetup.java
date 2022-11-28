@@ -191,8 +191,12 @@ public class TeamModeSetup {
         window.add(teamSetupPanel);
         teamSetupLabel = new JLabel();
         teamSetupLabel.setBounds(0, 0, 1000, 700);
-        ImageIcon regularBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
-        teamSetupLabel.setIcon(regularBG);
+
+        ImageIcon teamBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
+        Image bg = teamBG.getImage();
+        Image adjustedBg = bg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
+        teamBG = new ImageIcon(adjustedBg);
+        teamSetupLabel.setIcon(teamBG);
         teamSetupPanel.add(teamSetupLabel);
 
         createTeamButtons(teamSetupLabel);

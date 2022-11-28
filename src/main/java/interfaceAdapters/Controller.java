@@ -76,12 +76,7 @@ public class Controller {
      *
      * playCard()
      * I will give a string that represents the card, which will be in the form of "value-colour"
-     * For example: number card "1-red"
-     * plus four card "+4"
-     * plus two card "+2-red"
-     * reverse card "R-red"
-     * skip card "S-red"
-     * wild card "W"
+     * For example: g
      */
 
     //Convert string representation into the index of the card.
