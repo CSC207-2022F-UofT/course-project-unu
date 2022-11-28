@@ -27,7 +27,7 @@ public class CSVGateway implements DBGateway {
   }
 
   public void recordNewGame(boolean isWin) {
-    String newTotalGames = Integer.toString(this.getTotalGames() + 1)
+    String newTotalGames = Integer.toString(this.getTotalGames() + 1);
     this.csvHandler.setColValue("Total Games", newTotalGames);
     if (isWin) {
       this.increaseTotalWins(1);
