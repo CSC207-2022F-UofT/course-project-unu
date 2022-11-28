@@ -14,7 +14,7 @@ The program also records player statistics.
 
 ## Project Roles
 
-Sean: Bot player functionality
+Sean: Bot player functionality, Database
 
 Paul: Basic game mechanics
 
