@@ -21,4 +21,13 @@ public class SkipCard extends Card {
          */
         game.setToMove(game.getNextPlayer());
     }
+
+    /**
+     * Convert the Card into a string with the following format:
+     * - skip card "S-red"
+     */
+    @Override
+    public String toString() {
+        return "S-" + this.getColour().toLowerCase();
+    }
 }

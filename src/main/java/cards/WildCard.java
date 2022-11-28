@@ -31,4 +31,13 @@ public class WildCard extends Card {
          */
         // TODO: Implement with User Inputs - super.setColour( /* User input */ );
     }
+
+    /**
+     * Convert the Card into a string with the following format:
+     * - wild card "W"
+     */
+    @Override
+    public String toString() {
+        return "W";
+    }
 }

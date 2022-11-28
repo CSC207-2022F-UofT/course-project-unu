@@ -15,4 +15,13 @@ public class NumberCard extends Card {
      */
     @Override
     public void playedEffect(Game game) {}
+
+    /**
+     * Convert the Card into a string with the following format:
+     * - number card "1-red"
+     */
+    @Override
+    public String toString() {
+        return this.getCardType() + "-" + this.getColour().toLowerCase();
+    }
 }

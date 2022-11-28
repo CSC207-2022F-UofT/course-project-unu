@@ -1,9 +1,10 @@
 package game;
 
 import entities.Player;
-import entities.RealPlayer;
 import entities.CardFactory;
 import cards.Card;
+import entities.RealPlayer;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -152,6 +153,13 @@ public class Game {
      */
     public List<Card> getPlayerOptions(Player player) {
         return player.getPossibleMoves(lastPlayed);
+    }
+
+    public void displayRealPlayerOptions(RealPlayer realPlayer) {
+        /* TODO: call presenter method that displays options
+        * convert list of Cards to list of string, which is argument for presenter method */
+        List<Card> possibleMoves = realPlayer.getPossibleMoves(lastPlayed);
+
     }
 
     /**
