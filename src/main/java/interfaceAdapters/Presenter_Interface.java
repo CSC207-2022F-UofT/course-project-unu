@@ -5,4 +5,9 @@ package interfaceAdapters;
  */
 public interface Presenter_Interface {
     void requestNewColour();
+
+    void updateHand(String[] cards);
+
+    void updateLastPlayed(String card, int toMove);
+
 }

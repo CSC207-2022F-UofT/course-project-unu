@@ -10,6 +10,12 @@ public abstract class Card {
      */
     private final String cardType;
 
+
+    /**
+     * The bot priority of this card. This is used to determine the order in which a bot is to play this card.
+     */
+    private final int botPriority;
+
     /**
      * The colour this card is.
      * Can be: Red, Blue, Green, or Yellow.
@@ -24,6 +30,10 @@ public abstract class Card {
         return colour;
     }
 
+    public int getBotPriority() {
+        return botPriority;
+    }
+
     public void setColour(String colour) {
         this.colour = colour;
     }
@@ -34,9 +44,10 @@ public abstract class Card {
      * @param cardType  the String representing the card's type
      * @param colour    the String representing the card's colour
      */
-    public Card(String cardType, String colour) {
+    public Card(String cardType, String colour, int botPriority) {
         this.cardType = cardType;
         this.colour = colour;
+        this.botPriority = botPriority;
     }
 
     /**
@@ -44,8 +55,9 @@ public abstract class Card {
      *
      * @param cardType  the String representing the card's type
      */
-    public Card(String cardType) {
+    public Card(String cardType, int botPriority) {
         this.cardType = this.colour = cardType;
+        this.botPriority = botPriority;
     }
 
     /**

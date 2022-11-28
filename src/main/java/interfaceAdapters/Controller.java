@@ -46,23 +46,25 @@ public class Controller {
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        return new ArrayList<>() {};
+        return new ArrayList<>() ;
     }
     private List<Player> regularPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use playerNames and botLevels
-        return new ArrayList<>() {};
+        return new ArrayList<>() ;
     }
     private List<Card> standardCardDeck() {
         //TODO: create a standard card deck that initializes the game
         // we can ask Paul if he wants to create a more general constructer that initializes a standard card deck in
         // the constructor, if so, we don't have to create a standard card deck as one of its parameters
-        return new ArrayList<>() {};
+        return new ArrayList<>();
     }
     private Game game;
     public void startGame() {
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
+
+        game.setup();
     }
 
 
@@ -71,24 +73,22 @@ public class Controller {
      *
      * playCard()
      * I will give a string that represents the card, which will be in the form of "value-colour"
-     * For example: number card "1-red"
-     * plus four card "+4"
-     * plus two card "+2-red"
-     * reverse card "R-red"
-     * skip card "S-red"
-     * wild card "W"
+     * For example: g
      */
+
+    //Convert string representation into the index of the card.
+
     public void playCard(String card) {
-        //TODO: use method in game class to play the card
+        game.play(card);
     }
     public void drawCard() {
-        //TODO: let the game draw a card after the user clicks the draw button
+        game.draw(1, game.getToMove());
     }
     /**
      * pass the new theme colour to the game use cases
      * @param colour the colour that the player chooses after a wild card or plus four card is played
      */
     public void changeColour(String colour) {
-        //TODO: update the game mechanism about the new chosen colour by the user
+        game.setColour(colour);
     }
 }
