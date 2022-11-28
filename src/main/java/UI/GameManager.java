@@ -15,8 +15,7 @@ public class GameManager {
     ViewMethods ui;
 
     public GameManager() {
-        this.c = new Controller();
-        this.ui = new ViewMethods(c);
+        this.ui = new ViewMethods(this);
     }
 
     public static void main(String[] args) {

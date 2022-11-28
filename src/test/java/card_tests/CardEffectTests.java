@@ -1,3 +1,4 @@
+/*
 package card_tests;
 
 import cards.*;
@@ -37,15 +38,19 @@ public class CardEffectTests {
 
     }
 
-    /*
+    */
+/*
     TODO: Test for the following things
     - All cardEffects
     - Their effects on Game data
-     */
+     *//*
 
-    /**
+
+    */
+/**
      * Test ReverseCard effect.
-     */
+     *//*
+
     @Test
     public void testReverse() {
         Card card = new ReverseCard("Reverse", "Red");
@@ -57,9 +62,11 @@ public class CardEffectTests {
         Assertions.assertEquals(game.getNextPlayer(), 3);
     }
 
-    /**
+    */
+/**
      * Test SkipCard effect.
-     */
+     *//*
+
     @Test
     public void testSkip() {
         Card card = new SkipCard("Skip", "Red");
@@ -72,9 +79,11 @@ public class CardEffectTests {
 
     }
 
-    /**
+    */
+/**
      * Test Plus2Card effect.
-     */
+     *//*
+
     @Test
     public void testPlus2() {
 
@@ -87,9 +96,11 @@ public class CardEffectTests {
 
     }
 
-    /**
+    */
+/**
      * Test WildCard effect.
-     */
+     *//*
+
     @Test
     public void testWild() {
         Card card = new PlusTwoCard("Plus2", "Red");
@@ -97,9 +108,11 @@ public class CardEffectTests {
 
     }
 
-    /**
+    */
+/**
      * Test Plus4Card effect.
-     */
+     *//*
+
     @Test
     public void testPlus4() {
         int size = game.getPlayers().get(game.getNextPlayer()).getHand().size();
@@ -111,3 +124,4 @@ public class CardEffectTests {
     }
 
 }
+*/
