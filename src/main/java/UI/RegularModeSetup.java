@@ -19,7 +19,7 @@ public class RegularModeSetup {
 
         generateScreen();
         this.c = c;
-        c.setTeamMode(false);//may delete this if useless
+       // c.setTeamMode(false);//may delete this if useless
 
     }
 

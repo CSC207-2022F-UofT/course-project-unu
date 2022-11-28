@@ -58,7 +58,7 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
-    public void shuffleDeck() {
+    public void shuffleDeck(List<Card> deck) {
         Collections.shuffle(deck);
     }
 
@@ -70,7 +70,7 @@ public class Game {
         discardPile.clear();
         discardPile.add(lastPlayed);
 
-        shuffleDeck();
+        shuffleDeck(deck);
     }
 
     /**
@@ -185,7 +185,7 @@ public class Game {
 
         while (deck.get(0).getCardType().equalsIgnoreCase("plusFour") ||
                 deck.get(0).getCardType().equalsIgnoreCase("wild")) {
-            shuffleDeck();
+            shuffleDeck(deck);
         }
 
         lastPlayed = deck.remove(0);
@@ -285,7 +285,7 @@ public class Game {
             }
         }
 
-        shuffleDeck();
+        shuffleDeck(newDeck);
 
         return newDeck;
     }

@@ -15,6 +15,7 @@ public class ViewMethods implements View{
         this.gm = gm;
         this.c = new Controller();
         StartPage sp = new StartPage(c);
+        sp.generateScreen();
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
