@@ -46,28 +46,25 @@ public class Controller {
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        return new ArrayList<>() {};
+        return new ArrayList<>() ;
     }
     private List<Player> regularPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use playerNames and botLevels
-        return new ArrayList<>() {};
+        return new ArrayList<>() ;
     }
     private List<Card> standardCardDeck() {
         //TODO: create a standard card deck that initializes the game
         // we can ask Paul if he wants to create a more general constructer that initializes a standard card deck in
         // the constructor, if so, we don't have to create a standard card deck as one of its parameters
-        return new ArrayList<>() {};
+        return new ArrayList<>();
     }
     private Game game;
     public void startGame() {
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
 
-        //TODO: (this can also be done in the Game class) deal 7 cards to each player.
-        // Flip the first of the deck. If it is a draw card, return the card to the deck and repeat.
-        // If it is a wild card, let the player who goes first choose its color. Alternatively, if
-        // it's easier to implement, we could also just return the wild card to the deck and repeat.
+        game.setup();
     }
 
 
@@ -76,12 +73,7 @@ public class Controller {
      *
      * playCard()
      * I will give a string that represents the card, which will be in the form of "value-colour"
-     * For example: number card "1-red"
-     * plus four card "+4"
-     * plus two card "+2-red"
-     * reverse card "R-red"
-     * skip card "S-red"
-     * wild card "W"
+     * For example: g
      */
 
     //Convert string representation into the index of the card.
@@ -90,13 +82,13 @@ public class Controller {
         game.play(card);
     }
     public void drawCard() {
-        //TODO: let the game draw a card after the user clicks the draw button
+        game.draw(1, game.getToMove());
     }
     /**
      * pass the new theme colour to the game use cases
      * @param colour the colour that the player chooses after a wild card or plus four card is played
      */
     public void changeColour(String colour) {
-        //TODO: update the game mechanism about the new chosen colour by the user
+        game.setColour(colour);
     }
 }

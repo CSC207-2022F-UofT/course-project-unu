@@ -1,7 +1,6 @@
 package game;
 
 import entities.Player;
-import entities.RealPlayer;
 import entities.CardFactory;
 import cards.Card;
 import interfaceAdapters.Presenter_Interface;
@@ -22,7 +21,7 @@ public class Game {
     public Game(List<Player> players, boolean isClockwise, Presenter_Interface presenter) {
         this.players = players;
         this.deck = newDeck();
-        this.toMove = 0;
+        this.toMove = 3;
         this.isClockwise = isClockwise;
         this.presenter = presenter;
     }
@@ -58,8 +57,6 @@ public class Game {
     public void changeDirection() {
         isClockwise = !isClockwise;
     }
-
-
 
     public void shuffleDeck() {
         Collections.shuffle(deck);
@@ -99,6 +96,11 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
+        if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
+            String[] hand = convertHand(players.get(player).getHand());
+            presenter.updateHand(hand);
+        }
+
         players.get(player).drawCards(cards);
     }
 
@@ -116,17 +118,10 @@ public class Game {
         lastPlayed = played;
         discardPile.add(played);
 
-        presenter.updateLastPlayed(convert(played), this.toMove);
+        presenter.updateLastPlayed(convert(played), players.indexOf(toMove));
 
-        //Assuming for now that only the first player is real
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
-
-            String[] cards = new String[players.get(toMove).getHand().size()];
-
-            for (int i = 0; i < cards.length; i++) {
-                cards[0] = convert(players.get(toMove).getHand().get(i));
-            }
-
+            String[] cards = convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
         }
 
@@ -135,6 +130,11 @@ public class Game {
 
     public void play(String card) {
         play(getIndexOf(card));
+    }
+
+    //Set colour of the played WildCard
+    public void setColour(String colour) {
+        lastPlayed.setColour(colour);
     }
 
     /**
@@ -171,6 +171,27 @@ public class Game {
 
     public boolean checkGameOver() {
         return players.get(toMove).getHand().isEmpty();
+    }
+
+    /**
+     * Game Setup: Each player draws 7 cards.
+     * The top card of the deck is flipped over if it isn't a Wild card.
+     * Do effect of flipped card as if the player before the first player had just played it
+     */
+    public void setup() {
+        for (int i = 0; i < players.size(); i++) {
+            draw(7, i);
+        }
+
+        while (deck.get(0).getCardType().equalsIgnoreCase("plusFour") ||
+                deck.get(0).getCardType().equalsIgnoreCase("wild")) {
+            shuffleDeck();
+        }
+
+        lastPlayed = deck.remove(0);
+        lastPlayed.playedEffect(this);
+        setToMove(getNextPlayer());
+
     }
 
     //Return the index of the card with the given string representation.
@@ -231,6 +252,16 @@ public class Game {
         return type + card.getColour();
     }
 
+    private String[] convertHand(List<Card> hand) {
+        String[] cards = new String[hand.size()];
+
+        for (int i = 0; i < cards.length; i++) {
+            cards[0] = convert(hand.get(i));
+        }
+
+        return cards;
+    }
+
     private List<Card> newDeck() {
         CardFactory cardFactory = new CardFactory();
 
@@ -253,6 +284,8 @@ public class Game {
                 }
             }
         }
+
+        shuffleDeck();
 
         return newDeck;
     }
