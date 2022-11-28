@@ -12,15 +12,15 @@ public class ViewMethods implements View{
     GameBoard gameBoard;
     Controller c;
 
-
-    public ViewMethods(Controller c) {
-        StartPage sp = new StartPage(this,c);
+    public ViewMethods(GameManager gm, Controller c) {
+        this.gm = gm;
+        StartPage sp = new StartPage(c);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        /*GameBoard gameBoard = new GameBoard(this);
-        this.c = c;*/
+        GameBoard gameBoard = new GameBoard(this);
+        this.c = c;
 //        generateGameBoard(c);
 //        String[] str = new String[7];
 //        str[0] = "W";
@@ -41,7 +41,7 @@ public class ViewMethods implements View{
 
     @Override
     public void generateGameBoard(Controller c) {
-        gameBoard = new GameBoard(this,c);
+        gameBoard = new GameBoard(c);
     }
 
     @Override

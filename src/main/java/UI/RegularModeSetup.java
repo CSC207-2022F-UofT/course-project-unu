@@ -176,6 +176,10 @@ public class RegularModeSetup {
         regularSetupLabel = new JLabel();
         regularSetupLabel.setBounds(0, 0, 1000, 700);
         ImageIcon regularBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
+        Image bg = regularBG.getImage();
+        Image adjustedBg = bg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
+        regularBG = new ImageIcon(adjustedBg);
+
         regularSetupLabel.setIcon(regularBG);
         regularSetupPanel.add(regularSetupLabel);
 

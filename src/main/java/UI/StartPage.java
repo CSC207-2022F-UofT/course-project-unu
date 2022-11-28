@@ -28,7 +28,7 @@ public class StartPage {
 
     public void createStartPageButtons(JLabel bg) {
         regularButton = new JButton("Regular Mode");
-        regularButton.setBounds(300, 300, 120, 70);
+        regularButton.setBounds(340, 430, 120, 70);
         regularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,7 +37,7 @@ public class StartPage {
             }
         });
         teamButton = new JButton("Team Mode");
-        teamButton.setBounds(530, 300, 120, 70);
+        teamButton.setBounds(540, 430, 120, 70);
         teamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,16 +68,22 @@ public class StartPage {
         startLabel = new JLabel();
         startLabel.setBounds(0, 0, 1000, 700);
         ImageIcon startBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
+        Image bg = startBG.getImage();
+        Image adjustedBg = bg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
+        startBG = new ImageIcon(adjustedBg);
         startLabel.setIcon(startBG);
         startPanel.add(startLabel);
         createStartPageButtons(startLabel);
 
-//        JLabel logo = new JLabel();
-//        ImageIcon unoLogo = new ImageIcon(this.getClass().getResource("/UNO_logo.jpg"));
-//        logo.setBounds(100, 100, 300, 300);
-//        logo.setIcon(unoLogo);
-//        startLabel.add(logo);
+        JLabel logo = new JLabel();
+        ImageIcon unoLogo = new ImageIcon(this.getClass().getResource("/UNO_logo.jpg"));
+        Image logoImg = unoLogo.getImage();
+        Image adjustedLogo = logoImg.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
+        logo.setBounds(350, 130, 300, 200);
+        unoLogo = new ImageIcon(adjustedLogo);
+        logo.setIcon(unoLogo);
+        startLabel.add(logo);
+
 
     }
-
 }
