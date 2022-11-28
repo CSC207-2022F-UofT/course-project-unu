@@ -15,7 +15,7 @@ public class RegularModeSetup {
     JLabel regularSetupLabel;
     ViewMethods ui;
 
-    public RegularModeSetup(ViewMethods ui,Controller c){
+    public RegularModeSetup(Controller c){
 
         generateScreen();
         this.c = c;

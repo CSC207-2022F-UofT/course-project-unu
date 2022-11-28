@@ -89,5 +89,9 @@ public class ViewMethods implements View{
     public void requestColourChange() {
         new ChooseColourPage(c);
     }
+    @Override
+    public void generatePlayWindow(){
+
+    }
 
 }
