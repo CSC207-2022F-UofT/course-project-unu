@@ -100,10 +100,14 @@ public class Controller {
         return playerList;
     }
     private Game game;
+
+    /**
+     * initialization of the new game
+     * @param ui
+     */
     public void startGame(View ui) {
         this.game = new Game(regularPlayerList(),true,new Presenter(ui));
 
-        this.game.draw(7,for each player);
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
 
