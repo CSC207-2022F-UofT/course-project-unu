@@ -14,6 +14,7 @@ public class ViewMethods implements View{
     public ViewMethods(GameManager gm, Controller c) {
         this.gm = gm;
         StartPage sp = new StartPage(c);
+        sp.generateScreen();
         /**
          * only comment out start page for testing
          * TODO: Change back to start page

@@ -25,8 +25,8 @@ public class StartPage extends UIComponent {
      */
     public StartPage(Controller c){
         super(c);
-        generateScreen();
-    }
+        this.c = c;
+     }
 
     /**
      * generate all the buttons
