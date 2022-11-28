@@ -41,4 +41,6 @@ public interface View {
 
     void requestColourChange();
 
+    void generatePlayWindow();
+
 }

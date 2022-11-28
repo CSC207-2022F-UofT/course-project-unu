@@ -181,7 +181,6 @@ public class GameBoard{
                 this.myAvailableMoves[i].setVisible(false);
             }
         }
-
     }
 
 
