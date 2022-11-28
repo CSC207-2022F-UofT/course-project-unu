@@ -13,7 +13,7 @@ public class ViewMethods implements View{
 
     public ViewMethods(GameManager gm) {
         this.gm = gm;
-        //StartPage sp = new StartPage(c);
+        StartPage sp = new StartPage(c);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
