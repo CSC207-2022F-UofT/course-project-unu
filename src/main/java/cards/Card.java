@@ -19,6 +19,7 @@ public abstract class Card {
     /**
      * The colour this card is.
      * Can be: Red, Blue, Green, or Yellow.
+     * This field defaults to one of these four values, but may also take on cardType as a placeholder value.
      */
     private String colour;
 
