@@ -155,11 +155,19 @@ public class Game {
         return player.getPossibleMoves(lastPlayed);
     }
 
+    /**
+     * Call a presenter method that displays a real player's move options.
+     * @param realPlayer replPlayer
+     */
     public void displayRealPlayerOptions(RealPlayer realPlayer) {
-        /* TODO: call presenter method that displays options
-        * convert list of Cards to list of string, which is argument for presenter method */
+        List<String> cards = new ArrayList<>();
         List<Card> possibleMoves = realPlayer.getPossibleMoves(lastPlayed);
 
+        for (Card card: possibleMoves) {
+            cards.add(card.toString());
+        }
+
+        /* TODO: call presenter method */
     }
 
     /**
