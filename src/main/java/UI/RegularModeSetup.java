@@ -151,6 +151,7 @@ public class RegularModeSetup {
             public void actionPerformed(final ActionEvent e) {
                 ui.generateGameBoard(c);
                 c.startGame(ui);
+                window.setVisible(false);
             }
         });
         bg.add(startGame);

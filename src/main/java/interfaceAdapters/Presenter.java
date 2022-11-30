@@ -66,4 +66,9 @@ public class Presenter implements Presenter_Interface {
         }
     }
 
+    @Override
+    public void updateGameLastCard(String card) {
+        viewMethods.updateLastCardPlayed(card);
+    }
+
 }

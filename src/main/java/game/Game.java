@@ -208,6 +208,7 @@ public class Game {
         }
 
         lastPlayed = deck.remove(0);
+        presenter.updateGameLastCard(convert(lastPlayed));
         lastPlayed.playedEffect(this);
         setToMove(getNextPlayer());
 
