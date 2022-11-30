@@ -1,6 +1,5 @@
 package UI;
 
-import game.Game;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
@@ -12,15 +11,15 @@ public class ViewMethods implements View{
     GameBoard gameBoard;
     Controller c;
 
-    public ViewMethods(GameManager gm, Controller c) {
+    public ViewMethods(GameManager gm) {
         this.gm = gm;
+        this.c = new Controller();
         StartPage sp = new StartPage(c);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        GameBoard gameBoard = new GameBoard(this);
-        this.c = c;
+
 //        generateGameBoard(c);
 //        String[] str = new String[7];
 //        str[0] = "W";
@@ -31,12 +30,25 @@ public class ViewMethods implements View{
 //        str[5] = "S-yellow";
 //        str[6] = "0-red";
 //        updateAvailableCards(str);
+//        String[] str1 = new String[6];
+//        str1[0] = "W";
+//        str1[1] = "+4";
+//        str1[2] = "1-red";
+//        str1[3] = "+2-green";
+//        str1[4] = "R-blue";
+//        str1[5] = "S-yellow";
+//
+//        updateAvailableCards(str1);
 //        updateMyLastPlayedCard("R-green");
+//        updateMyLastPlayedCard("R-blue");
 //        updateLastCardPlayed("S-blue");
-//        updateBot1Card("+4");
+//        updateBot1Card("+2-yellow");
+//        updateBot1Card("D");
 //        updateBot2Card("W");
-//        updateBot3Card("9-red");
-//        requestColorChange();
+//        updateBot2Card("D");
+//        updateBot3Card("D");
+//        updateBot3Card("+4");
+        //requestColorChange();
     }
 
     @Override
@@ -69,26 +81,19 @@ public class ViewMethods implements View{
         gameBoard.updatePlayer4Card(card);
     }
 
-    public void updateAvailableCards(String[] cardList) {
-        JLabel[] cardLabels = new JLabel[cardList.length];
-        for (int i=0; i<cardList.length; i++) {
-            int cardX = 260 + 70*(i / 2);
-            int cardY = 440 + 90*(i % 2);
-            cardLabels[i] = gameBoard.createCardLabel(cardX, cardY, 60, 80, cardList[i]);
-        }
-        gameBoard.displayAvailableCards(cardLabels);
-    }
-
     @Override
-    public void requestColorChange() {
-        new ChooseColourPage(c);
+    public void updateAvailableCards(String[] cardList) {
+        gameBoard.displayAvailableCards(cardList);
     }
 
     @Override
     public void requestColourChange() {
-        /*
-        Interface stuff here eventually calls on the controller
-        to change the colour of the lastPlayed card.
-         */
+        new ChooseColourPage(c);
     }
+
+    @Override
+    public void generatePlayWindow() {
+
+    }
+
 }

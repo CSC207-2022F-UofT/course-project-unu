@@ -4,8 +4,6 @@ import interfaceAdapters.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ChooseColourPage {
 
@@ -43,12 +41,9 @@ public class ChooseColourPage {
             colorButton.setBackground(colours[i]);
             colorButton.setOpaque(true);
             int finalI = i;
-            colorButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(final ActionEvent e) {
-                    c.changeColour(colourStr[finalI]);
-                    window.setVisible(false);
-                }
+            colorButton.addActionListener(e -> {
+                c.changeColour(colourStr[finalI]);
+                window.setVisible(false);
             });
             colourPanel.add(colorButton);
         }
