@@ -13,17 +13,16 @@ public class RegularModeSetup {
     JFrame window;
     JPanel regularSetupPanel;
     JLabel regularSetupLabel;
-    ViewMethods ui;
 
-    public RegularModeSetup(Controller c){
+    public RegularModeSetup(View ui, Controller c){
 
-        generateScreen();
+        generateScreen(ui);
         this.c = c;
        // c.setTeamMode(false);//may delete this if useless
 
     }
 
-    public void createRegularButtons(JLabel bg) {
+    public void createRegularButtons(View ui, JLabel bg) {
         TextField player1 = new TextField("Player 1: your name");
         player1.setBounds(100, 100, 150, 50);
         player1.addActionListener(new ActionListener() {
@@ -150,6 +149,7 @@ public class RegularModeSetup {
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                ui.generateGameBoard(c);
                 c.startGame(ui);
             }
         });
@@ -158,7 +158,7 @@ public class RegularModeSetup {
 
 
 
-    public void generateScreen() {
+    public void generateScreen(View ui) {
         //create a main field
         window = new JFrame();
         window.setSize(1000, 700);
@@ -183,6 +183,6 @@ public class RegularModeSetup {
         regularSetupLabel.setIcon(regularBG);
         regularSetupPanel.add(regularSetupLabel);
 
-        createRegularButtons(regularSetupLabel);
+        createRegularButtons(ui, regularSetupLabel);
     }
 }
