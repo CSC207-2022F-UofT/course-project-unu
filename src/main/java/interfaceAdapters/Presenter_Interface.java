@@ -15,5 +15,7 @@ public interface Presenter_Interface {
     void displayOptions(List<String> cards);
     // tell the UI that this player has drawn a card
     void updateDraw(String player);
+    // show the last played card of the last player
+    void updateGameLastCard(String card);
 
 }
