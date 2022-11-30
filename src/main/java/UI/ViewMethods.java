@@ -1,7 +1,7 @@
 package UI;
 
 import interfaceAdapters.Controller;
-
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 
@@ -91,9 +91,10 @@ public class ViewMethods implements View{
     public void requestColourChange() {
         new ChooseColourPage(c);
     }
-    @Override
-    public void generatePlayWindow(){
 
+    @Override
+    public void generatePlayWindow(List<String> cards) {
+        new PlayCardWindow(c, cards);
     }
 
 }

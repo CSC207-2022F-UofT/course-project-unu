@@ -139,4 +139,7 @@ public class Controller {
     public void changeColour(String colour) {
         game.setColour(colour);
     }
+    public void requestPossibleMoves() {
+        game.displayRealPlayerOptions();
+    }
 }

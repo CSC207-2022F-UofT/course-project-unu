@@ -2,6 +2,8 @@ package interfaceAdapters;
 
 import UI.View;
 
+import java.util.List;
+
 public class Presenter implements Presenter_Interface {
 
     View viewMethods;
@@ -42,5 +44,9 @@ public class Presenter implements Presenter_Interface {
         }
     }
 
+    @Override
+    public void displayOptions(List<String> cards) {
+        viewMethods.generatePlayWindow(cards);
+    }
 
 }

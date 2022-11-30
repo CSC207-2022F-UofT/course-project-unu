@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class PlayCardWindow {
 
@@ -13,11 +14,12 @@ public class PlayCardWindow {
     JPanel playPanel;
     Controller c;
 
-    public PlayCardWindow(Controller c) {
+    public PlayCardWindow(Controller c, List<String> cards) {
         //TODO: figure out why can the parameter passed be null
         this.c = c;
         this.window = new JFrame();
         generateScreen();
+        createPossibleMoves(cards);
     }
 
     public void generateScreen() {
@@ -35,23 +37,23 @@ public class PlayCardWindow {
         playPanel.setBounds(0, 0, 250, 200);
         playPanel.setLayout(null);
         window.add(playPanel);
-        String[] str = new String[7];
-        str[0] = "W";
-        str[1] = "+4";
-        str[2] = "1-red";
-        str[3] = "+2-green";
-        str[4] = "R-blue";
-        str[5] = "S-yellow";
-        str[6] = "0-red";
-        createAvailableMoves(str);
+//        String[] str = new String[7];
+//        str[0] = "W";
+//        str[1] = "+4";
+//        str[2] = "1-red";
+//        str[3] = "+2-green";
+//        str[4] = "R-blue";
+//        str[5] = "S-yellow";
+//        str[6] = "0-red";
+//        createAvailableMoves(str);
     }
 
-    public void createAvailableMoves(String[] availableMoves) {
-        JButton[] cardButtons = new JButton[availableMoves.length];
+    public void createPossibleMoves(List<String> possibleMoves) {
+        JButton[] cardButtons = new JButton[possibleMoves.size()];
         for (int i=0; i< cardButtons.length; i++) {
             int cardX = 50*(i / 3);
             int cardY = 50*(i % 3);
-            cardButtons[i] = createCardButtons(cardX, cardY, 50, 50, availableMoves[i]);
+            cardButtons[i] = createCardButtons(cardX, cardY, 50, 50, possibleMoves.get(i));
             playPanel.add(cardButtons[i]);
         }
     }
