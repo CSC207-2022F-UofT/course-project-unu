@@ -1,6 +1,7 @@
 package game;
 
 import entities.Player;
+import entities.RealPlayer;
 import entities.CardFactory;
 import cards.Card;
 import interfaceAdapters.Presenter_Interface;
@@ -151,6 +152,21 @@ public class Game {
      */
     public List<Card> getPlayerDefault(Player player) {
         return player.getDefaultMove(lastPlayed);
+    }
+
+    /**
+     * Return the Player's options as list of strings
+     * @param realPlayer RealPlayer
+     */
+    public void displayRealPlayerOptions(RealPlayer realPlayer) {
+        List<String> cards = new ArrayList<>();
+        List<Card> possibleMoves = realPlayer.getPossibleMoves(lastPlayed);
+
+        for (Card card: possibleMoves) {
+            cards.add(card.toString());
+        }
+
+        /* TODO: call presenter method */
     }
 
     /**
