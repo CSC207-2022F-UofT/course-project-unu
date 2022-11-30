@@ -2,6 +2,8 @@ package UI;
 
 import interfaceAdapters.Controller;
 
+import java.util.List;
+
 /**
  * View Interface with methods that the Presenter calls to pass values for display
  * Card strings (String parameters of any "update card" methods) are the string representations of the player's
@@ -41,6 +43,6 @@ public interface View {
 
     void requestColorChange();
 
-    void generatePlayWindow();
+    void generatePlayWindow(List<String> cards);
 
 }
