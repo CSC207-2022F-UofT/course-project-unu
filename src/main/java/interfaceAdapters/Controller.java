@@ -112,6 +112,7 @@ public class Controller {
         // this.game = new Game(...);
 
         game.setup();
+        game.draw(1, game.getToMove());
     }
 
 

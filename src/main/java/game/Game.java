@@ -96,12 +96,12 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
+        players.get(player).drawCards(cards);
+
         if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
             String[] hand = convertHand(players.get(player).getHand());
             presenter.updateHand(hand);
         }
-
-        players.get(player).drawCards(cards);
     }
 
     /**
@@ -249,14 +249,14 @@ public class Game {
             type = card.getCardType();
         }
 
-        return type + card.getColour();
+        return type + "-" + card.getColour();
     }
 
     private String[] convertHand(List<Card> hand) {
         String[] cards = new String[hand.size()];
 
         for (int i = 0; i < cards.length; i++) {
-            cards[0] = convert(hand.get(i));
+            cards[i] = convert(hand.get(i));
         }
 
         return cards;
