@@ -103,6 +103,9 @@ public class Game {
             String[] hand = convertHand(players.get(player).getHand());
             presenter.updateHand(hand);
         }
+        //tell the UI that this player has drawn a card
+        String playerName = "player" + (player + 1);
+        presenter.updateDraw(playerName);
     }
 
     /**

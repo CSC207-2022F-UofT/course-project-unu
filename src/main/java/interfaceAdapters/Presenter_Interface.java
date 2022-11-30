@@ -13,5 +13,7 @@ public interface Presenter_Interface {
 
     void updateLastPlayed(String card, int toMove);
     void displayOptions(List<String> cards);
+    // tell the UI that this player has drawn a card
+    void updateDraw(String player);
 
 }
