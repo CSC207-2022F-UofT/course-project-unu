@@ -213,41 +213,54 @@ public class Game {
 
     }
 
-    //Return the index of the card with the given string representation.
+    /**
+     * Return the index of the card from the player's deck from string representation
+     * @param card Card to play from possible moves
+     */
     private int getIndexOf(String card) {
         String cardType;
-        String colour;
-        Card check;
-        CardFactory cardFactory = new CardFactory();
-
         if (card.contains("W")) {
-            check = cardFactory.getCard("wild");
-            return players.get(toMove).getHand().indexOf(check);
+            cardType = "wild";
         } else if (card.contains("+4")) {
-            check = cardFactory.getCard("plusFour");
-            return players.get(toMove).getHand().indexOf(check);
-        } else if (card.contains("R")) {
-            cardType = "reverse";
+            cardType = "plusFour";
         } else if (card.contains("+2")) {
             cardType = "plusTwo";
+        } else if (card.contains("R")) {
+            cardType = "reverse";
         } else if (card.contains("S")) {
             cardType = "skip";
         } else {
             cardType = card.substring(0, 1);
         }
 
+        String cardColour = "";
         if (card.contains("red")) {
-            colour = "red";
-        } else if (card.contains("yellow")) {
-            colour = "yellow";
+            cardColour = "red";
         } else if (card.contains("blue")) {
-            colour = "blue";
-        } else {
-            colour = "green";
+            cardColour = "blue";
+        } else if (card.contains("yellow")) {
+            cardColour = "yellow";
+        } else if (card.contains("green")){
+            cardColour = "green";
         }
 
-        check = cardFactory.getCard(cardType, colour);
-        return players.get(toMove).getHand().indexOf(check);
+        int i = 0;
+        for (Card handCard: players.get(0).getHand()) {
+            String type = handCard.getCardType();
+            String colour = handCard.getColour();
+
+            if (cardType.equals(type)) {
+                if (cardType.equals("wild") || cardType.equals("plusFour")) {
+                    return i;
+                } else if (cardColour.equals(colour)) {
+                    return i;
+                }
+            }
+
+            i++;
+        }
+
+        return -1; // this should not happen lol
     }
 
     //Return the string representation of the given card.
