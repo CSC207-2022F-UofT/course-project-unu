@@ -188,7 +188,7 @@ public class Game {
         List<Card> possibleMoves = realPlayer.getPossibleMoves(lastPlayed);
 
         for (Card card: possibleMoves) {
-            cards.add(card.toString());
+            cards.add(convert(card));
         }
 
         presenter.displayOptions(cards);
