@@ -58,7 +58,7 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
-    public void shuffleDeck() {
+    public void shuffleDeck(List<Card> deck) {
         Collections.shuffle(deck);
     }
 
@@ -70,7 +70,7 @@ public class Game {
         discardPile.clear();
         discardPile.add(lastPlayed);
 
-        shuffleDeck();
+        shuffleDeck(deck);
     }
 
     /**
@@ -96,12 +96,12 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
+        players.get(player).drawCards(cards);
+
         if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
             String[] hand = convertHand(players.get(player).getHand());
             presenter.updateHand(hand);
         }
-
-        players.get(player).drawCards(cards);
     }
 
     /**
@@ -185,7 +185,7 @@ public class Game {
 
         while (deck.get(0).getCardType().equalsIgnoreCase("plusFour") ||
                 deck.get(0).getCardType().equalsIgnoreCase("wild")) {
-            shuffleDeck();
+            shuffleDeck(deck);
         }
 
         lastPlayed = deck.remove(0);
@@ -249,14 +249,14 @@ public class Game {
             type = card.getCardType();
         }
 
-        return type + card.getColour();
+        return type + "-" + card.getColour();
     }
 
     private String[] convertHand(List<Card> hand) {
         String[] cards = new String[hand.size()];
 
         for (int i = 0; i < cards.length; i++) {
-            cards[0] = convert(hand.get(i));
+            cards[i] = convert(hand.get(i));
         }
 
         return cards;
@@ -285,7 +285,7 @@ public class Game {
             }
         }
 
-        shuffleDeck();
+        shuffleDeck(newDeck);
 
         return newDeck;
     }

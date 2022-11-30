@@ -23,6 +23,6 @@ public abstract class UIComponent {
         return window;
     }
 
-    public abstract void generateScreen();
+    public abstract void generateScreen(View ui);
 
 }

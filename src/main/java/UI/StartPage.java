@@ -26,18 +26,18 @@ public class StartPage extends UIComponent {
      */
     public StartPage(Controller c){
         super(c);
-        generateScreen();
-    }
+        this.c = c;
+     }
 
     /**
      * generate all the buttons
      * @param bg the background label where the buttons will be added
      */
-    public void createStartPageButtons(JLabel bg) {
+    public void createStartPageButtons(View ui, JLabel bg) {
         regularButton = new JButton("Regular Mode");
         regularButton.setBounds(340, 430, 120, 70);
         regularButton.addActionListener(e -> {
-            new RegularModeSetup(c);
+            new RegularModeSetup(ui, c);
             window.setVisible(false);
         });
         teamButton = new JButton("Team Mode");
@@ -54,7 +54,7 @@ public class StartPage extends UIComponent {
     /**
      * create the main screen setup
      */
-    public void generateScreen() {
+    public void generateScreen(View ui) {
 
         window = super.createMainField("Start Page", 1000, 700);
 
@@ -72,7 +72,7 @@ public class StartPage extends UIComponent {
         startBG = new ImageIcon(adjustedBg);
         startLabel.setIcon(startBG);
         startPanel.add(startLabel);
-        createStartPageButtons(startLabel);
+        createStartPageButtons(ui, startLabel);
 
         JLabel logo = new JLabel();
         ImageIcon unoLogo = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/UNO_logo.jpg")));
