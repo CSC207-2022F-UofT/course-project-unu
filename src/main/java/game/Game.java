@@ -155,10 +155,10 @@ public class Game {
     }
 
     /**
-     * Return the Player's options as list of strings
-     * @param realPlayer RealPlayer
+     * Call a presenter method that displays RealPlayer's card options as list of strings
      */
-    public void displayRealPlayerOptions(RealPlayer realPlayer) {
+    public void displayRealPlayerOptions() {
+        Player realPlayer = players.get(0);
         List<String> cards = new ArrayList<>();
         List<Card> possibleMoves = realPlayer.getPossibleMoves(lastPlayed);
 
@@ -166,7 +166,7 @@ public class Game {
             cards.add(card.toString());
         }
 
-        /* TODO: call presenter method */
+        presenter.displayOptions(cards);
     }
 
     /**
