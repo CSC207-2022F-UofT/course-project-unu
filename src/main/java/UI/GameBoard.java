@@ -138,7 +138,7 @@ public class GameBoard extends UIComponent{
     public void addGameButtons(JLabel bg) {
         JButton playButton = new JButton("Play Card");
         playButton.setBounds(800, 450, 100, 60);
-        playButton.addActionListener(e -> new PlayCardWindow(c));
+        playButton.addActionListener(e -> c.requestPossibleMoves());
         bg.add(playButton);
         JButton drawButton = new JButton("Draw Card");
         drawButton.setBounds(800, 540, 100, 60);
