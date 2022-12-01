@@ -8,7 +8,7 @@ import interfaceAdapters.Presenter_Interface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Drawer {
+public class Draw {
 
     public void draw(GameState gameState, int drawAmount, int player, Presenter_Interface presenter) {
         List<Card> cards;
@@ -33,7 +33,7 @@ public class Drawer {
         List<Player> players = gameState.getPlayers();
 
         if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
-            String[] hand = StringConvert.convertHand(players.get(player).getHand());
+            String[] hand = StringConverter.convertHand(players.get(player).getHand());
             presenter.updateHand(hand);
         }
 

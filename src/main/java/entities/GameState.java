@@ -77,18 +77,18 @@ public class GameState {
         this.isClockwise = !isClockwise;
     }
 
-    public void shuffleDeck() {
+    public void shuffleDeck(List<Card> deck) {
         Collections.shuffle(deck);
     }
 
     public void reshuffle() {
-        deck = new ArrayList<>(discardPile);
-        deck.remove(lastPlayed);
+        this.deck = new ArrayList<>(discardPile);
+        this.deck.remove(lastPlayed);
 
-        discardPile.clear();
-        discardPile.add(lastPlayed);
+        this.discardPile.clear();
+        this.discardPile.add(lastPlayed);
 
-        shuffleDeck();
+        shuffleDeck(this.deck);
     }
 
     private List<Card> newDeck() {
@@ -113,7 +113,7 @@ public class GameState {
                 }
             }
         }
-        shuffleDeck();
+        shuffleDeck(newDeck);
 
         return newDeck;
     }
