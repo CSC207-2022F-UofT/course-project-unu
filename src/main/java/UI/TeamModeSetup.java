@@ -168,7 +168,7 @@ public class TeamModeSetup {
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                c.startGame(ui);
+                c.startGame();
             }
         });
         bg.add(startGame);

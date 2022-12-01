@@ -13,43 +13,8 @@ public class ViewMethods implements View{
 
     public ViewMethods(GameManager gm) {
         this.gm = gm;
-        this.c = new Controller();
-        StartPage sp = new StartPage(c);
-        sp.generateScreen(this);
-        /**
-         * only comment out start page for testing
-         * TODO: Change back to start page
-         */
-
-//        generateGameBoard(c);
-//        String[] str = new String[7];
-//        str[0] = "W";
-//        str[1] = "+4";
-//        str[2] = "1-red";
-//        str[3] = "+2-green";
-//        str[4] = "R-blue";
-//        str[5] = "S-yellow";
-//        str[6] = "0-red";
-//        updateAvailableCards(str);
-//        String[] str1 = new String[6];
-//        str1[0] = "W";
-//        str1[1] = "+4";
-//        str1[2] = "1-red";
-//        str1[3] = "+2-green";
-//        str1[4] = "R-blue";
-//        str1[5] = "S-yellow";
-//
-//        updateAvailableCards(str1);
-//        updateMyLastPlayedCard("R-green");
-//        updateMyLastPlayedCard("R-blue");
-//        updateLastCardPlayed("S-blue");
-//        updateBot1Card("+2-yellow");
-//        updateBot1Card("D");
-//        updateBot2Card("W");
-//        updateBot2Card("D");
-//        updateBot3Card("D");
-//        updateBot3Card("+4");
-        //requestColorChange();
+        this.c = new Controller(this);
+        new StartPage(c);
     }
 
     @Override

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
+
 /**
  * class RegularModeSetUp
  * UI component, inherits the abstract class UIComponent
@@ -27,7 +28,6 @@ public class RegularModeSetup extends UIComponent{
         super(c);
         generateScreen();
         this.c.setTeamMode(false);//may delete this if useless
-
     }
 
     /**
@@ -98,7 +98,10 @@ public class RegularModeSetup extends UIComponent{
         //Start Game button
         Button startGame = new Button("Start Game");
         startGame.setBounds(670, 250, 100, 100);
-        startGame.addActionListener(e -> c.startGame());
+        startGame.addActionListener(e -> {
+            c.startGame();
+            window.setVisible(false);
+        });
         bg.add(startGame);
     }
 

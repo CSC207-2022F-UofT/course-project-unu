@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
+    /**
+     * Constructor
+     */
+    View ui;
+    public Controller(View ui) {
+        this.ui = ui;
+    }
     private boolean isTeamMode;
     /**
      * If the user clicks on team mode, then teamMode = true, otherwise = false
@@ -102,11 +109,11 @@ public class Controller {
     private Game game;
 
     /**
-     * initialization of the new game
-     * @param ui
+     * initialization
      */
-    public void startGame(View ui) {
+    public void startGame() {
         this.game = new Game(regularPlayerList(),true,new Presenter(ui));
+        ui.generateGameBoard(this);
 
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
