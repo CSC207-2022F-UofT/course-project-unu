@@ -4,24 +4,23 @@ import interfaceAdapters.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
 public class PlayCardWindow extends UIComponent {
 
     JFrame window;
     JPanel playPanel;
 
-    public PlayCardWindow(Controller c) {
+    public PlayCardWindow(Controller c, List<String> cards) {
         super(c);
         generateScreen();
+        createPossibleMoves(cards);
     }
 
     public void generateScreen() {
 
         //create a main field
         window = super.createMainField("Choose Cards", 250, 200);
-        window.setSize(250, 200);
 
         //set background
         playPanel = new JPanel();
@@ -30,12 +29,12 @@ public class PlayCardWindow extends UIComponent {
         window.add(playPanel);
     }
 
-    public void createAvailableMoves(String[] availableMoves) {
-        JButton[] cardButtons = new JButton[availableMoves.length];
+    public void createPossibleMoves(List<String> possibleMoves) {
+        JButton[] cardButtons = new JButton[possibleMoves.size()];
         for (int i=0; i< cardButtons.length; i++) {
             int cardX = 50*(i / 3);
             int cardY = 50*(i % 3);
-            cardButtons[i] = createCardButtons(cardX, cardY, 50, 50, availableMoves[i]);
+            cardButtons[i] = createCardButtons(cardX, cardY, 50, 50, possibleMoves.get(i));
             playPanel.add(cardButtons[i]);
         }
     }
@@ -59,12 +58,9 @@ public class PlayCardWindow extends UIComponent {
         card.setFont(new Font("Monospace", Font.PLAIN, 30));
         card.setHorizontalAlignment(SwingConstants.CENTER);
         card.setBorder(BorderFactory.createLineBorder(Color.white));
-        card.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                c.playCard(cardStr);
-                window.setVisible(false);
-            }
+        card.addActionListener(e -> {
+            c.playCard(cardStr);
+            window.setVisible(false);
         });
 
         return card;
