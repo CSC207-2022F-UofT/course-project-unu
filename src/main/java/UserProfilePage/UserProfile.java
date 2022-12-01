@@ -28,4 +28,17 @@ public class UserProfile{
         }
         this.WinRate = this.GamesWon / this.GamesPlayed;
     }
+    @Override
+    public String toString(){
+        //outputs this userprofile using a string
+        return this.name + "/" + this.GamesPlayed + "/" + this.GamesWon;
+    }
+
+    public void StringTo(String str){
+        //takes a string to setup a userprofile
+        String[] parts = str.split("/");
+        this.name = parts[0];
+        this.GamesPlayed = Integer.valueOf(parts[1]);
+        this.GamesPlayed = Integer.valueOf(parts[2]);
+    }
 }
