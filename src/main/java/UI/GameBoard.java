@@ -150,7 +150,8 @@ public class GameBoard{
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                new PlayCardWindow(c);
+                //new PlayCardWindow(c);
+                c.requestPossibleMoves();
             }
         });
         bg.add(playButton);
@@ -181,7 +182,6 @@ public class GameBoard{
                 this.myAvailableMoves[i].setVisible(false);
             }
         }
-
     }
 
 

@@ -46,7 +46,7 @@ public abstract class Player implements Moves {
             else if (card.getColour().equals(lastPlayed.getColour())) {
                 possibleMoves.add(card);
             }
-            else if (cardType.equals("Wild")) {
+            else if (cardType.equals("wild") || cardType.equals("plusFour")) {
                 possibleMoves.add(card);
             }
         }

@@ -1,7 +1,7 @@
 package UI;
 
 import interfaceAdapters.Controller;
-
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,12 +13,14 @@ public class ViewMethods implements View{
 
     public ViewMethods(GameManager gm) {
         this.gm = gm;
-        //StartPage sp = new StartPage(c);
+        this.c = new Controller();
+        StartPage sp = new StartPage(c);
+        sp.generateScreen(this);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
          */
-        this.c = new Controller();
+
 //        generateGameBoard(c);
 //        String[] str = new String[7];
 //        str[0] = "W";
@@ -88,6 +90,11 @@ public class ViewMethods implements View{
     @Override
     public void requestColourChange() {
         new ChooseColourPage(c);
+    }
+
+    @Override
+    public void generatePlayWindow(List<String> cards) {
+        new PlayCardWindow(c, cards);
     }
 
 }

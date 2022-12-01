@@ -1,6 +1,7 @@
 package game;
 
 import entities.Player;
+import entities.RealPlayer;
 import entities.CardFactory;
 import cards.Card;
 import interfaceAdapters.Presenter_Interface;
@@ -58,7 +59,7 @@ public class Game {
         isClockwise = !isClockwise;
     }
 
-    public void shuffleDeck() {
+    public void shuffleDeck(List<Card> deck) {
         Collections.shuffle(deck);
     }
 
@@ -70,7 +71,7 @@ public class Game {
         discardPile.clear();
         discardPile.add(lastPlayed);
 
-        shuffleDeck();
+        shuffleDeck(deck);
     }
 
     /**
@@ -96,12 +97,15 @@ public class Game {
             deck.subList(0, leftover).clear();
         }
 
+        players.get(player).drawCards(cards);
+
         if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
             String[] hand = convertHand(players.get(player).getHand());
             presenter.updateHand(hand);
         }
-
-        players.get(player).drawCards(cards);
+        //tell the UI that this player has drawn a card
+        String playerName = "player" + (player + 1);
+        presenter.updateDraw(playerName);
     }
 
     /**
@@ -154,6 +158,21 @@ public class Game {
     }
 
     /**
+     * Call a presenter method that displays RealPlayer's card options as list of strings
+     */
+    public void displayRealPlayerOptions() {
+        Player realPlayer = players.get(0);
+        List<String> cards = new ArrayList<>();
+        List<Card> possibleMoves = realPlayer.getPossibleMoves(lastPlayed);
+
+        for (Card card: possibleMoves) {
+            cards.add(convert(card));
+        }
+
+        presenter.displayOptions(cards);
+    }
+
+    /**
      * Allow a Player to make a move, based on their input
      * move = -1 refers to drawing a card
      * Any other integer refers to the card they would like to play
@@ -185,50 +204,64 @@ public class Game {
 
         while (deck.get(0).getCardType().equalsIgnoreCase("plusFour") ||
                 deck.get(0).getCardType().equalsIgnoreCase("wild")) {
-            shuffleDeck();
+            shuffleDeck(deck);
         }
 
         lastPlayed = deck.remove(0);
+        presenter.updateGameLastCard(convert(lastPlayed));
         lastPlayed.playedEffect(this);
         setToMove(getNextPlayer());
 
     }
 
-    //Return the index of the card with the given string representation.
+    /**
+     * Return the index of the card from the player's deck from string representation
+     * @param card Card to play from possible moves
+     */
     private int getIndexOf(String card) {
         String cardType;
-        String colour;
-        Card check;
-        CardFactory cardFactory = new CardFactory();
-
         if (card.contains("W")) {
-            check = cardFactory.getCard("wild");
-            return players.get(toMove).getHand().indexOf(check);
+            cardType = "wild";
         } else if (card.contains("+4")) {
-            check = cardFactory.getCard("plusFour");
-            return players.get(toMove).getHand().indexOf(check);
-        } else if (card.contains("R")) {
-            cardType = "reverse";
+            cardType = "plusFour";
         } else if (card.contains("+2")) {
             cardType = "plusTwo";
+        } else if (card.contains("R")) {
+            cardType = "reverse";
         } else if (card.contains("S")) {
             cardType = "skip";
         } else {
             cardType = card.substring(0, 1);
         }
 
+        String cardColour = "";
         if (card.contains("red")) {
-            colour = "red";
-        } else if (card.contains("yellow")) {
-            colour = "yellow";
+            cardColour = "red";
         } else if (card.contains("blue")) {
-            colour = "blue";
-        } else {
-            colour = "green";
+            cardColour = "blue";
+        } else if (card.contains("yellow")) {
+            cardColour = "yellow";
+        } else if (card.contains("green")){
+            cardColour = "green";
         }
 
-        check = cardFactory.getCard(cardType, colour);
-        return players.get(toMove).getHand().indexOf(check);
+        int i = 0;
+        for (Card handCard: players.get(0).getHand()) {
+            String type = handCard.getCardType();
+            String colour = handCard.getColour();
+
+            if (cardType.equals(type)) {
+                if (cardType.equals("wild") || cardType.equals("plusFour")) {
+                    return i;
+                } else if (cardColour.equals(colour)) {
+                    return i;
+                }
+            }
+
+            i++;
+        }
+
+        return -1; // this should not happen lol
     }
 
     //Return the string representation of the given card.
@@ -249,14 +282,14 @@ public class Game {
             type = card.getCardType();
         }
 
-        return type + card.getColour();
+        return type + "-" + card.getColour();
     }
 
     private String[] convertHand(List<Card> hand) {
         String[] cards = new String[hand.size()];
 
         for (int i = 0; i < cards.length; i++) {
-            cards[0] = convert(hand.get(i));
+            cards[i] = convert(hand.get(i));
         }
 
         return cards;
@@ -285,7 +318,7 @@ public class Game {
             }
         }
 
-        shuffleDeck();
+        shuffleDeck(newDeck);
 
         return newDeck;
     }
