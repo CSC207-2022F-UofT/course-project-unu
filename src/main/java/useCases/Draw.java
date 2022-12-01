@@ -31,12 +31,11 @@ public class Draw {
         }
 
         List<Player> players = gameState.getPlayers();
+        players.get(player).drawCards(cards);
 
         if (players.get(player).getPlayerType().equalsIgnoreCase("real")) {
             String[] hand = StringConverter.convertHand(players.get(player).getHand());
             presenter.updateHand(hand);
         }
-
-        players.get(player).drawCards(cards);
     }
 }

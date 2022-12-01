@@ -18,7 +18,7 @@ public class GameState {
         this.players = players;
         this.deck = newDeck();
         this.toMove = 3;
-        this.isClockwise = isClockwise;
+        this.isClockwise = true;
     }
 
     public List<Player> getPlayers() {

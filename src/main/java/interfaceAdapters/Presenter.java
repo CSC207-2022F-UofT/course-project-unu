@@ -2,6 +2,8 @@ package interfaceAdapters;
 
 import UI.View;
 
+import java.util.List;
+
 public class Presenter implements Presenter_Interface {
 
     View viewMethods;
@@ -33,14 +35,43 @@ public class Presenter implements Presenter_Interface {
         switch (toMove) {
             case 0:
                 viewMethods.updateMyLastPlayedCard(card);
+                break;
             case 1:
                 viewMethods.updateBot1Card(card);
+                break;
             case 2:
                 viewMethods.updateBot2Card(card);
+                break;
             case 3:
                 viewMethods.updateBot3Card(card);
         }
     }
 
+    @Override
+    public void displayOptions(List<String> cards) {
+        viewMethods.generatePlayWindow(cards);
+    }
+
+    /**
+     *
+     * @param player a string representation of player, can only be "player1", ..., "player4"
+     */
+    @Override
+    public void updateDraw(String player) {
+        if (player.equals("player1")) {
+            viewMethods.updateMyLastPlayedCard("D");
+        } else if (player.equals("player2")) {
+            viewMethods.updateBot1Card("D");
+        } else if (player.equals("player3")) {
+            viewMethods.updateBot2Card("D");
+        } else if (player.equals("player4")) {
+            viewMethods.updateBot3Card("D");
+        }
+    }
+
+    @Override
+    public void updateGameLastCard(String card) {
+        viewMethods.updateLastCardPlayed(card);
+    }
 
 }

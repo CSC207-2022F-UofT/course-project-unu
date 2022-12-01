@@ -285,8 +285,6 @@ public class Game {
             }
         }
 
-        shuffleDeck();
-
         return newDeck;
     }
 }

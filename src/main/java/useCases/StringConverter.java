@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StringConverter {
 
-    public static String convert(Card card) {
+    public static String convertCardToString(Card card) {
         String type;
 
         if (card.getCardType().equalsIgnoreCase("wild")) {
@@ -29,7 +29,7 @@ public class StringConverter {
         String[] cards = new String[hand.size()];
 
         for (int i = 0; i < cards.length; i++) {
-            cards[i] = convert(hand.get(i));
+            cards[i] = convertCardToString(hand.get(i));
         }
 
         return cards;

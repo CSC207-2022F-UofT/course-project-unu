@@ -8,6 +8,12 @@ import interfaceAdapters.Presenter_Interface;
 import java.util.List;
 public class Play {
 
+    /**
+     * From current player's hand, remove the card at index n
+     * Update lastPlayed and discardPile
+     * Update View with presenter
+     * @param n index of Card to play
+     */
     public void playCard(GameState gameState, int n, Presenter_Interface presenter, GameFacade game) {
         List<Player> players = gameState.getPlayers();
         int toMove = gameState.getToMove();
@@ -20,14 +26,12 @@ public class Play {
         discardPile.add(played);
         gameState.setDiscardPile(discardPile);
 
-        presenter.updateLastPlayed(StringConverter.convert(played), players.indexOf(toMove));
+        presenter.updateLastPlayed(StringConverter.convertCardToString(played), toMove);
 
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
             String[] cards = StringConverter.convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
         }
-
-        played.playedEffect(game);
     }
 
 }
