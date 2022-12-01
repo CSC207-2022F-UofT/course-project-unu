@@ -35,10 +35,13 @@ public class Presenter implements Presenter_Interface {
         switch (toMove) {
             case 0:
                 viewMethods.updateMyLastPlayedCard(card);
+                break;
             case 1:
                 viewMethods.updateBot1Card(card);
+                break;
             case 2:
                 viewMethods.updateBot2Card(card);
+                break;
             case 3:
                 viewMethods.updateBot3Card(card);
         }

@@ -122,7 +122,7 @@ public class Game {
         lastPlayed = played;
         discardPile.add(played);
 
-        presenter.updateLastPlayed(convert(played), players.indexOf(toMove));
+        presenter.updateLastPlayed(convert(played), toMove);
 
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
             String[] cards = convertHand(players.get(toMove).getHand());
