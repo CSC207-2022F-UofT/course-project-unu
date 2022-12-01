@@ -1,13 +1,16 @@
 package interfaceAdapters;
+import TeamMode.Team;
+import TeamMode.TeamPlayer;
+import UI.View;
 import cards.Card;
 import entities.Player;
+import entities.RealPlayer;
 import game.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-
     private boolean isTeamMode;
     /**
      * If the user clicks on team mode, then teamMode = true, otherwise = false
@@ -30,41 +33,86 @@ public class Controller {
     //TODO: feel free to change the type of the three variables below to list if needed
     // I'm not sure if coming up with a list of players and cards count as dependency to the entity layer
     // If is, we still need to make subtle change on that to make it adhere to clean architecture
-    private String[] teamNames = {}; //should have length 2 eventually after setup
-    private String[] playerNames = {}; //should have length 4 eventually after setup
-    private String[] botLevels = {}; //should have length 3 as there are 3 AI players
+    /**
+     * the list of player names
+     */
+    private List<String> teamNames = new ArrayList<>(); //should have length 2 eventually after setup
+    /**
+     * the list of team names
+     */
+    private List<String> playerNames = new ArrayList<>(); //should have length 4 eventually after setup
+    /**
+     * the list of bot player levels
+     */
+    private List<String> botLevels = new ArrayList<>(); //should have length 3 as there are 3 AI players
+
+    /**
+     * appends playerName with playerNames List
+     * @param playerName
+     */
     public void addPlayerName(String playerName) {
-        //TODO: append addPlayerName with playerName (recorded by textfield)
+        playerNames.add(playerName);
     }
+
+    /**
+     * appends teamName with teamNames List
+     * @param teamName
+     */
     public void addTeamName (String teamName) {
-        //TODO: append addTeamName with teamName (recorded by textfield)
+        teamNames.add(teamName);
     }
+
+    /**
+     * appends botLevels with botLevel (will be one of "easy", "medium", "hard")
+     * @param botLevel
+     */
     public void addBotLevel (String botLevel) {
-        //TODO: append botLevels with botLevel (will be one of "easy", "medium", "hard")
-        // note that the first item in the list actually corresponds to player2 and so on
+        botLevels.add(botLevel);
     }
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        return new ArrayList<>() ;
+        List<Player> teamPlayers = new ArrayList<>();
+        for(int i=0; i<teamNames.size();i++){
+            Team team = new Team(teamNames.get(i));
+            for(int k=0;k<playerNames.size();k++){
+                TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
+                team.addTeamPlayer(player);
+                teamPlayers.add(player);
+            }
+        }
+        return teamPlayers;
     }
+
+    /**
+     * returns the list of players that can be used to initialize the game
+     * @return
+     */
     private List<Player> regularPlayerList() {
-        //TODO: return the list of players that can be used to initialize the game
-        // Can use playerNames and botLevels
-        return new ArrayList<>() ;
-    }
-    private List<Card> standardCardDeck() {
-        //TODO: create a standard card deck that initializes the game
-        // we can ask Paul if he wants to create a more general constructer that initializes a standard card deck in
-        // the constructor, if so, we don't have to create a standard card deck as one of its parameters
-        return new ArrayList<>();
+        List<Player> playerList = new ArrayList<>();
+        Player player = new RealPlayer(playerNames.get(0));
+        playerList.add(player);
+        for(int k=1;k<playerNames.size();k++){
+            player = new RealPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+            };
+            playerList.add(player);
+        }
+        return playerList;
     }
     private Game game;
-    public void startGame() {
+
+    /**
+     * initialization of the new game
+     * @param ui
+     */
+    public void startGame(View ui) {
+        this.game = new Game(regularPlayerList(),true,new Presenter(ui));
+
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
 
         game.setup();
+        game.draw(1, game.getToMove());
     }
 
 
@@ -90,5 +138,8 @@ public class Controller {
      */
     public void changeColour(String colour) {
         game.setColour(colour);
+    }
+    public void requestPossibleMoves() {
+        game.displayRealPlayerOptions();
     }
 }

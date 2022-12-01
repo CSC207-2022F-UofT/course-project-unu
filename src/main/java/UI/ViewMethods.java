@@ -1,7 +1,7 @@
 package UI;
 
 import interfaceAdapters.Controller;
-
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,6 +15,7 @@ public class ViewMethods implements View{
         this.gm = gm;
         this.c = new Controller();
         StartPage sp = new StartPage(c);
+        sp.generateScreen(this);
         /**
          * only comment out start page for testing
          * TODO: Change back to start page
@@ -92,8 +93,8 @@ public class ViewMethods implements View{
     }
 
     @Override
-    public void generatePlayWindow() {
-
+    public void generatePlayWindow(List<String> cards) {
+        new PlayCardWindow(c, cards);
     }
 
 }

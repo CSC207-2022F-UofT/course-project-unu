@@ -2,6 +2,8 @@ package UI;
 
 import interfaceAdapters.Controller;
 
+import java.util.List;
+
 /**
  * View Interface with methods that the Presenter calls to pass values for display
  * Card strings (String parameters of any "update card" methods) are the string representations of the player's
@@ -39,8 +41,10 @@ public interface View {
     //update the last card that bot3 played
     void updateBot3Card(String card);
 
+    //display a colour choosing window after a wild card is played
     void requestColourChange();
 
-    void generatePlayWindow();
+    //display all the possible moves that the real player can make
+    void generatePlayWindow(List<String> cards);
 
 }
