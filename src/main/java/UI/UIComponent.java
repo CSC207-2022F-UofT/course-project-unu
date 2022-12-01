@@ -3,6 +3,7 @@ package UI;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * An abstract super class of all the UI component classes
@@ -19,6 +20,11 @@ public abstract class UIComponent {
     public UIComponent(Controller c) {
         this.c = c;
     }
+
+    /**
+     * the method that every UI component should implement
+     */
+    public abstract void generateScreen();
 
     /**
      * create the main window of this page
@@ -38,9 +44,42 @@ public abstract class UIComponent {
         return window;
     }
 
-    /**
-     * the method that every UI component should implement
-     */
-    public abstract void generateScreen();
+    public String getCardText(String cardStr) {
+        String cardText;
+        if (cardStr.equals("+4") || cardStr.equals("W")) {
+            cardText = cardStr;
+        } else {
+            String[] splitCard = cardStr.split("-");
+            cardText = splitCard[0];
+        }
+        return cardText;
+    }
+    public Color getCardColor(String cardStr) {
+        Color cardColor = Color.white;
+        if (cardStr.equals("+4") || cardStr.equals("W")) {
+            cardColor = Color.black;
+        } else {
+            String[] splitCard = cardStr.split("-");
+            String colour = splitCard[1];
+            switch (colour) {
+                case "red":
+                    cardColor = Color.red;
+                    break;
+                case "yellow":
+                    cardColor = Color.yellow;
+                    break;
+                case "green":
+                    cardColor = Color.green;
+                    break;
+                case "blue":
+                    cardColor = Color.blue;
+                    break;
+            }
+        }
+        return cardColor;
+    }
+
+
+
 
 }
