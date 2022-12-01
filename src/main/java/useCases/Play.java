@@ -8,7 +8,7 @@ import interfaceAdapters.Presenter_Interface;
 import java.util.List;
 public class Play {
 
-    public void playCard(GameState gameState, int n, Presenter_Interface presenter) {
+    public void playCard(GameState gameState, int n, Presenter_Interface presenter, GameFacade game) {
         List<Player> players = gameState.getPlayers();
         int toMove = gameState.getToMove();
 
@@ -20,14 +20,14 @@ public class Play {
         discardPile.add(played);
         gameState.setDiscardPile(discardPile);
 
-        presenter.updateLastPlayed(StringConvert.convert(played), players.indexOf(toMove));
+        presenter.updateLastPlayed(StringConverter.convert(played), players.indexOf(toMove));
 
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
-            String[] cards = StringConvert.convertHand(players.get(toMove).getHand());
+            String[] cards = StringConverter.convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
         }
 
-        played.playedEffect(this);
+        played.playedEffect(game);
     }
 
 }
