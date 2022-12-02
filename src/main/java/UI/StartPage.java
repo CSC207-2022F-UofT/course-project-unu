@@ -18,7 +18,6 @@ public class StartPage extends UIComponent {
     JLabel startLabel;
     JButton regularButton;
     JButton teamButton;
-    Controller c;
 
     /**
      * Constructor of StartPage
@@ -26,18 +25,18 @@ public class StartPage extends UIComponent {
      */
     public StartPage(Controller c){
         super(c);
-        this.c = c;
-     }
+        generateScreen();
+    }
 
     /**
      * generate all the buttons
      * @param bg the background label where the buttons will be added
      */
-    public void createStartPageButtons(View ui, JLabel bg) {
+    public void createStartPageButtons(JLabel bg) {
         regularButton = new JButton("Regular Mode");
         regularButton.setBounds(340, 430, 120, 70);
         regularButton.addActionListener(e -> {
-            new RegularModeSetup(ui, c);
+            new RegularModeSetup(this.c);
             window.setVisible(false);
         });
         teamButton = new JButton("Team Mode");
@@ -54,7 +53,7 @@ public class StartPage extends UIComponent {
     /**
      * create the main screen setup
      */
-    public void generateScreen(View ui) {
+    public void generateScreen() {
 
         window = super.createMainField("Start Page", 1000, 700);
 
@@ -65,15 +64,15 @@ public class StartPage extends UIComponent {
         this.window.add(startPanel);
         startLabel = new JLabel();
         startLabel.setBounds(0, 0, 1000, 700);
-        //ImageIcon startBG = new ImageIcon(this.getClass().getResource("/bg.jpg"));
         ImageIcon startBG = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/bg.jpg")));
         Image bg = startBG.getImage();
         Image adjustedBg = bg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
         startBG = new ImageIcon(adjustedBg);
         startLabel.setIcon(startBG);
         startPanel.add(startLabel);
-        createStartPageButtons(ui, startLabel);
+        createStartPageButtons(startLabel);
 
+        //add logo
         JLabel logo = new JLabel();
         ImageIcon unoLogo = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/UNO_logo.jpg")));
         Image logoImg = unoLogo.getImage();
