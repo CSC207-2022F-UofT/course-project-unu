@@ -28,6 +28,8 @@ public class Play {
 
         presenter.updateLastPlayed(StringConverter.convertCardToString(played), toMove);
 
+        // TODO - call player moves recursively
+
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
             String[] cards = StringConverter.convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
