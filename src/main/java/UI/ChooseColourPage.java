@@ -4,30 +4,21 @@ import interfaceAdapters.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ChooseColourPage {
+public class ChooseColourPage extends UIComponent {
 
-    Controller c;
     JFrame window;
     JPanel colourPanel;
     public ChooseColourPage(Controller c) {
 
-        this.c = c;
-        this.window = new JFrame();
+        super(c);
         generateScreen();
     }
 
     public void generateScreen() {
 
         //create a main field
-        window.setSize(250, 200);
-        window.setTitle("Choose Cards");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close the windows properly
-        window.setLayout(null);
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
+        window = super.createMainField("Choose Cards", 250, 200);
 
         //set background
         colourPanel = new JPanel();
@@ -43,12 +34,9 @@ public class ChooseColourPage {
             colorButton.setBackground(colours[i]);
             colorButton.setOpaque(true);
             int finalI = i;
-            colorButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(final ActionEvent e) {
-                    c.changeColour(colourStr[finalI]);
-                    window.setVisible(false);
-                }
+            colorButton.addActionListener(e -> {
+                c.changeColour(colourStr[finalI]);
+                window.setVisible(false);
             });
             colourPanel.add(colorButton);
         }

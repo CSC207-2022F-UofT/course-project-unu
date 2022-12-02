@@ -13,6 +13,7 @@ public class TeamModeSetup {
     JFrame window;
     JPanel teamSetupPanel;
     JLabel teamSetupLabel;
+    ViewMethods ui;
 
     public TeamModeSetup(Controller c) {
 

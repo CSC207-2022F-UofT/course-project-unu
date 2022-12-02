@@ -16,9 +16,9 @@ public class GeneralCardTests {
 
     @BeforeEach
     public void setup() {
-         card1 = new NumberCard("0", "Red");
-         card2 = new NumberCard("1", "Red");
-         card3 = new NumberCard("1", "Blue");
+         card1 = new NumberCard("0", "Red", 1);
+         card2 = new NumberCard("1", "Red", 1);
+         card3 = new NumberCard("1", "Blue", 1);
     }
 
     @AfterEach
@@ -33,12 +33,12 @@ public class GeneralCardTests {
     public void testCardCreation() {
         String type = "0";
         String colour = "Red";
-        Card card = new NumberCard(type, colour);
+        Card card = new NumberCard(type, colour, 1);
 
         Assertions.assertEquals(card.getCardType(), type);
         Assertions.assertEquals(card.getColour(), colour);
 
-        Card wild = new WildCard(type);
+        Card wild = new WildCard(type, 1);
 
         Assertions.assertEquals(wild.getCardType(), type);
         Assertions.assertEquals(wild.getColour(), type);
@@ -77,7 +77,7 @@ public class GeneralCardTests {
         String oldColour = "Wild";
         String newColour = "Red";
 
-        Card wild = new WildCard(oldColour);
+        Card wild = new WildCard(oldColour, 1);
 
         Assertions.assertEquals(wild.getColour(), oldColour);
 
