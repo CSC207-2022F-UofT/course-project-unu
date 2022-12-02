@@ -10,8 +10,6 @@ import javax.swing.*;
  */
 public class GameManager {
 
-
-    Controller c;
     ViewMethods ui;
 
     public GameManager() {

@@ -14,6 +14,7 @@ public class ViewMethods implements View{
     public ViewMethods(GameManager gm) {
         this.gm = gm;
         this.c = new Controller(this);
+        new ResultPage(c, true);
         new StartPage(c);
     }
 

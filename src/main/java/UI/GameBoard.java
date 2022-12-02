@@ -6,6 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * UI component, extends the abstract UIComponent
+ * this class generates the main game board UI that allows the user to interact with the game
+ * the user can choose to play card or draw card
+ * the game board will also update the last move that each player has taken, such as the card played or drawn
+ * the game board will also update the real player's card on hand
+ */
 public class GameBoard extends UIComponent{
 
     JFrame window;
@@ -18,6 +25,10 @@ public class GameBoard extends UIComponent{
     JLabel lastPlayedCard;
     JLabel[] myAvailableMoves;
 
+    /**
+     * Constructor, creates a new game board window
+     * @param c the controller object that the game board will interact with
+     */
     public GameBoard(Controller c) {
         super(c);
         this.player1Card = new JLabel();
@@ -32,6 +43,9 @@ public class GameBoard extends UIComponent{
         generateScreen();
     }
 
+    /**
+     * sets up the screen of the game board
+     */
     public void generateScreen() {
         //create a main field
         window = super.createMainField("Game Board", 1000, 700);
@@ -47,11 +61,11 @@ public class GameBoard extends UIComponent{
         Image bgImg = startBG.getImage();
         Image adjustedBg = bgImg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
         startBG = new ImageIcon(adjustedBg);
-
         gameLabel.setIcon(startBG);
         gamePanel.add(gameLabel);
 
-        createPlayers(gameLabel);
+        //add player labels and play game buttons
+        createPlayerLabel(gameLabel);
         addGameButtons(gameLabel);
         JLabel[] labels = {this.player1Card, this.player2Card, this.player3Card, this.player4Card, this.lastPlayedCard};
         for (JLabel label : labels) {
@@ -62,30 +76,22 @@ public class GameBoard extends UIComponent{
         }
     }
 
-    public void createPlayers(JLabel bg) {
+    /**
+     *
+     * @param bg the backgroudn label
+     */
+    public void createPlayerLabel(JLabel bg) {
         JLabel bot1 = new JLabel();
-        ImageIcon bot1Icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/RedBot.png")));
-        Image bot1Img = bot1Icon.getImage();
-        Image adjustedBot1 = bot1Img.getScaledInstance(60, 70, Image.SCALE_SMOOTH);
         bot1.setBounds(100, 80, 60, 70);
-        bot1Icon = new ImageIcon(adjustedBot1);
-        bot1.setIcon(bot1Icon);
+        bot1.setIcon(super.adjustedImage("/RedBot.png", 60, 70));
 
         JLabel bot2 = new JLabel();
-        ImageIcon bot2Icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/StripeBot.png")));
-        Image bot2Img = bot2Icon.getImage();
-        Image adjustedBot2 = bot2Img.getScaledInstance(60, 70, Image.SCALE_SMOOTH);
         bot2.setBounds(400, 80, 60, 70);
-        bot2Icon = new ImageIcon(adjustedBot2);
-        bot2.setIcon(bot2Icon);
+        bot2.setIcon(super.adjustedImage("/StripeBot.png", 60, 70));
 
         JLabel bot3 = new JLabel();
-        ImageIcon bot3Icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/WhiteBot.png")));
-        Image bot3Img = bot3Icon.getImage();
-        Image adjustedBot3 = bot3Img.getScaledInstance(60, 70, Image.SCALE_SMOOTH);
         bot3.setBounds(700, 80, 60, 70);
-        bot3Icon = new ImageIcon(adjustedBot3);
-        bot3.setIcon(bot3Icon);
+        bot3.setIcon(super.adjustedImage("/WhiteBot.png", 60, 70));
         bg.add(bot1);
         bg.add(bot2);
         bg.add(bot3);
@@ -198,15 +204,14 @@ public class GameBoard extends UIComponent{
     }
 
     public void updateDrawSymbol(JLabel card, int cardX, int cardY, int width, int height) {
-        ImageIcon cardBack = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/CardBackSide.png")));
-        Image cardBackImg = cardBack.getImage();
-        Image adjustedCardBack = cardBackImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        cardBack = new ImageIcon(adjustedCardBack);
-        card.setIcon(cardBack);
+        card.setIcon(super.adjustedImage("/CardBackSide.png", width, height));
         card.setBounds(cardX, cardY, width, height);
         card.setText("");
         card.setBackground(null);
     }
 
+    public void discardWindow() {
+        window.setVisible(false);
+    }
 
 }
