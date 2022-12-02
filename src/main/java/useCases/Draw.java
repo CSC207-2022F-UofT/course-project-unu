@@ -10,6 +10,13 @@ import java.util.List;
 
 public class Draw {
 
+    /**
+     * Remove top drawAmount cards from deck
+     * Add removed cards to player's hand
+     * Update the presenter if the player is real
+     * @param drawAmount amount of cards to draw
+     * @param player player
+     */
     public void draw(GameState gameState, int drawAmount, int player, Presenter_Interface presenter) {
         List<Card> cards;
         List<Card> deck = gameState.getDeck();

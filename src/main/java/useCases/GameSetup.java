@@ -7,9 +7,9 @@ import interfaceAdapters.Presenter_Interface;
 
 import java.util.List;
 
-public class GameInitializer {
+public class GameSetup {
 
-    public void setup(GameState gameState, Presenter_Interface presenter) {
+    public void setupGame(GameState gameState, Presenter_Interface presenter) {
         Draw drawer = new Draw();
         List<Player> players = gameState.getPlayers();
         for (int i = 0; i < players.size(); i++) {
@@ -25,7 +25,12 @@ public class GameInitializer {
 
         Card removed = deck.remove(0);
 
+        gameState.setDeck(deck);
         gameState.setLastPlayed(removed);
+        List<Card> discardPile = gameState.getDiscardPile();
+        discardPile.add(removed);
+        gameState.setDiscardPile(discardPile);
+
         presenter.updateGameLastCard(StringConverter.convertCardToString(removed));
     }
 }
