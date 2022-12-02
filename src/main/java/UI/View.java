@@ -47,4 +47,7 @@ public interface View {
     //display all the possible moves that the real player can make
     void generatePlayWindow(List<String> cards);
 
+    //display the result page after the game ends
+    void displayResultPage(boolean isWin);
+
 }

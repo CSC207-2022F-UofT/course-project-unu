@@ -13,7 +13,7 @@ public class GameManager {
     ViewMethods ui;
 
     public GameManager() {
-        this.ui = new ViewMethods(this);
+        this.ui = new ViewMethods();
     }
 
     public static void main(String[] args) {

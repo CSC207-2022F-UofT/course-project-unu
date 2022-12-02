@@ -7,14 +7,11 @@ import java.awt.*;
 
 public class ViewMethods implements View{
 
-    GameManager gm;
     GameBoard gameBoard;
     Controller c;
 
-    public ViewMethods(GameManager gm) {
-        this.gm = gm;
+    public ViewMethods() {
         this.c = new Controller(this);
-        new ResultPage(c, true);
         new StartPage(c);
     }
 
@@ -61,6 +58,12 @@ public class ViewMethods implements View{
     @Override
     public void generatePlayWindow(List<String> cards) {
         new PlayCardWindow(c, cards);
+    }
+
+    @Override
+    public void displayResultPage(boolean isWin) {
+        new ResultPage(c, isWin);
+        gameBoard.discardWindow();
     }
 
 }
