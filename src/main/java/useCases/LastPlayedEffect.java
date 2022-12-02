@@ -1,16 +1,15 @@
 package useCases;
 
 import cards.Card;
-import useCases.GameFacade;
 
 public class LastPlayedEffect {
 
     /**
      * Do Effect of Last Played Card
-     * @param game
+     * @param gameF
      */
-    public void doEffect(GameFacade game){
-        Card lastPlayed = game.getGameState().getLastPlayed();
-        Card.playedEffect();
+    public void doEffect(GameFacade gameF){
+        Card lastPlayed = gameF.getGameState().getLastPlayed();
+        lastPlayed.playedEffect(gameF);
     }
 }
