@@ -1,7 +1,10 @@
 package useCases;
 
 import entities.GameState;
+import entities.Player;
 import interfaceAdapters.Presenter_Interface;
+
+import java.util.List;
 
 public class GameFacade {
     private GameState gameState;
@@ -17,9 +20,11 @@ public class GameFacade {
     private final DisplayRealPlayerOptions displayRealPlayerOptions;
     private final GameRecorder gameRecorder;
     private final Presenter_Interface presenter;
+    private final List<Player> listOfThePlayers;
 
-    public GameFacade(GameState gameState, Presenter_Interface presenter) {
-        this.gameState = gameState;
+    public GameFacade(List<Player> listOfThePlayers, Presenter_Interface presenter) {
+        this.listOfThePlayers = listOfThePlayers;
+        this.gameState = new GameState(this.listOfThePlayers);
         this.gameSetup = new GameSetup();
         this.draw = new Draw();
         this.play = new Play();
