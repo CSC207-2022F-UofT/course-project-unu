@@ -34,7 +34,7 @@ public class ChooseColourPage extends UIComponent {
         colourPanel.setLayout(null);
         window.add(colourPanel);
 
-        //setup the colour buttons so each button can pass the new chosen colour to the controller
+        //set up the colour buttons so each button can pass the new chosen colour to the controller
         String[] colourStr = {"red", "yellow", "green", "blue"};
         Color[] colours = {Color.red, Color.yellow, Color.green, Color.blue};
         for (int i=0; i<4; i++) {

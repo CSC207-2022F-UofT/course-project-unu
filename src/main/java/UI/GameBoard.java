@@ -77,8 +77,8 @@ public class GameBoard extends UIComponent{
     }
 
     /**
-     *
-     * @param bg the backgroudn label
+     * add the bot player labels to the background
+     * @param bg the background label
      */
     public void createPlayerLabel(JLabel bg) {
         JLabel bot1 = new JLabel();
@@ -97,42 +97,49 @@ public class GameBoard extends UIComponent{
         bg.add(bot3);
     }
 
-    public void updatePlayer1Card(String cardStr) {
+    /**
+     * helper method, update's each player's action
+     * @param card the card label of each player
+     * @param cardX x position of the card label
+     * @param cardY y position of the card label
+     * @param width card width
+     * @param height card height
+     * @param cardStr string representation of card
+     */
+    public void updateAction(JLabel card, int cardX, int cardY, int width, int height, String cardStr){
         if (cardStr.equals("D")) {
-            updateDrawSymbol(this.player1Card, 80, 460, 85, 120);
+            updateDrawSymbol(card, cardX, cardY, width, height);
         } else {
-            updateCardLabel(this.player1Card, 80, 460, 85, 120, cardStr);
+            updateCardLabel(card, cardX, cardY, width, height, cardStr);
         }
+    }
+
+    /**
+     * methods updating each player's card
+     * @param cardStr string representation of a card
+     */
+    public void updatePlayer1Card(String cardStr) {
+        updateAction(this.player1Card, 80, 460, 85, 120, cardStr);
+
         JLabel lastCardText = new JLabel("My Last Played Card");
         lastCardText.setBounds(60, 420, 125, 40);
         lastCardText.setForeground(Color.white);
         gameLabel.add(lastCardText);
     }
     public void updatePlayer2Card(String cardStr) {
-        if (cardStr.equals("D")) {
-            updateDrawSymbol(this.player2Card, 200, 60, 85, 120);
-        } else {
-            updateCardLabel(this.player2Card, 200, 60, 85, 120, cardStr);
-        }
+        updateAction(this.player2Card,200, 60, 85, 120, cardStr);
     }
-
     public void updatePlayer3Card(String cardStr) {
-        if (cardStr.equals("D")) {
-            updateDrawSymbol(this.player3Card, 500, 60, 85, 120);
-        } else {
-            updateCardLabel(this.player3Card, 500, 60, 85, 120, cardStr);
-        }
+        updateAction(this.player3Card, 500, 60, 85, 120, cardStr);
     }
-
     public void updatePlayer4Card(String cardStr) {
-        if (cardStr.equals("D")) {
-            updateDrawSymbol(this.player4Card, 800, 60, 85, 120);
-        } else {
-            updateCardLabel(this.player4Card, 800, 60, 85, 120, cardStr);
-        }
-
+        updateAction(this.player4Card, 800, 60, 85, 120, cardStr);
     }
 
+    /**
+     * update the last played card of the game
+     * @param cardStr the string representation of the card
+     */
     public void updateLastPlayed(String cardStr) {
         updateCardLabel(this.lastPlayedCard, 300, 250, 85, 120, cardStr);
         JLabel lastCardText = new JLabel("Last Card Played");
@@ -141,6 +148,11 @@ public class GameBoard extends UIComponent{
         gameLabel.add(lastCardText);
     }
 
+    /**
+     * add and set actions to the game buttons (play and draw) buttons
+     * so the user can make a move
+     * @param bg the background label that the game buttons will be added to
+     */
     public void addGameButtons(JLabel bg) {
         JButton playButton = new JButton("Play Card");
         playButton.setBounds(800, 450, 100, 60);
@@ -152,6 +164,10 @@ public class GameBoard extends UIComponent{
         bg.add(drawButton);
     }
 
+    /**
+     * display all the cards on the user's hand
+     * @param cardList an arraylist of string representation of cards on the user's hand
+     */
     public void displayAvailableCards(String[] cardList) {
         JLabel availableCardText = new JLabel("My Cards");
         availableCardText.setBounds(260, 400, 70, 40);
@@ -170,12 +186,12 @@ public class GameBoard extends UIComponent{
         }
     }
 
-
     /**
-     * number card
-     * @param cardX
-     * @param cardY
-     * @param cardStr
+     * update a label with the corresponding card given a string representation of the card
+     * @param cardX x position of card
+     * @param cardY y position of card
+     * @param cardStr the string representation of a card
+     * cardStr convention
      * I will give a string that represents the card, which will be in the form of "value-colour"
      * For example: number card "1-red"
      * plus four card "+4"
@@ -203,6 +219,14 @@ public class GameBoard extends UIComponent{
         card.setBorder(BorderFactory.createLineBorder(Color.white));
     }
 
+    /**
+     * update a card label with the draw card symbol
+     * @param card card label
+     * @param cardX x position of the card
+     * @param cardY y position of the card
+     * @param width card width
+     * @param height card height
+     */
     public void updateDrawSymbol(JLabel card, int cardX, int cardY, int width, int height) {
         card.setIcon(super.adjustedImage("/CardBackSide.png", width, height));
         card.setBounds(cardX, cardY, width, height);
@@ -210,6 +234,9 @@ public class GameBoard extends UIComponent{
         card.setBackground(null);
     }
 
+    /**
+     * make the game window disappear after a game has end
+     */
     public void discardWindow() {
         window.setVisible(false);
     }
