@@ -5,7 +5,7 @@ import interfaceAdapters.Presenter_Interface;
 
 public class GameFacade {
     private GameState gameState;
-    private GameSetup gameSetup;
+    private final GameSetup gameSetup;
     private final Draw draw;
     private final Play play;
     private final MakeBotMove makeBotMove;
