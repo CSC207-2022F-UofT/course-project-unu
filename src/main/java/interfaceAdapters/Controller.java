@@ -3,6 +3,8 @@ import TeamMode.Team;
 import TeamMode.TeamPlayer;
 import UI.View;
 import cards.Card;
+import entities.BotPlayer;
+import entities.GameState;
 import entities.Player;
 import entities.RealPlayer;
 import useCases.GameFacade;
@@ -100,7 +102,7 @@ public class Controller {
         Player player = new RealPlayer(playerNames.get(0));
         playerList.add(player);
         for(int k=1;k<playerNames.size();k++){
-            player = new RealPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+            player = new BotPlayer(playerNames.get(k)) {//HERE BOT PLAYER
             };
             playerList.add(player);
         }
@@ -111,15 +113,21 @@ public class Controller {
      * initialization
      */
     public void startGame() {
+        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui));
+        ui.generateGameBoard(this);
+        gameFacade.setup();
+        /*while(!gameFacade.checkWin()){
+
+        }
         this.game = new Game(regularPlayerList(),true,new Presenter(ui));
         ui.generateGameBoard(this);
 
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
+        game.setup();*/
 
-        game.setup();
-        game.draw(1, game.getToMove());
     }
+
 
 
     /**
