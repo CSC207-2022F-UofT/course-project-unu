@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * UI component, extends the abstract class UIComponent
  * shows the real player the game result (win or lose)
- * allows the user to view the score board and user profile (textbased)
+ * allows the user to view the score board and user profile (text-based)
  * allows the user to start a new game
  */
 public class ResultPage extends UIComponent{
@@ -17,6 +17,11 @@ public class ResultPage extends UIComponent{
     JLabel resultLabel;
     String resultMessage;
 
+    /**
+     * Constructor of ResultPage
+     * @param c the controller that the result page interacts with
+     * @param isWin if the user won the game, isWin is true, vice versa
+     */
     public ResultPage(Controller c, boolean isWin) {
         super(c);
         if (isWin) {
@@ -27,6 +32,9 @@ public class ResultPage extends UIComponent{
         generateScreen();
     }
 
+    /**
+     * generate the main screen of the result page
+     */
     public void generateScreen() {
 
         //create main field
@@ -40,6 +48,11 @@ public class ResultPage extends UIComponent{
         addResultPageButtons(resultLabel);
     }
 
+    /**
+     * generate a label that shows the result message ("YOU WIN" or "YOU LOSE")
+     * @param resultMessage "WIN or "LOSE"
+     * @return a JLabel that shows the text
+     */
     public JLabel result(String resultMessage) {
         JLabel result = new JLabel("YOU " + resultMessage + " !");
         result.setBounds(250, 50, 300, 200);
@@ -47,6 +60,11 @@ public class ResultPage extends UIComponent{
         result.setFont(new Font("Monospace", Font.PLAIN, 40));
         return result;
     }
+
+    /**
+     * add all buttons to the background
+     * @param bg the background label
+     */
     public void addResultPageButtons(JLabel bg) {
         JButton newGame = new JButton("New Game");
         newGame.setBounds(100, 300, 100, 50);

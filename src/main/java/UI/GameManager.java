@@ -1,12 +1,9 @@
 package UI;
 
-
-import interfaceAdapters.Controller;
-
 import javax.swing.*;
 
 /**
- * the Main class that the users interact with
+ * the main class that starts the program
  */
 public class GameManager {
 

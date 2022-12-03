@@ -45,6 +45,13 @@ public abstract class UIComponent {
         return window;
     }
 
+    /**
+     * set the background given the window
+     * @param window main window
+     * @param width background width
+     * @param height background height
+     * @return background label
+     */
     public JLabel setBackground(JFrame window, int width, int height) {
         JPanel pagePanel = new JPanel();
         pagePanel.setBounds(0, 0, width, height);
@@ -71,6 +78,11 @@ public abstract class UIComponent {
         return new ImageIcon(adjustedBg);
     }
 
+    /**
+     * get the text that will be displayed on the card label
+     * @param cardStr the string representation of a card
+     * @return card text
+     */
     public String getCardText(String cardStr) {
         String cardText;
         if (cardStr.equals("+4") || cardStr.equals("W")) {
@@ -81,6 +93,12 @@ public abstract class UIComponent {
         }
         return cardText;
     }
+
+    /**
+     * get the colour that will be displayed on the card label
+     * @param cardStr the string representation of a card
+     * @return card colour
+     */
     public Color getCardColor(String cardStr) {
         Color cardColor = Color.white;
         if (cardStr.equals("+4") || cardStr.equals("W")) {
@@ -105,8 +123,5 @@ public abstract class UIComponent {
         }
         return cardColor;
     }
-
-
-
 
 }
