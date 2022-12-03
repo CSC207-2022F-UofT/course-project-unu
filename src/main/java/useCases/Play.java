@@ -32,6 +32,26 @@ public class Play {
             String[] cards = StringConverter.convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
         }
+
+        // TODO - call player moves recursively
+        if (new CheckWin().checkGameOver(gameState)) {
+            /*
+            End Game - call winWindow
+             */
+        }
+        else {
+            /*
+            TODO: Create an endTurn() method that does the following:
+            - Updates the toMoveVariable
+            - Starts the next player turn; if robot, plays or draws or does whatever the robot needs to do;
+                if player, waits for an input from the View;
+             */
+
+
+
+            game.play(gameState.getNextPlayer());
+        }
+
     }
 
 }
