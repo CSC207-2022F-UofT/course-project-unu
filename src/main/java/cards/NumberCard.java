@@ -1,6 +1,6 @@
 package cards;
 
-import game.Game;
+import useCases.GameFacade;
 
 public class NumberCard extends Card {
 
@@ -14,5 +14,5 @@ public class NumberCard extends Card {
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(Game game) {}
+    public void playedEffect(GameFacade game) {}
 }
