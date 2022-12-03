@@ -18,4 +18,6 @@ public interface Presenter_Interface {
     // show the last played card of the last player
     void updateGameLastCard(String card);
 
+    void endGame();
+
 }
