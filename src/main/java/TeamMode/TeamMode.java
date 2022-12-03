@@ -20,7 +20,7 @@ public class TeamMode extends GameFacade {
     * returns the list of players of the same team
     * @param wonPlayer - player whose team will be returned * @return
     */
-   public List<Player> getTeamOfWinners(TeamPlayer wonPlayer){
-       return wonPlayer.getTeam().getTeamPlayers();
+   public List<Player> getTeamOfWinners(Player wonPlayer){
+       return ((TeamPlayer)wonPlayer).getTeam().getTeamPlayers();
    }
 }

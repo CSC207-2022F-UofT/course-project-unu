@@ -1,6 +1,8 @@
 package interfaceAdapters;
 
 import UI.View;
+import entities.Player;
+import useCases.Play;
 
 import java.util.List;
 
@@ -74,4 +76,14 @@ public class Presenter implements Presenter_Interface {
         viewMethods.updateLastCardPlayed(card);
     }
 
-}
+
+
+    @Override
+    public void showWinner(Player player,boolean teamMode) {
+        if(teamMode==true){
+            //cast player to teamPlayer and get his team
+        }
+        else{
+            //get the name of the player
+        }
+    }}

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class GameFacade {
     private GameState gameState;
+    private boolean teamMode;
     private final GameSetup gameSetup;
     private final Draw draw;
     private final Play play;
@@ -22,7 +23,7 @@ public class GameFacade {
     private final Presenter_Interface presenter;
     private final List<Player> listOfThePlayers;
 
-    public GameFacade(List<Player> listOfThePlayers, Presenter_Interface presenter) {
+    public GameFacade(List<Player> listOfThePlayers, Presenter_Interface presenter, boolean teamMode) {
         this.listOfThePlayers = listOfThePlayers;
         this.gameState = new GameState(this.listOfThePlayers);
         this.gameSetup = new GameSetup();
@@ -37,6 +38,7 @@ public class GameFacade {
         this.displayRealPlayerOptions = new DisplayRealPlayerOptions();
         this.gameRecorder = new GameRecorder();
         this.presenter = presenter;
+        this.teamMode = teamMode;
     }
 
     public GameState getGameState() { return this.gameState;}
@@ -59,6 +61,8 @@ public class GameFacade {
         //CheckWin now checks is ANY player has an empty hand.
         if (checkWin.checkGameOver(this.gameState)){
             //end game
+            //I am not sure about this one
+            presenter.showWinner(gameState.getPlayers().get(gameState.getToMove()),teamMode );
         } else {
             botCycle();
         }
@@ -76,6 +80,8 @@ public class GameFacade {
 
         if (checkWin.checkGameOver(this.gameState)) {
             //end game
+            //try this
+            presenter.showWinner(gameState.getPlayers().get(gameState.getToMove()),teamMode );
         }
     }
     //Controller calls this when user plays a card
@@ -107,4 +113,7 @@ public class GameFacade {
 
     //Unimplemented
     public void recordResult() {}
+    public boolean getTeamMode(){
+        return this.teamMode;
+    }
 }
