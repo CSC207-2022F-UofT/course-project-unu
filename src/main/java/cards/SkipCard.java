@@ -19,6 +19,6 @@ public class SkipCard extends Card {
         This sets the current player to the next player.
         Once the turn actually ends, it will be as if the next player had just gone.
          */
-        game.getGameState().setToMove(game.getGameState().getNextPlayer());
+        game.setNextTurn();
     }
 }

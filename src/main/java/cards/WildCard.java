@@ -16,6 +16,5 @@ public class WildCard extends Card {
     @Override
     public void playedEffect(GameFacade game) {
         game.getPresenter().requestNewColour();
-
     }
 }

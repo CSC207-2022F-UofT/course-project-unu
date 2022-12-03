@@ -16,6 +16,5 @@ public class PlusTwoCard extends Card {
     @Override
     public void playedEffect(GameFacade game) {
         game.draw(2, game.getGameState().getNextPlayer());
-        game.getGameState().setToMove(game.getGameState().getNextPlayer());
     }
 }

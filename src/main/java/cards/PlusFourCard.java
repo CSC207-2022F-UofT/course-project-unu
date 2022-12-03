@@ -18,5 +18,6 @@ public class PlusFourCard extends WildCard{
     public void playedEffect(GameFacade game) {
         super.playedEffect(game);
         game.draw(4, game.getGameState().getNextPlayer());
+        game.setNextTurn();
     }
 }
