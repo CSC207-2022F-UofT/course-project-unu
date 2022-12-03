@@ -7,7 +7,6 @@ import entities.BotPlayer;
 import entities.GameState;
 import entities.Player;
 import entities.RealPlayer;
-import game.Game;
 import useCases.GameFacade;
 
 import java.util.ArrayList;
@@ -142,7 +141,7 @@ public class Controller {
     //Convert string representation into the index of the card.
 
     public void playCard(String card) {
-        game.play(card);
+        gameFacade.play(card);
     }
     public void drawCard() {
         gameFacade.draw(1, gameFacade.getGameState().getToMove());

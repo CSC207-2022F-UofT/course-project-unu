@@ -49,7 +49,40 @@ public class GameFacade {
         draw.draw(this.gameState, drawAmount, player, this.presenter);
     }
 
-    public void play(int n) { play.playCard(this.gameState, n, this.presenter, this);}
+    //Controller calls this when user plays a card
+    public void play(int n) {
+        play.playCard(this.gameState, n, this.presenter, this);
+        //lastPlayedEffects change the turn once if it's a skip card
+        lastPlayedEffect.doEffect(this);
+        changeTurn.setNextTurn(this.gameState);
+
+        //CheckWin now checks is ANY player has an empty hand.
+        if (checkWin.checkGameOver(this.gameState)){
+            //end game
+        } else {
+            botCycle();
+        }
+    }
+    //Bots automatically make moves until it's the user's turn again.
+    //Should be called by play() and draw() i.e. when the user's turn is over.
+    //Should maybe be its own class
+    public void botCycle() {
+        //While no one has won and it's not the user's turn
+        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getToMove() != 0) {
+            makeBotMove.makeBotPlay(this.gameState); //make bot move
+            lastPlayedEffect.doEffect(this);
+            changeTurn.setNextTurn(this.gameState);
+        }
+
+        if (checkWin.checkGameOver(this.gameState)) {
+            //end game
+        }
+    }
+    //Controller calls this when user plays a card
+    public void play(String card) {
+        play(StringConverter.convertCardToInteger(card, gameState));
+    }
+
 
     public void makeBotMove() {
         makeBotMove.makeBotPlay(this.gameState);
