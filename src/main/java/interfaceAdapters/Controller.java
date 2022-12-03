@@ -79,20 +79,20 @@ public class Controller {
     public void addBotLevel (String botLevel) {
         botLevels.add(botLevel);
     }
-    private List<Player> teamPlayerList() {
+    /*private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        List<Player> teamPlayers = new ArrayList<>();
+        *//*List<Player> teamPlayers = new ArrayList<>();
         for(int i=0; i<teamNames.size();i++){
             Team team = new Team(teamNames.get(i));
             for(int k=0;k<playerNames.size();k++){
-                TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
+                //TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
                 team.addTeamPlayer(player);
                 teamPlayers.add(player);
             }
         }
-        return teamPlayers;
-    }
+        return teamPlayers;*//*
+    }*/
 
     /**
      * returns the list of players that can be used to initialize the game
@@ -109,7 +109,6 @@ public class Controller {
         }
         return playerList;
     }
-    private Game game;
     private GameFacade gameFacade;
     /**
      * initialization
@@ -146,16 +145,16 @@ public class Controller {
         game.play(card);
     }
     public void drawCard() {
-        game.draw(1, game.getToMove());
+        gameFacade.draw(1, gameFacade.getGameState().getToMove());
     }
     /**
      * pass the new theme colour to the game use cases
      * @param colour the colour that the player chooses after a wild card or plus four card is played
      */
     public void changeColour(String colour) {
-        game.setColour(colour);
+        gameFacade.setColour(colour);
     }
     public void requestPossibleMoves() {
-        game.displayRealPlayerOptions();
+        gameFacade.displayRealPlayerOptions();
     }
 }

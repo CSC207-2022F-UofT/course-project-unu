@@ -167,6 +167,7 @@ public class TeamModeSetup {
         startGame.setBounds(450, 450, 100, 100);
         startGame.addActionListener(new ActionListener() {
             @Override
+            //start for the teammode game should be different
             public void actionPerformed(final ActionEvent e) {
                 c.startGame();
             }
