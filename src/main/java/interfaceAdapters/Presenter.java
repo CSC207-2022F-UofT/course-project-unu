@@ -84,6 +84,6 @@ public class Presenter implements Presenter_Interface {
             //cast player to teamPlayer and get his team
         }
         else{
-            //get the name of the player
+            //get the name of the player and show
         }
     }}
