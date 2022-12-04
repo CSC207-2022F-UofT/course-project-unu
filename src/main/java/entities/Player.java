@@ -16,20 +16,36 @@ public abstract class Player implements Moves {
         this.name = name;
     }
 
+    /**
+     * Return the player's name.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Return a list of Card objects contained in the player's hand.
+     */
     public List<Card> getHand() {
         return this.hand;
     }
 
+    /**
+     * Return whether the player is a RealPlayer or a BotPlayer.
+     */
     public abstract String getPlayerType();
 
+    /**
+     * Add a list of Card objects to the player's hand.
+     */
     public void drawCards(List<Card> cards) {
         hand.addAll(cards);
     }
 
+    /**
+     * Return the Card at index n in the player's hand and removes it from the hand.
+     * @param n index of card in player's hand
+     */
     public Card playCard(int n) {
         return hand.remove(n);
     }
@@ -60,8 +76,7 @@ public abstract class Player implements Moves {
 
         ArrayList<Card> defaultMove = new ArrayList<>();
 
-        /* Select order: special cards -> number cards -> nothing/draw */
-
+        // Select order: special cards -> number cards -> nothing/draw
         for (Card card: possibleMoves) {
             String cardType = card.getCardType();
 
