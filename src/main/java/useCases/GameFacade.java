@@ -20,11 +20,9 @@ public class GameFacade {
     private final DisplayRealPlayerOptions displayRealPlayerOptions;
     private final GameRecorder gameRecorder;
     private final Presenter_Interface presenter;
-    private final List<Player> listOfThePlayers;
 
     public GameFacade(List<Player> listOfThePlayers, Presenter_Interface presenter) {
-        this.listOfThePlayers = listOfThePlayers;
-        this.gameState = new GameState(this.listOfThePlayers);
+        this.gameState = new GameState(listOfThePlayers);
         this.gameSetup = new GameSetup();
         this.draw = new Draw();
         this.play = new Play();
@@ -49,10 +47,25 @@ public class GameFacade {
         draw.draw(this.gameState, drawAmount, player, this.presenter);
     }
 
-    public void play(int n) { play.playCard(this.gameState, n, this.presenter, this);}
+    public void play(String card) {
+        play(StringConverter.getIndexOfCard(card, this.gameState));
+    }
+    public void play(int n) { play.playCard(this.gameState, n, this.presenter);}
 
     public void makeBotMove() {
-        makeBotMove.makeBotPlay(this.gameState);
+        makeBotMove.makeBotPlay(this.gameState, this.presenter);
+    }
+    public void botCycle() {
+        //While no one has won, and it's not the user's turn
+        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getToMove() != 0) {
+            makeBotMove.makeBotPlay(this.gameState, this.presenter); //make bot move
+            lastPlayedEffect.doEffect(this);
+            changeTurn.setNextTurn(this.gameState);
+        }
+
+        if (checkWin.checkGameOver(this.gameState)) {
+            //end game
+        }
     }
 
     public void doLastPlayedEffect() { lastPlayedEffect.doEffect(this);}

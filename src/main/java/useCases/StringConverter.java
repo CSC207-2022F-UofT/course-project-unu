@@ -2,6 +2,9 @@ package useCases;
 
 import cards.Card;
 import java.util.List;
+import entities.GameState;
+import entities.Player;
+import entities.CardFactory;
 
 public class StringConverter {
 
@@ -33,5 +36,53 @@ public class StringConverter {
         }
 
         return cards;
+    }
+
+    public static int getIndexOfCard(String card, GameState gameState) {
+        List<Player> players = gameState.getPlayers();
+
+        String cardType;
+        if (card.contains("W")) {
+            cardType = "wild";
+        } else if (card.contains("+4")) {
+            cardType = "plusFour";
+        } else if (card.contains("+2")) {
+            cardType = "plusTwo";
+        } else if (card.contains("R")) {
+            cardType = "reverse";
+        } else if (card.contains("S")) {
+            cardType = "skip";
+        } else {
+            cardType = card.substring(0, 1);
+        }
+
+        String cardColour = "";
+        if (card.contains("red")) {
+            cardColour = "red";
+        } else if (card.contains("blue")) {
+            cardColour = "blue";
+        } else if (card.contains("yellow")) {
+            cardColour = "yellow";
+        } else if (card.contains("green")){
+            cardColour = "green";
+        }
+
+        int i = 0;
+        for (Card handCard: players.get(0).getHand()) {
+            String type = handCard.getCardType();
+            String colour = handCard.getColour();
+
+            if (cardType.equals(type)) {
+                if (cardType.equals("wild") || cardType.equals("plusFour")) {
+                    return i;
+                } else if (cardColour.equals(colour)) {
+                    return i;
+                }
+            }
+
+            i++;
+        }
+
+        return -1; // this should not happen lol
     }
 }

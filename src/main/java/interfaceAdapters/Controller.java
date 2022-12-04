@@ -123,7 +123,6 @@ public class Controller {
         return playerList;
     }
 
-    private Game game;
     private GameFacade gameFacade;
 
     /**
@@ -133,19 +132,12 @@ public class Controller {
         gameFacade = new GameFacade(regularPlayerList(), new Presenter(ui));
         ui.generateGameBoard(this);
         gameFacade.setup();
-        /*
-         * while(!gameFacade.checkWin()){
-         * 
-         * }
-         * this.game = new Game(regularPlayerList(),true,new Presenter(ui));
-         * ui.generateGameBoard(this);
-         * 
-         * //TODO: initialize a new game object using the playerlist and
-         * standardCardDeck we have in the previous method
-         * // this.game = new Game(...);
-         * game.setup();
-         */
 
+        gameFacade.doLastPlayedEffect();
+        gameFacade.setNextTurn();
+
+        //it might not be the user's turn because of skip cards
+        gameFacade.botCycle();
     }
 
     /**
@@ -156,15 +148,19 @@ public class Controller {
      * "value-colour"
      * For example: g
      */
-
     // Convert string representation into the index of the card.
 
     public void playCard(String card) {
-        game.play(card);
+        gameFacade.play(card);
+        gameFacade.doLastPlayedEffect();
+        gameFacade.setNextTurn();
+        gameFacade.botCycle();
     }
 
     public void drawCard() {
-        game.draw(1, game.getToMove());
+        gameFacade.draw(1, gameFacade.getGameState().getToMove());
+        gameFacade.setNextTurn();
+        gameFacade.botCycle();
     }
 
     /**
@@ -174,10 +170,10 @@ public class Controller {
      *               four card is played
      */
     public void changeColour(String colour) {
-        game.setColour(colour);
+        gameFacade.setColour(colour);
     }
 
     public void requestPossibleMoves() {
-        game.displayRealPlayerOptions();
+        gameFacade.displayRealPlayerOptions();
     }
 }

@@ -14,7 +14,7 @@ public class Play {
      * Update View with presenter
      * @param n index of Card to play
      */
-    public void playCard(GameState gameState, int n, Presenter_Interface presenter, GameFacade game) {
+    public void playCard(GameState gameState, int n, Presenter_Interface presenter) {
         List<Player> players = gameState.getPlayers();
         int toMove = gameState.getToMove();
 
@@ -32,16 +32,6 @@ public class Play {
         if (players.get(toMove).getPlayerType().equalsIgnoreCase("real")) {
             String[] cards = StringConverter.convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
-        }
-
-        // TODO - call player moves recursively
-        if (new CheckWin().checkGameOver(gameState)) {
-            /*
-            End Game - call winWindow
-             */
-        }
-        else {
-            game.play(gameState.getNextPlayer());
         }
     }
 }

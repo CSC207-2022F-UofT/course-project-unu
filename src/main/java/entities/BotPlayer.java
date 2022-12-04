@@ -94,7 +94,7 @@ public class BotPlayer extends Player implements ComputerMoves {
 	}
 
 	/**
-	 * Return the card of a the move to make based on the difficulty.
+	 * Return the card of the move to make based on the difficulty.
 	 * 
 	 * @param nextPlayerCards
 	 */
@@ -119,5 +119,23 @@ public class BotPlayer extends Player implements ComputerMoves {
 		}
 
 		return null;
+	}
+
+	public int getBotToPlay(Card lastPlayed, List<Card> nextPlayerHand) {
+		int toPlay;
+
+		if (this.difficulty.equals("easy")) {
+			toPlay = getRandomMove(lastPlayed);
+		}
+
+		else if (this.difficulty.equals("medium")) {
+			toPlay = getMovesFromWeights(lastPlayed);
+		}
+
+		else {
+			toPlay = getBestMove(lastPlayed, nextPlayerHand);
+		}
+
+		return toPlay;
 	}
 }
