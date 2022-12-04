@@ -5,8 +5,7 @@ import game.Game;
 public abstract class Card {
 
     /**
-     * The type of card this object is. Can be numbers ranging from 0 to 9, or the names of special cards.
-     * Can be: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, Skip, Reverse, Plus2, Plus4, Wild
+     * The type of card this object is. Can be numbers (0 to 9) or names (Skip, Plus2, Wild, etc.).
      */
     private final String cardType;
 
