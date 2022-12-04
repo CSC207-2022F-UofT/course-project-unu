@@ -9,10 +9,13 @@ import java.util.List;
 public class Play {
 
     /**
-     * From current player's hand, remove the card at index n
-     * Update lastPlayed and discardPile
-     * Update View with presenter
+     * From current player's hand, remove the card at index n.
+     * Update lastPlayed and discardPile.
+     * Update View with presenter.
+     * @param gameState the GameState the program is managing
      * @param n index of Card to play
+     * @param presenter the appropriate Presenter_Interface to be managed
+     * @param game the appropriate GameFacade
      */
     public void playCard(GameState gameState, int n, Presenter_Interface presenter, GameFacade game) {
         List<Player> players = gameState.getPlayers();

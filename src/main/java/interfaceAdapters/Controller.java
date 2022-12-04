@@ -104,7 +104,7 @@ public class Controller {
         Player player = new RealPlayer(playerNames.get(0));
         playerList.add(player);
         for(int k=1;k<playerNames.size();k++){
-            player = new BotPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+            player = new BotPlayer(playerNames.get(k)) {//TODO: HERE BOT PLAYER
             };
             playerList.add(player);
         }

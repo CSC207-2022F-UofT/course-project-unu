@@ -7,6 +7,10 @@ import entities.GameState;
 
 public class StringConverter {
 
+    /**
+     * Determine the corresponding string of a Card object and return the string.
+     * @param card the Card object being converted to a String object
+     */
     public static String convertCardToString(Card card) {
         String type;
 
