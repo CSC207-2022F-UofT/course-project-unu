@@ -8,7 +8,6 @@ import entities.BotPlayer;
 import entities.GameState;
 import entities.Player;
 import entities.RealPlayer;
-import game.Game;
 import useCases.GameFacade;
 
 import java.util.ArrayList;
