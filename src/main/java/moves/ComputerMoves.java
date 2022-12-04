@@ -8,18 +8,18 @@ public interface ComputerMoves extends Moves {
      * If a move doesn't exist, return -1.
      * @param playedCards the entire list of played cards. 
      */
-    public int getBestMove(ArrayList<Card> playedCards, ArrayList<Card> nextPlayerHand);
+    int getBestMove(ArrayList<Card> playedCards, ArrayList<Card> nextPlayerHand);
 
     /**
      * Return the index of the from Player's hand of a random Card that Player can play.
      * If a move doesn't exist, return -1 
      * @param lastPlayed the last played card in Game
      */
-    public int getRandomMove(Card lastPlayed);
+    int getRandomMove(Card lastPlayed);
     
     /**
      * Return the index of the highest botPriority move in the Player's hand.
      * @param lastPlayed the last played card in the Game.
      */
-    public int getMovesFromWeights(Card lastPlayed);
+    int getMovesFromWeights(Card lastPlayed);
 }

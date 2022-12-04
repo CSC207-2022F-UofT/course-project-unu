@@ -50,6 +50,11 @@ public abstract class Player implements Moves {
         return hand.remove(n);
     }
 
+    /**
+     * Return a list of Card objects from Player's hand that Player can play.
+     * If there are no possible moves, return an empty list.
+     * @param lastPlayed the last played card in Game
+     */
     public ArrayList<Card> getPossibleMoves(Card lastPlayed) {
         ArrayList<Card> possibleMoves = new ArrayList<>();
 
@@ -70,6 +75,12 @@ public abstract class Player implements Moves {
         return possibleMoves;
     }
 
+    /**
+     * Return a list containing a Card object from Player's hand that Player can play.
+     * This Card corresponds to the default move the game will play for the Player.
+     * An empty list corresponds to drawing a Card from the deck.
+     * @param lastPlayed the last played card in Game
+     */
     public ArrayList<Card> getDefaultMove(Card lastPlayed) {
         ArrayList<Card> possibleMoves = getPossibleMoves(lastPlayed);
         ArrayList<String> specialCards = new ArrayList<>(Arrays.asList("Plus2", "Plus4", "Skip", "Reverse", "Wild"));
