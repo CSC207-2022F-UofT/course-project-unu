@@ -6,17 +6,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * UI component, extends the abstract class UIComponent
+ * generates a window that show the card buttons of all the possible moves
+ * after the user clicks on the play card button
+ * the user can play a card after clicking on a card button
+ */
 public class PlayCardWindow extends UIComponent {
 
     JFrame window;
     JPanel playPanel;
 
+    /**
+     * constructor of PlayCardWindow, generates a screen and creates all the moves
+     * @param c the controller that this UI component interacts with
+     * @param cards a list of strings that represents all the possible moves
+     */
     public PlayCardWindow(Controller c, List<String> cards) {
         super(c);
         generateScreen();
         createPossibleMoves(cards);
     }
 
+    /**
+     * creates the window of the play card page
+     */
     public void generateScreen() {
 
         //create a main field
@@ -29,6 +43,10 @@ public class PlayCardWindow extends UIComponent {
         window.add(playPanel);
     }
 
+    /**
+     * show all the possible moves on the screen
+     * @param possibleMoves a list of strings the represents all the possible moves of the real player
+     */
     public void createPossibleMoves(List<String> possibleMoves) {
         JButton[] cardButtons = new JButton[possibleMoves.size()];
         for (int i=0; i< cardButtons.length; i++) {
@@ -39,6 +57,15 @@ public class PlayCardWindow extends UIComponent {
         }
     }
 
+    /**
+     * helper method that generates a card button provided with the card string
+     * @param cardX x position
+     * @param cardY y position
+     * @param width card width
+     * @param height card height
+     * @param cardStr the string representation of a card
+     * @return card button
+     */
     public JButton createCardButtons(int cardX, int cardY, int width, int height, String cardStr) {
 
         JButton card = new JButton();
