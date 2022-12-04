@@ -12,7 +12,7 @@ public abstract class Player implements Moves {
     private final String name;
     private List<Card> hand = new ArrayList<>();
 
-    public Player(String name){
+    public Player(String name) {
         this.name = name;
     }
 
@@ -37,16 +37,14 @@ public abstract class Player implements Moves {
     public ArrayList<Card> getPossibleMoves(Card lastPlayed) {
         ArrayList<Card> possibleMoves = new ArrayList<>();
 
-        for (Card card: this.hand) {
+        for (Card card : this.hand) {
             String cardType = card.getCardType();
 
             if (cardType.equals(lastPlayed.getCardType())) {
                 possibleMoves.add(card);
-            }
-            else if (card.getColour().equals(lastPlayed.getColour())) {
+            } else if (card.getColour().equals(lastPlayed.getColour())) {
                 possibleMoves.add(card);
-            }
-            else if (cardType.equals("wild") || cardType.equals("plusFour")) {
+            } else if (cardType.equals("wild") || cardType.equals("plusFour")) {
                 possibleMoves.add(card);
             }
         }
@@ -62,7 +60,7 @@ public abstract class Player implements Moves {
 
         /* Select order: special cards -> number cards -> nothing/draw */
 
-        for (Card card: possibleMoves) {
+        for (Card card : possibleMoves) {
             String cardType = card.getCardType();
 
             if (specialCards.contains(cardType)) {

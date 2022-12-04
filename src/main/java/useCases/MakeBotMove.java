@@ -2,21 +2,21 @@ package useCases;
 
 import entities.GameState;
 import entities.Player;
+import entities.BotPlayer;
+import java.util.List;
 
 public class MakeBotMove {
-
-    //Should only be called when toMove is not 0 (so toMove is a bot player).
+    // Should only be called when toMove is not 0 (so toMove is a bot player).
     public void makeBotPlay(GameState gameState) {
-        Player botPlayer = gameState.getPlayers().get(gameState.getToMove());
+        Player player = gameState.getPlayers().get(gameState.getToMove());
 
-        //Do logic here to get the card this bot wants to play
-        int toPlay = 1; //Delete this later
+        if (player instanceof BotPlayer) {
+            BotPlayer botPlayer = (BotPlayer) player;
 
-        if (toPlay == -1) {
+            List<Player> players = gameState.getPlayers();
+            Player nextPlayer = players.get(gameState.getNextPlayer());
 
-        } else {
-
+            botPlayer.makeMove(gameState.getLastPlayed(), nextPlayer.getHand());
         }
-
     }
 }

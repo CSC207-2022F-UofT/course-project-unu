@@ -72,6 +72,6 @@ public class GameFacade {
         displayRealPlayerOptions.displayRealPlayerOptions(this.gameState, this.presenter);
     }
 
-    //Unimplemented
+    // Unimplemented
     public void recordResult() {}
 }
