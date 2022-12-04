@@ -4,6 +4,7 @@ import interfaceAdapters.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * An abstract super class of all the UI component classes
@@ -44,6 +45,44 @@ public abstract class UIComponent {
         return window;
     }
 
+    /**
+     * set the background given the window
+     * @param window main window
+     * @param width background width
+     * @param height background height
+     * @return background label
+     */
+    public JLabel setBackground(JFrame window, int width, int height) {
+        JPanel pagePanel = new JPanel();
+        pagePanel.setBounds(0, 0, width, height);
+        pagePanel.setLayout(null);
+        window.add(pagePanel);
+        JLabel pageLabel = new JLabel();
+        pageLabel.setBounds(0, 0, width, height);
+        pageLabel.setIcon(adjustedImage("/bg.jpg", width, height));
+        pagePanel.add(pageLabel);
+        return pageLabel;
+    }
+
+    /**
+     * adjust an image's size, so it fits the required scale
+     * @param address the image file address
+     * @param width icon width
+     * @param height icon height
+     * @return an ImageIcon that can be set to a label
+     */
+    public ImageIcon adjustedImage(String address, int width, int height) {
+        ImageIcon startBG = new ImageIcon(Objects.requireNonNull(this.getClass().getResource(address)));
+        Image bg = startBG.getImage();
+        Image adjustedBg = bg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(adjustedBg);
+    }
+
+    /**
+     * get the text that will be displayed on the card label
+     * @param cardStr the string representation of a card
+     * @return card text
+     */
     public String getCardText(String cardStr) {
         String cardText;
         if (cardStr.equals("+4") || cardStr.equals("W")) {
@@ -54,6 +93,12 @@ public abstract class UIComponent {
         }
         return cardText;
     }
+
+    /**
+     * get the colour that will be displayed on the card label
+     * @param cardStr the string representation of a card
+     * @return card colour
+     */
     public Color getCardColor(String cardStr) {
         Color cardColor = Color.white;
         if (cardStr.equals("+4") || cardStr.equals("W")) {
@@ -78,8 +123,5 @@ public abstract class UIComponent {
         }
         return cardColor;
     }
-
-
-
 
 }
