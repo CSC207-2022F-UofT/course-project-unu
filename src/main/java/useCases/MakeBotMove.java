@@ -5,7 +5,11 @@ import entities.Player;
 
 public class MakeBotMove {
 
-    //Should only be called when toMove is not 0 (so toMove is a bot player).
+    /**
+     * Make a BotPlayer play a move.
+     * The method should only be called when toMove is not 0 (so when toMove refers to a BotPlayer.)
+     * @param gameState the GameState the program is managing
+     */
     public void makeBotPlay(GameState gameState) {
         Player botPlayer = gameState.getPlayers().get(gameState.getToMove());
 
