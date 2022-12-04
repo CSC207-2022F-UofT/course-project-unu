@@ -109,4 +109,16 @@ public class ViewMethods implements View{
         gameBoard.discardWindow();
     }
 
+    /**
+     * Overload method, display the result page after a team game ends
+     * should be called by the presenter after the game ends
+     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * @param winTeam winner team name
+     */
+    @Override
+    public void displayResultPage(boolean isWin, String winTeam) {
+        new ResultPage(c, isWin, winTeam);
+        gameBoard.discardWindow();
+    }
+
 }
