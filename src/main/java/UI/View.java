@@ -51,15 +51,11 @@ public interface View {
      */
     void updateBot1Card(String card);
 
-    //update the last card that bot2 played
-
     /**
      * update UI the last card that bot2 played
      * @param card the string representation of bot2's last played card
      */
     void updateBot2Card(String card);
-
-    //update the last card that bot3 played
 
     /**
      * update UI the last card that bot2 played
@@ -79,10 +75,18 @@ public interface View {
     void generatePlayWindow(List<String> cards);
 
     /**
-     * display the result page after the game ends
+     * display the result page after a regular game ends
      * should be called by the presenter after the game ends
      * @param isWin game result, true if the user won the game, false if the user lost the game
      */
     void displayResultPage(boolean isWin);
+
+    /**
+     * Overload method, display the result page after a team game ends
+     * should be called by the presenter after the game ends
+     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * @param winTeam winner team name
+     */
+    void displayResultPage(boolean isWin, String winTeam);
 
 }

@@ -16,11 +16,12 @@ public class ResultPage extends UIComponent{
     JFrame window;
     JLabel resultLabel;
     String resultMessage;
+    String winTeam;
 
     /**
-     * Constructor of ResultPage
+     * Constructor of ResultPage for regular mode
      * @param c the controller that the result page interacts with
-     * @param isWin if the user won the game, isWin is true, vice versa
+     * @param isWin isWin is true if the user won the game, vice versa
      */
     public ResultPage(Controller c, boolean isWin) {
         super(c);
@@ -29,6 +30,23 @@ public class ResultPage extends UIComponent{
         } else {
             this.resultMessage = "LOSE";
         }
+        generateScreen();
+    }
+
+    /**
+     * Constructor of ResultPage for team mode
+     * @param c the controller that the result page interacts with
+     * @param isWin isWin is true if the user won the game, vice versa
+     * @param winTeam the winner team name
+     */
+    public ResultPage(Controller c, boolean isWin, String winTeam) {
+        super(c);
+        if (isWin) {
+            this.resultMessage = "WIN";
+        } else {
+            this.resultMessage = "LOSE";
+        }
+        this.winTeam = winTeam;
         generateScreen();
     }
 
@@ -44,7 +62,12 @@ public class ResultPage extends UIComponent{
         resultLabel = super.setBackground(window, 700, 500);
 
         //add result text
-        resultLabel.add(result(resultMessage));
+        if (winTeam != null) {
+            resultLabel.add(result(resultMessage, 250, 50));
+            resultLabel.add(winTeamMessage(winTeam));
+        } else {
+            resultLabel.add(result(resultMessage, 250, 100));
+        }
         addResultPageButtons(resultLabel);
     }
 
@@ -53,12 +76,27 @@ public class ResultPage extends UIComponent{
      * @param resultMessage "WIN or "LOSE"
      * @return a JLabel that shows the text
      */
-    public JLabel result(String resultMessage) {
+    public JLabel result(String resultMessage, int xPos, int yPos) {
         JLabel result = new JLabel("YOU " + resultMessage + " !");
-        result.setBounds(250, 50, 300, 200);
+        result.setBounds(xPos, yPos, 300, 100);
         result.setForeground(Color.white);
         result.setFont(new Font("Monospace", Font.PLAIN, 40));
+
         return result;
+    }
+
+    /**
+     * generate a label that shows the winner team
+     * @param winTeam the name of the winner team
+     * @return the label that shows the text
+     */
+    public JLabel winTeamMessage(String winTeam) {
+        JLabel team = new JLabel("WINNER TEAM: " + winTeam + " !");
+        team.setBounds(150, 120, 400, 100);
+        team.setForeground(Color.white);
+        team.setFont(new Font("Monospace", Font.PLAIN, 32));
+
+        return team;
     }
 
     /**
