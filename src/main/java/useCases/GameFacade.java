@@ -57,7 +57,7 @@ public class GameFacade {
     }
     public void botCycle() {
         //While no one has won, and it's not the user's turn
-        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getToMove() != 0) {
+        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getPlayers().get(gameState.getToMove()).getPlayerType().equalsIgnoreCase("bot")) {
             makeBotMove.makeBotPlay(this.gameState, this.presenter); //make bot move
             lastPlayedEffect.doEffect(this);
             changeTurn.setNextTurn(this.gameState);
