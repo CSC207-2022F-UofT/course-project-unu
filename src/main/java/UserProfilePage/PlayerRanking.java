@@ -12,7 +12,9 @@ public class PlayerRanking {
 
     public List<String> getRankByGames() {
         ArrayList<String> RankByGames = new ArrayList<String>();
+        //An ArrayList to store user's names
         ArrayList<Integer> Games = new ArrayList<Integer>();
+        //An ArrayList to store user's Games played
         for(UserProfile Profile: this.Profiles){
             Games.add(Profile.GamesPlayed);
         }
@@ -29,7 +31,9 @@ public class PlayerRanking {
 
     public List<String> getRankByWins() {
         ArrayList<String> RankByWins = new ArrayList<String>();
+        //An ArrayList to store user's names
         ArrayList<Integer> Wins = new ArrayList<Integer>();
+        //An ArrayList to store user's Wins
         for(UserProfile Profile: this.Profiles){
             Wins.add(Profile.GamesWon);
         }
@@ -37,7 +41,7 @@ public class PlayerRanking {
         for(Integer win: Wins){
             for(UserProfile Profile: this.Profiles){
                 if(Profile.GamesWon == win){
-                    RankByWins.add(Profile.name)
+                    RankByWins.add(Profile.name);
                 }
             }
         }
@@ -46,7 +50,9 @@ public class PlayerRanking {
 
     public List<String> getRankByWinrate() {
         ArrayList<String> RankByWinrate = new ArrayList<String>();
+        //An ArrayList to store user's names
         ArrayList<Float> Winrates = new ArrayList<Float>();
+        //An ArrayList to store user's Winrate
         for(UserProfile Profile: this.Profiles){
             Winrates.add(Profile.WinRate);
         }
@@ -54,7 +60,7 @@ public class PlayerRanking {
         for(Float winrate: Winrates){
             for(UserProfile Profile: this.Profiles){
                 if(Profile.GamesWon == winrate){
-                    RankByWinrate.add(Profile.name)
+                    RankByWinrate.add(Profile.name);
                 }
             }
         }
