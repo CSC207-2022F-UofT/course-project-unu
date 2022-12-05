@@ -1,6 +1,6 @@
 package cards;
 
-import game.Game;
+import useCases.GameFacade;
 
 public class SkipCard extends Card {
 
@@ -14,12 +14,12 @@ public class SkipCard extends Card {
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(Game game) {
+    public void playedEffect(GameFacade game) {
         /*
         This sets the current player to the next player.
         Once the turn actually ends, it will be as if the next player had just gone.
          */
-        game.setToMove(game.getNextPlayer());
+        game.setNextTurn();
     }
 
     /**

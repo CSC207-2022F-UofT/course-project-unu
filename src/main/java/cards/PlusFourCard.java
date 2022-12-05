@@ -1,6 +1,6 @@
 package cards;
 
-import game.Game;
+import useCases.GameFacade;
 
 public class PlusFourCard extends WildCard{
 
@@ -15,9 +15,10 @@ public class PlusFourCard extends WildCard{
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(Game game) {
+    public void playedEffect(GameFacade game) {
         super.playedEffect(game);
-        game.draw(4, game.getNextPlayer());
+        game.draw(4, game.getGameState().getNextPlayer());
+        game.setNextTurn();
     }
 
     /**

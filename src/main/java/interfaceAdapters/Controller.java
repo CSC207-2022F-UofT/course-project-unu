@@ -7,7 +7,6 @@ import entities.BotPlayer;
 import entities.GameState;
 import entities.Player;
 import entities.RealPlayer;
-import game.Game;
 import useCases.GameFacade;
 
 import java.util.ArrayList;
@@ -110,7 +109,6 @@ public class Controller {
         }
         return playerList;
     }
-    private Game game;
     private GameFacade gameFacade;
     /**
      * initialization
@@ -144,19 +142,19 @@ public class Controller {
     //Convert string representation into the index of the card.
 
     public void playCard(String card) {
-        game.play(card);
+        gameFacade.play(card);
     }
     public void drawCard() {
-        game.draw(1, game.getToMove());
+        gameFacade.draw(1, gameFacade.getGameState().getToMove());
     }
     /**
      * pass the new theme colour to the game use cases
      * @param colour the colour that the player chooses after a wild card or plus four card is played
      */
     public void changeColour(String colour) {
-        game.setColour(colour);
+        gameFacade.setColour(colour);
     }
     public void requestPossibleMoves() {
-        game.displayRealPlayerOptions();
+        gameFacade.displayRealPlayerOptions();
     }
 }

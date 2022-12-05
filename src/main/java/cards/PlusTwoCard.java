@@ -1,8 +1,9 @@
 package cards;
 
-import game.Game;
+import useCases.GameFacade;
 
 public class PlusTwoCard extends Card {
+
     public PlusTwoCard(String cardType, String colour, int botPriority) {
         super(cardType, colour, botPriority);
     }
@@ -13,9 +14,8 @@ public class PlusTwoCard extends Card {
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(Game game) {
-        game.draw(2, game.getNextPlayer());
-        game.setToMove(game.getNextPlayer());
+    public void playedEffect(GameFacade game) {
+        game.draw(2, game.getGameState().getNextPlayer());
     }
 
     /**
