@@ -15,7 +15,6 @@ public class Play {
      * @param gameState the GameState the program is managing
      * @param n index of Card to play
      * @param presenter the appropriate Presenter_Interface to be managed
-     * @param game the appropriate GameFacade
      */
     public void playCard(GameState gameState, int n, Presenter_Interface presenter) {
         List<Player> players = gameState.getPlayers();
