@@ -9,25 +9,26 @@ public class UserProfile{
 
     /**
      * Creates a new player with the given name.
-     * @param name
+     * @param name is the name of the player, which is a string
      */
     public UserProfile(String name){
         //constructor
         this.name = name;
         this.GamesPlayed = 0;
         this.GamesWon = 0;
+        this.WinRate = 0.0f;
     }
 
     /**
      * Record a new game to the profile of the player.
-     * @param outcome
+     * @param outcome is the outcome of a game, true means this player had won, false means he lost
      */
-    public void newGameResult(boolean outcome){
+    public void NewGameResult(boolean outcome){
         this.GamesPlayed ++;
         if (outcome){
             this.GamesWon ++;
         }
-        this.WinRate = this.GamesWon / this.GamesPlayed;
+        this.WinRate = (float)this.GamesWon / this.GamesPlayed;
     }
     @Override
     public String toString(){
@@ -39,7 +40,14 @@ public class UserProfile{
         //takes a string to setup a userprofile
         String[] parts = str.split("/");
         this.name = parts[0];
-        this.GamesPlayed = Integer.valueOf(parts[1]);
-        this.GamesPlayed = Integer.valueOf(parts[2]);
+        this.GamesPlayed = Integer.parseInt(parts[1]);
+        this.GamesWon = Integer.parseInt(parts[2]);
+        if (this.GamesPlayed != 0){
+            this.WinRate = (float)this.GamesWon / this.GamesPlayed;
+        }
+        else{
+            this.WinRate = 0.0f;
+        }
+
     }
 }
