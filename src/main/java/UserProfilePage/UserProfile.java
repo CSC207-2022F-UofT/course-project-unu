@@ -11,7 +11,8 @@ public class UserProfile{
      * Creates a new player with the given name.
      * @param name
      */
-    public void UserProfile(String name){
+    public UserProfile(String name){
+        //constructor
         this.name = name;
         this.GamesPlayed = 0;
         this.GamesWon = 0;
