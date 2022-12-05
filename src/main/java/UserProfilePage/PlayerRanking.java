@@ -1,5 +1,6 @@
 package UserProfilePage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerRanking {
@@ -9,18 +10,54 @@ public class PlayerRanking {
         this.Profiles = Profiles;
     }
 
-    // TOOD
-    public static List<String> getRankByGames() {
-        return new ArrayList<String>();
+    public List<String> getRankByGames() {
+        ArrayList<String> RankByGames = new ArrayList<String>();
+        ArrayList<Integer> Games = new ArrayList<Integer>();
+        for(UserProfile Profile: this.Profiles){
+            Games.add(Profile.GamesPlayed);
+        }
+        Collections.sort(Games);
+        for(Integer game: Games){
+            for(UserProfile Profile: this.Profiles){
+                if(Profile.GamesPlayed == game){
+                    RankByGames.add(Profile.name);
+                }
+            }
+        }
+        return RankByGames;
     }
 
-    // TODO 
-    public static List<String> getRankByWins() {
-        return new ArrayList<String>();
+    public List<String> getRankByWins() {
+        ArrayList<String> RankByWins = new ArrayList<String>();
+        ArrayList<Integer> Wins = new ArrayList<Integer>();
+        for(UserProfile Profile: this.Profiles){
+            Wins.add(Profile.GamesWon);
+        }
+        Collections.sort(Wins);
+        for(Integer win: Wins){
+            for(UserProfile Profile: this.Profiles){
+                if(Profile.GamesWon == win){
+                    RankByWins.add(Profile.name)
+                }
+            }
+        }
+        return RankByWins;
     }
 
-    // TODO
-    public static List<String> getRankByWinrate() {
-        return new ArrayList<String>();
+    public List<String> getRankByWinrate() {
+        ArrayList<String> RankByWinrate = new ArrayList<String>();
+        ArrayList<Float> Winrates = new ArrayList<Float>();
+        for(UserProfile Profile: this.Profiles){
+            Winrates.add(Profile.WinRate);
+        }
+        Collections.sort(Winrates);
+        for(Float winrate: Winrates){
+            for(UserProfile Profile: this.Profiles){
+                if(Profile.GamesWon == winrate){
+                    RankByWinrate.add(Profile.name)
+                }
+            }
+        }
+        return RankByWinrate;
     }
 }
