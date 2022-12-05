@@ -1,6 +1,6 @@
 package cards;
 
-import game.Game;
+import useCases.GameFacade;
 
 public abstract class Card {
 
@@ -66,5 +66,5 @@ public abstract class Card {
      *
      * @param game the Game object this card is affecting
      */
-    public abstract void playedEffect(Game game);
+    public abstract void playedEffect(GameFacade game);
 }
