@@ -90,7 +90,7 @@ public class Controller {
         Team team2 = new Team(teamNames.get(1));
         //k - bot levels name
         for(int i=2, k=1; i<playerNames.size();i++,k++){
-            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team1);
+            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team2);
             teamPlayers.add(player);
         }
         return teamPlayers;
@@ -118,7 +118,14 @@ public class Controller {
      * initialization
      */
     public void startGame() {
-        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
+        if(isTeamMode){
+            gameFacade = new GameFacade(teamPlayerList(),new Presenter(ui),isTeamMode);
+        }
+        else{
+            gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
+        }
+
+
         ui.generateGameBoard(this);
         gameFacade.setup();
 
