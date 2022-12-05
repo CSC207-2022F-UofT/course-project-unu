@@ -1,10 +1,9 @@
 package interfaceAdapters;
 import TeamMode.Team;
-import TeamMode.TeamPlayer;
+import TeamMode.TeamBotPlayer;
+import TeamMode.TeamRealPlayer;
 import UI.View;
-import cards.Card;
 import entities.BotPlayer;
-import entities.GameState;
 import entities.Player;
 import entities.RealPlayer;
 import useCases.GameFacade;
@@ -82,14 +81,16 @@ public class Controller {
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        List<Player> teamPlayers = new ArrayList<>();
-        for(int i=0; i<teamNames.size();i++){
-            Team team = new Team(teamNames.get(i));
-            for(int k=0;k<playerNames.size();k++){
-                TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
-                team.addTeamPlayer(player);
-                teamPlayers.add(player);
-            }
+        List<Player> teamPlayers = regularPlayerList();
+        Team team1 = new Team(teamNames.get(0));
+        Player player1 = new TeamRealPlayer(playerNames.get(0),team1);
+        Player player2 = new TeamBotPlayer(playerNames.get(1),team1);
+        teamPlayers.add(player1);
+        teamPlayers.add(player2);
+        Team team2 = new Team(teamNames.get(1));
+        for(int i=2; i<playerNames.size();i++){
+            Player player = new TeamBotPlayer(playerNames.get(i),team1);
+            teamPlayers.add(player);
         }
         return teamPlayers;
     }
@@ -103,7 +104,7 @@ public class Controller {
         Player player = new RealPlayer(playerNames.get(0));
         playerList.add(player);
         for(int k=1;k<playerNames.size();k++){
-            player = new BotPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+            player = new BotPlayer(playerNames.get(k)) {//TODO: HERE BOT PLAYER
             };
             playerList.add(player);
         }
@@ -114,7 +115,7 @@ public class Controller {
      * initialization
      */
     public void startGame() {
-        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui));
+        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
         ui.generateGameBoard(this);
         gameFacade.setup();
         /*while(!gameFacade.checkWin()){
