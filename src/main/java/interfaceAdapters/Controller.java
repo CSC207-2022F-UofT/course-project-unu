@@ -154,12 +154,10 @@ public class Controller {
     public void playCard(String card) {
         gameFacade.play(card);
         gameFacade.doLastPlayedEffect();
-        gameFacade.setNextTurn();
         gameFacade.botCycle();
     }
     public void drawCard() {
         gameFacade.draw(1, gameFacade.getGameState().getToMove());
-        gameFacade.setNextTurn();
         gameFacade.botCycle();
     }
     /**
