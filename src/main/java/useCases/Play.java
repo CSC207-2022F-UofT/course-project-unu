@@ -17,7 +17,7 @@ public class Play {
      * @param presenter the appropriate Presenter_Interface to be managed
      * @param game the appropriate GameFacade
      */
-    public void playCard(GameState gameState, int n, Presenter_Interface presenter, GameFacade game) {
+    public void playCard(GameState gameState, int n, Presenter_Interface presenter) {
         List<Player> players = gameState.getPlayers();
         int toMove = gameState.getToMove();
 
@@ -26,6 +26,7 @@ public class Play {
         gameState.setLastPlayed(played);
 
         List<Card> discardPile = gameState.getDiscardPile();
+
         discardPile.add(played);
         gameState.setDiscardPile(discardPile);
 
@@ -35,26 +36,5 @@ public class Play {
             String[] cards = StringConverter.convertHand(players.get(toMove).getHand());
             presenter.updateHand(cards);
         }
-
-        // TODO - call player moves recursively
-        if (new CheckWin().checkGameOver(gameState)) {
-            /*
-            End Game - call winWindow
-             */
-        }
-        else {
-            /*
-            TODO: Create an endTurn() method that does the following:
-            - Updates the toMoveVariable
-            - Starts the next player turn; if robot, plays or draws or does whatever the robot needs to do;
-                if player, waits for an input from the View;
-             */
-
-
-
-            game.play(gameState.getNextPlayer());
-        }
-
     }
-
 }

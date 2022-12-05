@@ -2,25 +2,27 @@ package useCases;
 
 import entities.GameState;
 import entities.Player;
+import entities.BotPlayer;
+import java.util.List;
+import interfaceAdapters.Presenter_Interface;
 
 public class MakeBotMove {
+    // Should only be called when toMove is not 0 (so toMove is a bot player).
+    public void makeBotPlay(GameState gameState, Presenter_Interface presenter) {
+        Play play = new Play();
+        Draw draw = new Draw();
 
-    /**
-     * Make a BotPlayer play a move.
-     * The method should only be called when toMove is not 0 (so when toMove refers to a BotPlayer.)
-     * @param gameState the GameState the program is managing
-     */
-    public void makeBotPlay(GameState gameState) {
-        Player botPlayer = gameState.getPlayers().get(gameState.getToMove());
+        BotPlayer botPlayer = (BotPlayer) gameState.getPlayers().get(gameState.getToMove());
 
-        //Do logic here to get the card this bot wants to play
-        int toPlay = 1; //Delete this later
+        List<Player> players = gameState.getPlayers();
+        Player nextPlayer = players.get(gameState.getNextPlayer());
 
-        if (toPlay == -1) {
+        int toPlay = botPlayer.getBotToPlay(gameState.getLastPlayed(), nextPlayer.getHand());
 
+        if (toPlay < 0) {
+            draw.draw(gameState, 1, gameState.getToMove(), presenter);
         } else {
-
+            play.playCard(gameState, toPlay, presenter);
         }
-
     }
 }
