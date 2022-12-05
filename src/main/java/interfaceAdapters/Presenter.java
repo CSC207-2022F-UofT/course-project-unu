@@ -1,5 +1,7 @@
 package interfaceAdapters;
 
+import TeamMode.TeamPlayer;
+import UI.ResultPage;
 import UI.View;
 import entities.Player;
 import useCases.Play;
@@ -18,8 +20,8 @@ public class Presenter implements Presenter_Interface {
         viewMethods = view;
     }
     @Override
-    public void requestNewColour() {
-        viewMethods.requestColourChange();
+    public void requestNewColour(Thread pauseGame) {
+        viewMethods.requestColourChange(pauseGame);
         /*
         Calls a View Interface and a method in it.
          */
@@ -82,8 +84,13 @@ public class Presenter implements Presenter_Interface {
     public void showWinner(Player player,boolean teamMode) {
         if(teamMode==true){
             //cast player to teamPlayer and get his team
+            System.out.println(player.getName());
+            viewMethods.displayResultPage(player.getPlayerType().equals("real"),((TeamPlayer)player).getTeam().getName());
         }
         else{
             //get the name of the player and show
+            System.out.println(player.getName());
+            viewMethods.displayResultPage(player.getPlayerType().equals("real"));
+
         }
     }}

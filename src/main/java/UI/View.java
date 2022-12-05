@@ -66,7 +66,7 @@ public interface View {
     /**
      * display a colour choosing window after a wild card is played
      */
-    void requestColourChange();
+    void requestColourChange(Thread pauseGame);
 
     /**
      * display all the possible moves that the real player can make

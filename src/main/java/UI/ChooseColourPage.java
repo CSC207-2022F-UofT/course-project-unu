@@ -15,8 +15,11 @@ public class ChooseColourPage extends UIComponent {
 
     JFrame window;
     JPanel colourPanel;
-    public ChooseColourPage(Controller c) {
+
+    Thread pauseGame;
+    public ChooseColourPage(Controller c, Thread pauseGame) {
         super(c);
+        this.pauseGame = pauseGame;
         generateScreen();
     }
 
@@ -46,8 +49,9 @@ public class ChooseColourPage extends UIComponent {
             colorButton.addActionListener(e -> {
                 c.changeColour(colourStr[finalI]);
                 window.setVisible(false);
+                pauseGame.interrupt();
             });
             colourPanel.add(colorButton);
         }
-    }
-}
+
+}}

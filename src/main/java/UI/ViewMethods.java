@@ -86,8 +86,8 @@ public class ViewMethods implements View{
      * create a choosing colour page after the user played a wild or +4 card
      */
     @Override
-    public void requestColourChange() {
-        new ChooseColourPage(c);
+    public void requestColourChange(Thread pauseGame) {
+        new ChooseColourPage(c, pauseGame);
     }
 
     /**

@@ -15,6 +15,22 @@ public class WildCard extends Card {
      */
     @Override
     public void playedEffect(GameFacade game) {
-        game.getPresenter().requestNewColour();
+        Thread changeColour = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (isInterrupted()) {
+                        break;
+                    }
+                }
+            }
+        };
+        game.getPresenter().requestNewColour(changeColour);
+        changeColour.start();
+       /* try {
+            changeColour.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }*/
     }
 }
