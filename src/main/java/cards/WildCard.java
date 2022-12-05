@@ -23,15 +23,5 @@ public class WildCard extends Card {
         Current Flow of Code:
         WildCard > RequestColourChange (Use Case) > Presenter (Interface) > View (Interface)
         */
-
-    }
-
-    /**
-     * Convert the Card into a string with the following format:
-     * - wild card "W"
-     */
-    @Override
-    public String toString() {
-        return "W";
     }
 }

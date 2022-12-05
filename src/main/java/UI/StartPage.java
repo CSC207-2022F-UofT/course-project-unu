@@ -3,8 +3,6 @@ package UI;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Objects;
 
 /**
  * A UI component
@@ -14,7 +12,6 @@ import java.util.Objects;
 public class StartPage extends UIComponent {
 
     JFrame window;
-    JPanel startPanel;
     JLabel startLabel;
     JButton regularButton;
     JButton teamButton;
@@ -25,8 +22,8 @@ public class StartPage extends UIComponent {
      */
     public StartPage(Controller c){
         super(c);
-        this.c = c;
-     }
+        generateScreen();
+    }
 
     /**
      * generate all the buttons
@@ -36,7 +33,7 @@ public class StartPage extends UIComponent {
         regularButton = new JButton("Regular Mode");
         regularButton.setBounds(340, 430, 120, 70);
         regularButton.addActionListener(e -> {
-            new RegularModeSetup(this.c);
+            new RegularModeSetup(c);
             window.setVisible(false);
         });
         teamButton = new JButton("Team Mode");
@@ -58,28 +55,15 @@ public class StartPage extends UIComponent {
         window = super.createMainField("Start Page", 1000, 700);
 
         //set background
-        startPanel = new JPanel();
-        startPanel.setBounds(0, 0, 1000, 700);
-        startPanel.setLayout(null);
-        this.window.add(startPanel);
-        startLabel = new JLabel();
-        startLabel.setBounds(0, 0, 1000, 700);
-        ImageIcon startBG = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/bg.jpg")));
-        Image bg = startBG.getImage();
-        Image adjustedBg = bg.getScaledInstance(1000, 700, Image.SCALE_SMOOTH);
-        startBG = new ImageIcon(adjustedBg);
-        startLabel.setIcon(startBG);
-        startPanel.add(startLabel);
+        startLabel = super.setBackground(window, 1000, 700);
+
+        //add buttons
         createStartPageButtons(startLabel);
 
         //add logo
         JLabel logo = new JLabel();
-        ImageIcon unoLogo = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/UNO_logo.jpg")));
-        Image logoImg = unoLogo.getImage();
-        Image adjustedLogo = logoImg.getScaledInstance(300, 200, Image.SCALE_SMOOTH);
         logo.setBounds(350, 130, 300, 200);
-        unoLogo = new ImageIcon(adjustedLogo);
-        logo.setIcon(unoLogo);
+        logo.setIcon(super.adjustedImage("/UNO_logo.jpg", 300, 200));
         startLabel.add(logo);
     }
 }

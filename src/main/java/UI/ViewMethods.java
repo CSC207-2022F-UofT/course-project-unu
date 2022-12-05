@@ -2,96 +2,123 @@ package UI;
 
 import interfaceAdapters.Controller;
 import java.util.List;
-import javax.swing.*;
-import java.awt.*;
 
+/**
+ * the UI handler that implements the methods in the view interface
+ */
 public class ViewMethods implements View{
 
-    GameManager gm;
     GameBoard gameBoard;
     Controller c;
 
-    public ViewMethods(GameManager gm, Controller c) {
-        this.gm = gm;
-        StartPage sp = new StartPage(c);
-        sp.generateScreen(this);
-        /**
-         * only comment out start page for testing
-         * TODO: Change back to start page
-         */
-        this.c = c;
-        generateGameBoard(c);
-        String[] str = new String[7];
-        str[0] = "W";
-        str[1] = "+4";
-        str[2] = "1-red";
-        str[3] = "+2-green";
-        str[4] = "R-blue";
-        str[5] = "S-yellow";
-        str[6] = "0-red";
-        updateAvailableCards(str);
-        updateMyLastPlayedCard("R-green");
-        updateLastCardPlayed("S-blue");
-        updateBot1Card("+4");
-        updateBot1Card("D");
-        updateBot2Card("W");
-        updateBot3Card("D");
-        //requestColorChange();
+    /**
+     * create a new ViewMethod object
+     */
+    public ViewMethods() {
+        this.c = new Controller(this);
+        new StartPage(c);
     }
 
+    /**
+     * create a game board page
+     * @param c the controller that the game board interacts with
+     */
     @Override
     public void generateGameBoard(Controller c) {
         gameBoard = new GameBoard(c);
     }
 
+    /**
+     * update UI the last card played in the game
+     * @param card the string representation of the last played card
+     */
     @Override
     public void updateLastCardPlayed(String card) {
         gameBoard.updateLastPlayed(card);
     }
 
+    /**
+     * update UI the last card the user played
+     * @param card the string representation of the last card the user played
+     */
     @Override
     public void updateMyLastPlayedCard(String card) {
         gameBoard.updatePlayer1Card(card);
     }
 
+    /**
+     * update UI the last card bot1 played
+     * @param card the string representation of bot1's last played card
+     */
     @Override
     public void updateBot1Card(String card) {
         gameBoard.updatePlayer2Card(card);
     }
 
+    /**
+     * update UI the last card bot2 played
+     * @param card the string representation of bot2's last played card
+     */
     @Override
     public void updateBot2Card(String card) {
         gameBoard.updatePlayer3Card(card);
     }
 
+    /**
+     * update UI the last card bot3 played
+     * @param card the string representation of bot3's last played card
+     */
     @Override
     public void updateBot3Card(String card) {
         gameBoard.updatePlayer4Card(card);
     }
 
+    /**
+     * update UI the user's cards on hand after the user drew or played a card
+     * @param cardList a list of cards strings on the real player's hand
+     */
+    @Override
     public void updateAvailableCards(String[] cardList) {
-        JLabel[] cardLabels = new JLabel[cardList.length];
-        for (int i=0; i<cardList.length; i++) {
-            int cardX = 260 + 70*(i / 2);
-            int cardY = 440 + 90*(i % 2);
-            cardLabels[i] = gameBoard.createCardLabel(cardX, cardY, 60, 80, cardList[i]);
-        }
-        gameBoard.displayAvailableCards(cardLabels);
+        gameBoard.displayAvailableCards(cardList);
     }
 
+    /**
+     * create a choosing colour page after the user played a wild or +4 card
+     */
     @Override
-    public void requestColorChange() {
+    public void requestColourChange() {
         new ChooseColourPage(c);
     }
 
+    /**
+     * generate the play card window that the user can play a card by clicking on a card button
+     * @param cards a list of strings of all the possible moves the user can make
+     */
     @Override
     public void generatePlayWindow(List<String> cards) {
         new PlayCardWindow(c, cards);
     }
 
+    /**
+     * generate the result page after the game ends
+     * @param isWin game result, true if the user won the game, false if the user lost the game
+     */
     @Override
-    public void generatePlayWindow() {
+    public void displayResultPage(boolean isWin) {
+        new ResultPage(c, isWin);
+        gameBoard.discardWindow();
+    }
 
+    /**
+     * Overload method, display the result page after a team game ends
+     * should be called by the presenter after the game ends
+     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * @param winTeam winner team name
+     */
+    @Override
+    public void displayResultPage(boolean isWin, String winTeam) {
+        new ResultPage(c, isWin, winTeam);
+        gameBoard.discardWindow();
     }
 
 }
