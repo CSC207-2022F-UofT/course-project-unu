@@ -1,6 +1,6 @@
 package TeamMode;
 
-import entities.BotPlayer;
+import entities.players.BotPlayer;
 
 public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
     private Team teamOfPlayer;

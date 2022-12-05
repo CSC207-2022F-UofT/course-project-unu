@@ -3,9 +3,9 @@ import TeamMode.Team;
 import TeamMode.TeamBotPlayer;
 import TeamMode.TeamRealPlayer;
 import UI.View;
-import entities.BotPlayer;
-import entities.Player;
-import entities.RealPlayer;
+import entities.players.BotPlayer;
+import entities.players.Player;
+import entities.players.RealPlayer;
 import useCases.GameFacade;
 
 import java.util.ArrayList;

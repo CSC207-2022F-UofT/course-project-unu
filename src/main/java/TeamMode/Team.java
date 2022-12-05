@@ -1,6 +1,6 @@
 package TeamMode;
 
-import entities.Player;
+import entities.players.Player;
 
 import java.util.List;
 

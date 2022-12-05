@@ -2,8 +2,8 @@
 package card_tests;
 
 import cards.*;
-import entities.Player;
-import entities.RealPlayer;
+import entities.players.Player;
+import entities.players.RealPlayer;
 import game.Game;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

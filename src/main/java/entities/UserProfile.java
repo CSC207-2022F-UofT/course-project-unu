@@ -1,4 +1,4 @@
-package UserProfilePage;
+package entities;
 
 public class UserProfile{
     public String name;

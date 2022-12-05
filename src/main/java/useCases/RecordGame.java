@@ -1,7 +1,6 @@
-package UserProfilePage;
-import java.util.ArrayList;
+package useCases;
 import java.util.List;
-import entities.Player;
+import entities.players.Player;
 
 public class RecordGame {
     public List<Player> PlayerList;

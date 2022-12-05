@@ -1,6 +1,5 @@
-package entities;
-import moves.ComputerMoves;
-import cards.Card;
+package entities.players;
+import entities.cards.Card;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;

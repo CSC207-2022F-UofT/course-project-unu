@@ -1,4 +1,4 @@
-package cards;
+package entities.cards;
 
 public class ChangeColour_Interface implements ChangeColour{
 

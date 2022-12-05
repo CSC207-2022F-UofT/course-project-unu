@@ -1,4 +1,4 @@
-package gateway;
+package interfaceAdapters.gateway;
 import java.io.*;  
 
 public class CSVHandler {

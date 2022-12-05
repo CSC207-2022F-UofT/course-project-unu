@@ -1,7 +1,6 @@
-package entities;
+package entities.players;
 
-import cards.Card;
-import moves.Moves;
+import entities.cards.Card;
 
 import java.util.ArrayList;
 

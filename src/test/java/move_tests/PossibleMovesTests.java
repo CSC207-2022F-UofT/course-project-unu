@@ -1,8 +1,8 @@
 package move_tests;
 
 import cards.*;
-import entities.Player;
-import entities.RealPlayer;
+import entities.players.Player;
+import entities.players.RealPlayer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

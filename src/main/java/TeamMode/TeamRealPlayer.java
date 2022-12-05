@@ -1,6 +1,6 @@
 package TeamMode;
 
-import entities.RealPlayer;
+import entities.players.RealPlayer;
 
 public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
 

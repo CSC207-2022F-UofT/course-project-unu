@@ -1,4 +1,6 @@
-package UserProfilePage;
+package useCases;
+import entities.UserProfile;
+
 import java.util.ArrayList;
 import java.util.List;
 

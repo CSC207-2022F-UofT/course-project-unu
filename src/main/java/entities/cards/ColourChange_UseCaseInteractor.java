@@ -1,4 +1,4 @@
-package cards;
+package entities.cards;
 
 import interfaceAdapters.Presenter_Interface;
 

@@ -1,8 +1,8 @@
 package useCases;
 
-import cards.Card;
+import entities.cards.Card;
 import java.util.List;
-import entities.CardFactory;
+import entities.cards.CardFactory;
 import entities.GameState;
 
 public class StringConverter {

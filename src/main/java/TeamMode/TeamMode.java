@@ -1,7 +1,7 @@
 package TeamMode;
 
 import cards.Card;
-import entities.Player;
+import entities.players.Player;
 import interfaceAdapters.Presenter;
 import useCases.GameFacade;
 

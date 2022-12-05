@@ -1,7 +1,7 @@
 package useCases;
 
 import entities.GameState;
-import entities.Player;
+import entities.players.Player;
 
 public class MakeBotMove {
 
