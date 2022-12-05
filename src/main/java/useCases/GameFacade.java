@@ -64,17 +64,7 @@ public class GameFacade {
     public void play(int n) {
         play.playCard(this.gameState, n, this.presenter, this);
         //lastPlayedEffects change the turn once if it's a skip card
-        lastPlayedEffect.doEffect(this);
-        changeTurn.setNextTurn(this.gameState);
 
-        //CheckWin now checks is ANY player has an empty hand.
-        if (checkWin.checkGameOver(this.gameState)){
-            //end game
-            //I am not sure about this one
-            presenter.showWinner(gameState.getPlayers().get(gameState.getToMove()),teamMode );
-        } else {
-            botCycle();
-        }
     }
 
     /**
@@ -100,7 +90,7 @@ public class GameFacade {
      * Controller calls this method when the user plays a card.
      */
     public void play(String card) {
-        play(StringConverter.convertCardToInteger(card, gameState));
+        play(StringConverter.getIndexOfCard(card, gameState));
     }
 
     /**

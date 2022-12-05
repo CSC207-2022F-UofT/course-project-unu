@@ -118,6 +118,12 @@ public class Controller {
         gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
         ui.generateGameBoard(this);
         gameFacade.setup();
+
+        gameFacade.doLastPlayedEffect();
+        gameFacade.setNextTurn();
+
+        //this has to be called in case the flipped card is a skip or reverse
+        gameFacade.botCycle();
         /*while(!gameFacade.checkWin()){
 
         }
@@ -144,9 +150,14 @@ public class Controller {
 
     public void playCard(String card) {
         gameFacade.play(card);
+        gameFacade.doLastPlayedEffect();
+        gameFacade.setNextTurn();
+        gameFacade.botCycle();
     }
     public void drawCard() {
         gameFacade.draw(1, gameFacade.getGameState().getToMove());
+        gameFacade.setNextTurn();
+        gameFacade.botCycle();
     }
     /**
      * pass the new theme colour to the game use cases
