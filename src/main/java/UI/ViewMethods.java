@@ -1,6 +1,8 @@
 package UI;
 
 import interfaceAdapters.Controller;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,13 +84,13 @@ public class ViewMethods implements View{
         gameBoard.displayAvailableCards(cardList);
     }
 
-    /**
-     * create a choosing colour page after the user played a wild or +4 card
-     */
-    @Override
-    public void requestColourChange() {
-        new ChooseColourPage(c);
-    }
+//    /**
+//     * create a choosing colour page after the user played a wild or +4 card
+//     */
+//    @Override
+//    public void requestColourChange() {
+//        new ChooseColourPage(c);
+//    }
 
     /**
      * generate the play card window that the user can play a card by clicking on a card button
@@ -119,6 +121,16 @@ public class ViewMethods implements View{
     public void displayResultPage(boolean isWin, String winTeam) {
         new ResultPage(c, isWin, winTeam);
         gameBoard.discardWindow();
+    }
+
+    /**
+     * display the player ranking UI
+     * @param rankType the criteria of how the players are ranked
+     * @param players a sorted ArrayList of players
+     */
+    @Override
+    public void displayPlayerRanking(String rankType, List<String> players) {
+        new ScoreBoard(rankType, players);
     }
 
 }

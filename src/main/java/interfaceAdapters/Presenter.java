@@ -17,13 +17,13 @@ public class Presenter implements Presenter_Interface {
     public Presenter(View view) {
         viewMethods = view;
     }
-    @Override
-    public void requestNewColour() {
-        viewMethods.requestColourChange();
-        /*
-        Calls a View Interface and a method in it.
-         */
-    }
+//    @Override
+//    public void requestNewColour() {
+//        viewMethods.requestColourChange();
+//        /*
+//        Calls a View Interface and a method in it.
+//         */
+//    }
 
     @Override
     public void updateHand(String[] cards) {
@@ -32,7 +32,9 @@ public class Presenter implements Presenter_Interface {
 
     @Override
     public void updateLastPlayed(String card, int toMove) {
-        viewMethods.updateLastCardPlayed(card);
+        if (!card.equals("D")) { // if the player's last move is not draw
+            viewMethods.updateLastCardPlayed(card);
+        }
 
         switch (toMove) {
             case 0:
