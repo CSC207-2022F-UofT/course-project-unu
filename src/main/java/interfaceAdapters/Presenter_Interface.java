@@ -1,6 +1,8 @@
 package interfaceAdapters;
 
 
+import entities.Player;
+
 import java.util.List;
 
 /**
@@ -17,5 +19,6 @@ public interface Presenter_Interface {
     void updateDraw(String player);
     // show the last played card of the last player
     void updateGameLastCard(String card);
-
+    //show the winner
+    void showWinner(Player player, boolean teamMode);
 }

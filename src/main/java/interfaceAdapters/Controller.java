@@ -1,11 +1,12 @@
 package interfaceAdapters;
 import TeamMode.Team;
-import TeamMode.TeamPlayer;
+import TeamMode.TeamBotPlayer;
+import TeamMode.TeamRealPlayer;
 import UI.View;
-import cards.Card;
+import entities.BotPlayer;
 import entities.Player;
 import entities.RealPlayer;
-import game.Game;
+import useCases.GameFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,14 +81,17 @@ public class Controller {
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        List<Player> teamPlayers = new ArrayList<>();
-        for(int i=0; i<teamNames.size();i++){
-            Team team = new Team(teamNames.get(i));
-            for(int k=0;k<playerNames.size();k++){
-                TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
-                team.addTeamPlayer(player);
-                teamPlayers.add(player);
-            }
+        List<Player> teamPlayers = regularPlayerList();
+        Team team1 = new Team(teamNames.get(0));
+        Player player1 = new TeamRealPlayer(playerNames.get(0),team1);
+        Player player2 = new TeamBotPlayer(playerNames.get(1),botLevels.get(0),team1);
+        teamPlayers.add(player1);
+        teamPlayers.add(player2);
+        Team team2 = new Team(teamNames.get(1));
+        //k - bot levels name
+        for(int i=2, k=1; i<playerNames.size();i++,k++){
+            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team1);
+            teamPlayers.add(player);
         }
         return teamPlayers;
     }
@@ -100,28 +104,41 @@ public class Controller {
         List<Player> playerList = new ArrayList<>();
         Player player = new RealPlayer(playerNames.get(0));
         playerList.add(player);
-        for(int k=1;k<playerNames.size();k++){
-            player = new RealPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+
+        for(int k=1, i = 0;k<playerNames.size();k++, i++){
+
+            player = new BotPlayer(playerNames.get(k), botLevels.get(i)) {//TODO: HERE BOT PLAYER
             };
             playerList.add(player);
         }
         return playerList;
     }
-    private Game game;
-
+    private GameFacade gameFacade;
     /**
      * initialization
      */
     public void startGame() {
+        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
+        ui.generateGameBoard(this);
+        gameFacade.setup();
+
+        gameFacade.doLastPlayedEffect();
+        gameFacade.setNextTurn();
+
+        //this has to be called in case the flipped card is a skip or reverse
+        gameFacade.botCycle();
+        /*while(!gameFacade.checkWin()){
+
+        }
         this.game = new Game(regularPlayerList(),true,new Presenter(ui));
         ui.generateGameBoard(this);
 
         //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
         // this.game = new Game(...);
+        game.setup();*/
 
-        game.setup();
-        game.draw(1, game.getToMove());
     }
+
 
 
     /**
@@ -134,20 +151,23 @@ public class Controller {
     //Convert string representation into the index of the card.
 
     public void playCard(String card) {
-        game.play(card);
+        gameFacade.play(card);
+        gameFacade.doLastPlayedEffect();
+        gameFacade.botCycle();
     }
     public void drawCard() {
-        game.draw(1, game.getToMove());
+        gameFacade.draw(1, gameFacade.getGameState().getToMove());
+        gameFacade.botCycle();
     }
     /**
      * pass the new theme colour to the game use cases
      * @param colour the colour that the player chooses after a wild card or plus four card is played
      */
     public void changeColour(String colour) {
-        game.setColour(colour);
+        gameFacade.setColour(colour);
     }
     public void requestPossibleMoves() {
-        game.displayRealPlayerOptions();
+        gameFacade.displayRealPlayerOptions();
     }
 
     /**

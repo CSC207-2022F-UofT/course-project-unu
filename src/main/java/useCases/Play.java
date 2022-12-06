@@ -9,12 +9,14 @@ import java.util.List;
 public class Play {
 
     /**
-     * From current player's hand, remove the card at index n
-     * Update lastPlayed and discardPile
-     * Update View with presenter
+     * From current player's hand, remove the card at index n.
+     * Update lastPlayed and discardPile.
+     * Update View with presenter.
+     * @param gameState the GameState the program is managing
      * @param n index of Card to play
+     * @param presenter the appropriate Presenter_Interface to be managed
      */
-    public void playCard(GameState gameState, int n, Presenter_Interface presenter, GameFacade game) {
+    public void playCard(GameState gameState, int n, Presenter_Interface presenter) {
         List<Player> players = gameState.getPlayers();
         int toMove = gameState.getToMove();
 
@@ -23,6 +25,7 @@ public class Play {
         gameState.setLastPlayed(played);
 
         List<Card> discardPile = gameState.getDiscardPile();
+
         discardPile.add(played);
         gameState.setDiscardPile(discardPile);
 
@@ -33,5 +36,4 @@ public class Play {
             presenter.updateHand(cards);
         }
     }
-
 }
