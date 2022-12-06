@@ -15,12 +15,17 @@ public abstract class UIComponent {
     Controller c;
 
     /**
-     *
+     * Constructor of a UIComponent
      * @param c The controller of this game that each UI component interacts with, takes the input from UI
      */
     public UIComponent(Controller c) {
         this.c = c;
     }
+
+    /**
+     * constructor for UI components that do not take any user input (no controller)
+     */
+    public UIComponent(){}
 
     /**
      * the method that every UI component should implement

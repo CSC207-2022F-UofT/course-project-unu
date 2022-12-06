@@ -133,7 +133,6 @@ public class Controller {
 
     /**
      * GameBoard methods
-     *
      * playCard()
      * I will give a string that represents the card, which will be in the form of "value-colour"
      * For example: g
@@ -156,5 +155,13 @@ public class Controller {
     }
     public void requestPossibleMoves() {
         gameFacade.displayRealPlayerOptions();
+    }
+
+    /**
+     * pass the type of player ranking the user wants to see to the user profile system
+     * @param rankType string, can only be one of "Games", "Wins", "Win Rate"
+     */
+    public void getPlayerRank(String rankType) {
+        //TODO: implement this method
     }
 }
