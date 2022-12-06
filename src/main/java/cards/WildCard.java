@@ -15,7 +15,7 @@ public class WildCard extends Card {
      */
     @Override
     public void playedEffect(Game game) {
-        new ColourChange_UseCaseInteractor(game.getPresenter()).requestColourChange();
+        //new ColourChange_UseCaseInteractor(game.getPresenter()).requestColourChange();
         /*
         new RequestColourChange().requestColourChange();
         Get this to call the use case while preserving Clean Architecture.

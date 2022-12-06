@@ -15,13 +15,13 @@ public class Presenter implements Presenter_Interface {
     public Presenter(View view) {
         viewMethods = view;
     }
-    @Override
-    public void requestNewColour() {
-        viewMethods.requestColourChange();
-        /*
-        Calls a View Interface and a method in it.
-         */
-    }
+//    @Override
+//    public void requestNewColour() {
+//        viewMethods.requestColourChange();
+//        /*
+//        Calls a View Interface and a method in it.
+//         */
+//    }
 
     @Override
     public void updateHand(String[] cards) {
