@@ -18,7 +18,6 @@ public class ViewMethods implements View{
      */
     public ViewMethods() {
         this.c = new Controller(this);
-        displayResultPage(true);
         new StartPage(c);
     }
 
@@ -109,7 +108,7 @@ public class ViewMethods implements View{
     @Override
     public void displayResultPage(boolean isWin) {
         new ResultPage(c, isWin);
-        //gameBoard.discardWindow();
+        gameBoard.discardWindow();
     }
 
     /**

@@ -1,6 +1,6 @@
 package cards;
 
-import game.Game;
+import useCases.GameFacade;
 
 public class WildCard extends Card {
 
@@ -14,7 +14,7 @@ public class WildCard extends Card {
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(Game game) {
+    public void playedEffect(GameFacade game) {
         //new ColourChange_UseCaseInteractor(game.getPresenter()).requestColourChange();
         /*
         new RequestColourChange().requestColourChange();
