@@ -104,4 +104,10 @@ public interface View {
      */
     void displayResultPage(boolean isWin, String winTeam, int losses, int totalGames);
 
+    /**
+     * display the player ranking UI
+     * @param rankType the criteria of how the players are ranked
+     * @param players a sorted ArrayList of players
+     */
+    void displayPlayerRanking(String rankType, List<String> players);
 }

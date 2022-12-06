@@ -131,21 +131,36 @@ public class ResultPage extends UIComponent {
      * @param bg the background label
      */
     public void addResultPageButtons(JLabel bg) {
+        //New Game Button
         JButton newGame = new JButton("New Game");
-        newGame.setBounds(100, 300, 100, 50);
+        newGame.setBounds(200, 300, 100, 50);
         newGame.addActionListener(e -> {
             window.setVisible(false);
             new ViewMethods();
         });
-        JButton scoreBoard = new JButton("Score Board");
-        scoreBoard.setBounds(300, 300, 100, 50);
-        // TODO: print score board
-        JButton userProfile = new JButton("User Profile");
-        userProfile.setBounds(500, 300, 100, 50);
-        // TODO: print user profile
         bg.add(newGame);
-        bg.add(scoreBoard);
-        bg.add(userProfile);
+
+        //Player Ranking Buttons
+        JLabel message = new JLabel("Player Rankings:");
+        message.setBounds(420, 200, 200, 50);
+        message.setForeground(Color.white);
+        message.setFont(new Font("Monospace", Font.PLAIN, 20));
+        JButton games = new JButton("By Games");
+        games.setBounds(420, 250, 75, 50);
+        games.addActionListener(e -> c.getPlayerRank("Games"));
+        JButton wins = new JButton("By Wins");
+        wins.setBounds(420, 300, 75, 50);
+        wins.addActionListener(e -> c.getPlayerRank("Wins"));
+        JButton winRate = new JButton("By Win Rate");
+        winRate.setBounds(420, 350, 100, 50);
+        winRate.addActionListener(e -> c.getPlayerRank("Win Rate"));
+
+        bg.add(message);
+        bg.add(games);
+        bg.add(wins);
+        bg.add(winRate);
+
     }
+
 
 }
