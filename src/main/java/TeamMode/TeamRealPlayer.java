@@ -15,6 +15,7 @@ public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
     public TeamRealPlayer(String name, Team team) {
         super(name);
         teamOfPlayer = team;
+        team.addTeamPlayer(this);
     }
 
     /**
