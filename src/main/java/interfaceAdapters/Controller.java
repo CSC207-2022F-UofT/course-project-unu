@@ -78,10 +78,13 @@ public class Controller {
     public void addBotLevel (String botLevel) {
         botLevels.add(botLevel);
     }
+
+    /**
+     * return the list of teamplayers that can be used to initialize the game
+     * @return
+     */
     private List<Player> teamPlayerList() {
-        //TODO: return the list of players that can be used to initialize the game
-        // Can use teamNames and playerNames
-        List<Player> teamPlayers = regularPlayerList();
+        List<Player> teamPlayers = new ArrayList<>();
         Team team1 = new Team(teamNames.get(0));
         Player player1 = new TeamRealPlayer(playerNames.get(0),team1);
         Player player2 = new TeamBotPlayer(playerNames.get(1),botLevels.get(0),team1);
@@ -90,7 +93,7 @@ public class Controller {
         Team team2 = new Team(teamNames.get(1));
         //k - bot levels name
         for(int i=2, k=1; i<playerNames.size();i++,k++){
-            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team1);
+            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team2);
             teamPlayers.add(player);
         }
         return teamPlayers;
@@ -106,9 +109,7 @@ public class Controller {
         playerList.add(player);
 
         for(int k=1, i = 0;k<playerNames.size();k++, i++){
-
-            player = new BotPlayer(playerNames.get(k), botLevels.get(i)) {//TODO: HERE BOT PLAYER
-            };
+            player = new BotPlayer(playerNames.get(k), botLevels.get(i));
             playerList.add(player);
         }
         return playerList;
