@@ -121,6 +121,12 @@ public class BotPlayer extends Player implements ComputerMoves {
 		return null;
 	}
 
+	/**
+	 * Return the index of the Card the bot wants to play.
+	 * Return -1 if the bot wants to draw a card.
+	 * @param lastPlayed the last played card in the game
+	 * @param nextPlayerHand the hand of the next player
+	 */
 	public int getBotToPlay(Card lastPlayed, List<Card> nextPlayerHand) {
 		int toPlay;
 
