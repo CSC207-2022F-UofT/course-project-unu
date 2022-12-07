@@ -77,6 +77,7 @@ public class GameFacade {
         setNextTurn();
         if (getGameState().getPlayers().get(getGameState().getToMove()).getPlayerType().equalsIgnoreCase("bot")) {
             this.makeBotMove();
+            this.doLastPlayedEffect();
             botCycle();
         }
     }

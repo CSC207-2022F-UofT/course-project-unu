@@ -160,9 +160,7 @@ public class GameState {
             }
 
             for (String wildCardType : wildCardTypes) {
-                for (int i = 0; i < 4; i++) {
-                    newDeck.add(cardFactory.getCard(wildCardType));
-                }
+                newDeck.add(cardFactory.getCard(wildCardType));
             }
         }
         shuffleDeck(newDeck);
