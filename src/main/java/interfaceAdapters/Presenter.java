@@ -4,6 +4,7 @@ import TeamMode.TeamPlayer;
 import UI.View;
 import entities.Player;
 import useCases.Play;
+import gateway.*;
 
 import java.util.List;
 
@@ -11,20 +12,16 @@ public class Presenter implements Presenter_Interface {
 
     View viewMethods;
     /*
-     Based on the MVC model, this Presenter class should depend on a View Interface.
-     Where it gets it I have no idea (yet).
+     * Based on the MVC model, this Presenter class should depend on a View
+     * Interface.
+     * Where it gets it I have no idea (yet).
      */
+    DBGateway gateway;
 
     public Presenter(View view) {
         viewMethods = view;
+        gateway = new CSVGateway("db/stats.csv");
     }
-//    @Override
-//    public void requestNewColour() {
-//        viewMethods.requestColourChange();
-//        /*
-//        Calls a View Interface and a method in it.
-//         */
-//    }
 
     @Override
     public void updateHand(String[] cards) {
@@ -59,7 +56,8 @@ public class Presenter implements Presenter_Interface {
 
     /**
      *
-     * @param player a string representation of player, can only be "player1", ..., "player4"
+     * @param player a string representation of player, can only be "player1", ...,
+     *               "player4"
      */
     @Override
     public void updateDraw(String player) {
@@ -79,6 +77,7 @@ public class Presenter implements Presenter_Interface {
         viewMethods.updateLastCardPlayed(card);
     }
 
+
     /**
      * the method shows the winner depending on whether it is the team mode or not
      * @param player - player who won
@@ -97,4 +96,5 @@ public class Presenter implements Presenter_Interface {
             viewMethods.displayResultPage(player.getPlayerType().equalsIgnoreCase("real"));
             //get the name of the player and show
         }
-    }}
+    }
+}
