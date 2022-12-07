@@ -2,6 +2,7 @@ package TeamMode;
 
 import entities.players.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
@@ -20,6 +21,7 @@ public class Team {
      */
     public Team(String name){
         this.name = name;
+        this.teamPlayers = new ArrayList<>();
     }
 
     /**

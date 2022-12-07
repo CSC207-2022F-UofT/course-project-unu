@@ -14,7 +14,7 @@ public class TeamMode extends GameFacade {
      * @param presenter - presenter
      */
     public TeamMode(List<Player> players, Presenter presenter) {
-        super(players,presenter);
+        super(players,presenter,true);
     }
     /*
     * returns the list of players of the same team

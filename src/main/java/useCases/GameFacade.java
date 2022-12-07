@@ -61,19 +61,9 @@ public class GameFacade {
      * @param n the index of the Card to be played in the realPlayer's deck
      */
     public void play(int n) {
-        play.playCard(this.gameState, n, this.presenter, this);
+        play.playCard(this.gameState, n, this.presenter);
         //lastPlayedEffects change the turn once if it's a skip card
-        lastPlayedEffect.doEffect(this);
-        changeTurn.setNextTurn(this.gameState);
 
-        //CheckWin now checks is ANY player has an empty hand.
-        if (checkWin.checkGameOver(this.gameState)){
-            //end game
-            //I am not sure about this one
-            presenter.showWinner(gameState.getPlayers().get(gameState.getToMove()),teamMode );
-        } else {
-            botCycle();
-        }
     }
 
     /**
@@ -82,16 +72,22 @@ public class GameFacade {
      */
     public void botCycle() {
         //While no one has won and it's not the user's turn
-        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getToMove() != 0) {
-            makeBotMove.makeBotPlay(this.gameState); //make bot move
-            lastPlayedEffect.doEffect(this);
-            changeTurn.setNextTurn(this.gameState);
-        }
+//        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getToMove() != 0) {
+//            makeBotMove.makeBotPlay(this.gameState, presenter); //make bot move
+//            lastPlayedEffect.doEffect(this);
+//            changeTurn.setNextTurn(this.gameState);
+//        }
 
         if (checkWin.checkGameOver(this.gameState)) {
             //end game
             //try this
             presenter.showWinner(gameState.getPlayers().get(gameState.getToMove()),teamMode );
+            return;
+        }
+        setNextTurn();
+        if (getGameState().getPlayers().get(getGameState().getToMove()).getPlayerType().equalsIgnoreCase("bot")) {
+            this.makeBotMove();
+            botCycle();
         }
     }
 
@@ -99,14 +95,14 @@ public class GameFacade {
      * Controller calls this method when the user plays a card.
      */
     public void play(String card) {
-        play(StringConverter.convertCardToInteger(card, gameState));
+        play(StringConverter.getIndexOfCard(card, gameState));
     }
 
     /**
      * Make a bot player in the current gameState make a move.
      */
     public void makeBotMove() {
-        makeBotMove.makeBotPlay(this.gameState);
+        makeBotMove.makeBotPlay(this.gameState,presenter);
     }
 
     /**

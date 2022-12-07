@@ -86,7 +86,12 @@ public class PlayCardWindow extends UIComponent {
         card.setHorizontalAlignment(SwingConstants.CENTER);
         card.setBorder(BorderFactory.createLineBorder(Color.white));
         card.addActionListener(e -> {
-            c.playCard(cardStr);
+            if (cardStr.equals("W") || cardStr.equals("+4")) {
+                //if the card is a wild card then create a colour choosing page and play card after select colour
+                new ChooseColourPage(c, cardStr);
+            } else {
+                c.playCard(cardStr);
+            }
             window.setVisible(false);
         });
 
