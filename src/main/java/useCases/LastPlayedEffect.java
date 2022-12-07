@@ -10,6 +10,6 @@ public class LastPlayedEffect {
      */
     public void doEffect(GameFacade gameF){
         Card lastPlayed = gameF.getGameState().getLastPlayed();
-        //lastPlayed.playedEffect(gameF);
+        lastPlayed.playedEffect(gameF);
     }
 }

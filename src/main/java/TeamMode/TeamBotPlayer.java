@@ -9,8 +9,8 @@ public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
      * @param name
      * @param team
      */
-    public TeamBotPlayer(String name, Team team){
-        super(name);
+    public TeamBotPlayer(String name,String level, Team team){
+        super(name,level);
         teamOfPlayer = team;
         team.addTeamPlayer(this);
     }
