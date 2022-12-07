@@ -15,13 +15,22 @@ public class WildCard extends Card {
      */
     @Override
     public void playedEffect(GameFacade game) {
-        //new ColourChange_UseCaseInteractor(game.getPresenter()).requestColourChange();
-        /*
-        new RequestColourChange().requestColourChange();
-        Get this to call the use case while preserving Clean Architecture.
-
-        Current Flow of Code:
-        WildCard > RequestColourChange (Use Case) > Presenter (Interface) > View (Interface)
-        */
+//        Thread pauseGame = new Thread() {
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    if (isInterrupted()) {
+//                        break;
+//                    }
+//                }
+//            }
+//        };
+//        game.getPresenter().requestColourChange(pauseGame);
+//        pauseGame.start();
+//        try {
+//            pauseGame.join();
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }
