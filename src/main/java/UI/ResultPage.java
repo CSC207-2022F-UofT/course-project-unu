@@ -1,9 +1,12 @@
 package UI;
 
-import gateway.CSVGateway;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
+
+import gateway.CSVGateway;
+import gateway.DBGateway;
+
 import java.awt.*;
 
 /**
@@ -12,39 +15,48 @@ import java.awt.*;
  * allows the user to view the score board and user profile (text-based)
  * allows the user to start a new game
  */
-public class ResultPage extends UIComponent{
+public class ResultPage extends UIComponent {
 
     JFrame window;
     JLabel resultLabel;
     String resultMessage;
     String winTeam;
+    DBGateway dbGateway;
 
     /**
      * Constructor of ResultPage for regular mode
-     * @param c the controller that the result page interacts with
+     * 
+     * @param c     the controller that the result page interacts with
      * @param isWin isWin is true if the user won the game, vice versa
      */
     public ResultPage(Controller c, boolean isWin) {
         super(c);
-        new CSVGateway("db/stats.csv").recordNewGame(isWin);
+
+        this.dbGateway = new CSVGateway("db/stats.csv");
+        this.dbGateway.recordNewGame(isWin);
+
         if (isWin) {
             this.resultMessage = "WIN";
         } else {
             this.resultMessage = "LOSE";
         }
 
-        generateScreen();
+        this.generateScreen();
     }
 
     /**
      * Constructor of ResultPage for team mode
-     * @param c the controller that the result page interacts with
-     * @param isWin isWin is true if the user won the game, vice versa
+     * 
+     * @param c       the controller that the result page interacts with
+     * @param isWin   isWin is true if the user won the game, vice versa
      * @param winTeam the winner team name
      */
     public ResultPage(Controller c, boolean isWin, String winTeam) {
         super(c);
-        new CSVGateway("db/stats.csv").recordNewGame(isWin);
+
+        this.dbGateway = new CSVGateway("db/stats.csv");
+        this.dbGateway.recordNewGame(isWin);
+
         if (isWin) {
             this.resultMessage = "WIN";
         } else {
@@ -52,7 +64,6 @@ public class ResultPage extends UIComponent{
         }
         this.winTeam = winTeam;
         generateScreen();
-
     }
 
     /**
@@ -60,24 +71,39 @@ public class ResultPage extends UIComponent{
      */
     public void generateScreen() {
 
-        //create main field
+        // create main field
         window = super.createMainField("Result Page", 700, 500);
 
-        //set background
+        // set background
         resultLabel = super.setBackground(window, 700, 500);
 
-        //add result text
+        // add result text
         if (winTeam != null) {
             resultLabel.add(result(resultMessage, 250, 50));
             resultLabel.add(winTeamMessage(winTeam));
         } else {
             resultLabel.add(result(resultMessage, 250, 100));
         }
+
         addResultPageButtons(resultLabel);
+
+        // display the wins and losses
+        JLabel totalGames = new JLabel("Total Games: " + Integer.toString(this.dbGateway.getTotalGames()));
+        JLabel totalWins = new JLabel("Total Wins: " + Integer.toString(this.dbGateway.getTotalWins()));
+
+        totalGames.setFont(new Font("Arial", Font.BOLD, 20));
+        totalGames.setBounds(250, 200, 200, 50);
+
+        totalWins.setFont(new Font("Arial", Font.BOLD, 20));
+        totalWins.setBounds(250, 220, 200, 50);
+
+        resultLabel.add(totalGames);
+        resultLabel.add(totalWins);
     }
 
     /**
      * generate a label that shows the result message ("YOU WIN" or "YOU LOSE")
+     * 
      * @param resultMessage "WIN or "LOSE"
      * @return a JLabel that shows the text
      */
@@ -92,6 +118,7 @@ public class ResultPage extends UIComponent{
 
     /**
      * generate a label that shows the winner team
+     * 
      * @param winTeam the name of the winner team
      * @return the label that shows the text
      */
@@ -106,9 +133,11 @@ public class ResultPage extends UIComponent{
 
     /**
      * add all buttons to the background
+     * 
      * @param bg the background label
      */
     public void addResultPageButtons(JLabel bg) {
+        // New Game Button
         JButton newGame = new JButton("New Game");
         newGame.setBounds(200, 300, 100, 50);
         newGame.addActionListener(e -> {
@@ -117,6 +146,7 @@ public class ResultPage extends UIComponent{
         });
         bg.add(newGame);
 
+        // Player Ranking Buttons
         JLabel message = new JLabel("Player Rankings:");
         message.setBounds(420, 200, 200, 50);
         message.setForeground(Color.white);
@@ -137,6 +167,5 @@ public class ResultPage extends UIComponent{
         bg.add(winRate);
 
     }
-
 
 }
