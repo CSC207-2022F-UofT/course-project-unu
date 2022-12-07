@@ -32,15 +32,15 @@ public class Controller {
     /**
      * the list of player names
      */
-    private List<String> teamNames = new ArrayList<>(); //should have length 2 eventually after setup
+    private final List<String> teamNames = new ArrayList<>(); //should have length 2 eventually after setup
     /**
      * the list of team names
      */
-    private List<String> playerNames = new ArrayList<>(); //should have length 4 eventually after setup
+    private final List<String> playerNames = new ArrayList<>(); //should have length 4 eventually after setup
     /**
      * the list of bot player levels
      */
-    private List<String> botLevels = new ArrayList<>(); //should have length 3 as there are 3 AI players
+    private final List<String> botLevels = new ArrayList<>(); //should have length 3 as there are 3 AI players
 
 
     /**

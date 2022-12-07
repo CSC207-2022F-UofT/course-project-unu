@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Player implements Moves {
 
     private final String name;
-    private List<Card> hand = new ArrayList<>();
+    private final List<Card> hand = new ArrayList<>();
 
     public Player(String name){
         this.name = name;
