@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * the UI handler that implements the methods in the view interface
  */
-public class ViewMethods implements View{
+public class ViewMethods implements View {
 
     GameBoard gameBoard;
     Controller c;
@@ -20,10 +20,12 @@ public class ViewMethods implements View{
         this.c = new Controller(this);
         displayResultPage(true);
         new StartPage(c);
+        // this.displayResultPage(true, 2, 10);
     }
 
     /**
      * create a game board page
+     * 
      * @param c the controller that the game board interacts with
      */
     @Override
@@ -33,6 +35,7 @@ public class ViewMethods implements View{
 
     /**
      * update UI the last card played in the game
+     * 
      * @param card the string representation of the last played card
      */
     @Override
@@ -42,6 +45,7 @@ public class ViewMethods implements View{
 
     /**
      * update UI the last card the user played
+     * 
      * @param card the string representation of the last card the user played
      */
     @Override
@@ -51,6 +55,7 @@ public class ViewMethods implements View{
 
     /**
      * update UI the last card bot1 played
+     * 
      * @param card the string representation of bot1's last played card
      */
     @Override
@@ -60,6 +65,7 @@ public class ViewMethods implements View{
 
     /**
      * update UI the last card bot2 played
+     * 
      * @param card the string representation of bot2's last played card
      */
     @Override
@@ -69,6 +75,7 @@ public class ViewMethods implements View{
 
     /**
      * update UI the last card bot3 played
+     * 
      * @param card the string representation of bot3's last played card
      */
     @Override
@@ -78,6 +85,7 @@ public class ViewMethods implements View{
 
     /**
      * update UI the user's cards on hand after the user drew or played a card
+     * 
      * @param cardList a list of cards strings on the real player's hand
      */
     @Override
@@ -94,7 +102,9 @@ public class ViewMethods implements View{
 //    }
 
     /**
-     * generate the play card window that the user can play a card by clicking on a card button
+     * generate the play card window that the user can play a card by clicking on a
+     * card button
+     * 
      * @param cards a list of strings of all the possible moves the user can make
      */
     @Override
@@ -104,23 +114,27 @@ public class ViewMethods implements View{
 
     /**
      * generate the result page after the game ends
-     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * 
+     * @param isWin game result, true if the user won the game, false if the user
+     *              lost the game
      */
     @Override
-    public void displayResultPage(boolean isWin) {
-        new ResultPage(c, isWin);
-        //gameBoard.discardWindow();
+    public void displayResultPage(boolean isWin, int losses, int totalGames) {
+        new ResultPage(c, isWin, losses, totalGames);
+        gameBoard.discardWindow();
     }
 
     /**
      * Overload method, display the result page after a team game ends
      * should be called by the presenter after the game ends
-     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * 
+     * @param isWin   game result, true if the user won the game, false if the user
+     *                lost the game
      * @param winTeam winner team name
      */
     @Override
-    public void displayResultPage(boolean isWin, String winTeam) {
-        new ResultPage(c, isWin, winTeam);
+    public void displayResultPage(boolean isWin, String winTeam, int losses, int totalGames) {
+        new ResultPage(c, isWin, winTeam, losses, totalGames);
         gameBoard.discardWindow();
     }
 
