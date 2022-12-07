@@ -6,6 +6,8 @@ Our computer program allows a user to play UNO against bots. The program deals c
 
 Users can choose:
 
+- Player names
+
 - The difficulty of their opponents
 
 - To play in teams
