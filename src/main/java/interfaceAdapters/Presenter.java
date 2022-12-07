@@ -79,7 +79,11 @@ public class Presenter implements Presenter_Interface {
         viewMethods.updateLastCardPlayed(card);
     }
 
-
+    /**
+     * the method shows the winner depending on whether it is the team mode or not
+     * @param player - player who won
+     * @param teamMode - is it a teamMode or not
+     */
 
     @Override
     public void showWinner(Player player,boolean teamMode) {
