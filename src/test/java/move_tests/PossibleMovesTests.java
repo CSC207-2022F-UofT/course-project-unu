@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PossibleMovesTests {
-    Card card1 = new NumberCard("1", "Blue");
-    Card card2 = new ReverseCard("Reverse", "Red");
-    Card card3 = new PlusTwoCard("Plus2", "Yellow");
+    Card card1 = new NumberCard("1", "Blue", 3);
+    Card card2 = new ReverseCard("Reverse", "Red", 4);
+    Card card3 = new PlusTwoCard("Plus2", "Yellow", 2);
     List<Card> cards = Arrays.asList(card1, card2, card3);
     Player testPlayer = new RealPlayer("Test");
 
@@ -28,7 +28,7 @@ public class PossibleMovesTests {
      */
     @Test
     public void noPossibleMoves() {
-        Card middle = new NumberCard("5", "Green");
+        Card middle = new NumberCard("5", "Green", 3);
         List<Card> possibleMoves = testPlayer.getPossibleMoves(middle);
 
         Assertions.assertEquals(0, possibleMoves.size());
@@ -39,12 +39,12 @@ public class PossibleMovesTests {
      */
     @Test
     public void wildCard() {
-        Card wildCard = new WildCard("Wild");
+        Card wildCard = new WildCard("Wild", 1);
         List<Card> wild = new ArrayList<>();
         wild.add(wildCard);
         testPlayer.drawCards(wild);
 
-        Card middle = new NumberCard("5", "Green");
+        Card middle = new NumberCard("5", "Green", 3);
         List<Card> possibleMoves = testPlayer.getPossibleMoves(middle);
 
         Assertions.assertEquals(1, possibleMoves.size());
@@ -56,7 +56,7 @@ public class PossibleMovesTests {
      */
     @Test
     public void typeCard() {
-        Card middle = new ReverseCard("Reverse", "Green");
+        Card middle = new ReverseCard("Reverse", "Green", 4);
         List<Card> possibleMoves = testPlayer.getPossibleMoves(middle);
 
         Assertions.assertEquals(1, possibleMoves.size());
@@ -68,7 +68,7 @@ public class PossibleMovesTests {
      */
     @Test
     public void colourCard() {
-        Card middle = new NumberCard("8", "Red");
+        Card middle = new NumberCard("8", "Red", 3);
         List<Card> possibleMoves = testPlayer.getPossibleMoves(middle);
 
         Assertions.assertEquals(1, possibleMoves.size());

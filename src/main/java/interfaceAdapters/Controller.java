@@ -1,10 +1,9 @@
 package interfaceAdapters;
 import TeamMode.Team;
-import TeamMode.TeamPlayer;
+import TeamMode.TeamBotPlayer;
+import TeamMode.TeamRealPlayer;
 import UI.View;
-import cards.Card;
 import entities.BotPlayer;
-import entities.GameState;
 import entities.Player;
 import entities.RealPlayer;
 import useCases.GameFacade;
@@ -82,14 +81,17 @@ public class Controller {
     private List<Player> teamPlayerList() {
         //TODO: return the list of players that can be used to initialize the game
         // Can use teamNames and playerNames
-        List<Player> teamPlayers = new ArrayList<>();
-        for(int i=0; i<teamNames.size();i++){
-            Team team = new Team(teamNames.get(i));
-            for(int k=0;k<playerNames.size();k++){
-                TeamPlayer player = new TeamPlayer(playerNames.get(k),team);
-                team.addTeamPlayer(player);
-                teamPlayers.add(player);
-            }
+        List<Player> teamPlayers = regularPlayerList();
+        Team team1 = new Team(teamNames.get(0));
+        Player player1 = new TeamRealPlayer(playerNames.get(0),team1);
+        Player player2 = new TeamBotPlayer(playerNames.get(1),botLevels.get(0),team1);
+        teamPlayers.add(player1);
+        teamPlayers.add(player2);
+        Team team2 = new Team(teamNames.get(1));
+        //k - bot levels name
+        for(int i=2, k=1; i<playerNames.size();i++,k++){
+            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team1);
+            teamPlayers.add(player);
         }
         return teamPlayers;
     }
@@ -102,8 +104,10 @@ public class Controller {
         List<Player> playerList = new ArrayList<>();
         Player player = new RealPlayer(playerNames.get(0));
         playerList.add(player);
-        for(int k=1;k<playerNames.size();k++){
-            player = new BotPlayer(playerNames.get(k)) {//HERE BOT PLAYER
+
+        for(int k=1, i = 0;k<playerNames.size();k++, i++){
+
+            player = new BotPlayer(playerNames.get(k), botLevels.get(i)) {//TODO: HERE BOT PLAYER
             };
             playerList.add(player);
         }
@@ -114,9 +118,15 @@ public class Controller {
      * initialization
      */
     public void startGame() {
-        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui));
+        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
         ui.generateGameBoard(this);
         gameFacade.setup();
+
+        gameFacade.doLastPlayedEffect();
+        gameFacade.setNextTurn();
+
+        //this has to be called in case the flipped card is a skip or reverse
+        gameFacade.botCycle();
         /*while(!gameFacade.checkWin()){
 
         }
@@ -133,7 +143,6 @@ public class Controller {
 
     /**
      * GameBoard methods
-     *
      * playCard()
      * I will give a string that represents the card, which will be in the form of "value-colour"
      * For example: g
@@ -143,9 +152,12 @@ public class Controller {
 
     public void playCard(String card) {
         gameFacade.play(card);
+        gameFacade.doLastPlayedEffect();
+        gameFacade.botCycle();
     }
     public void drawCard() {
         gameFacade.draw(1, gameFacade.getGameState().getToMove());
+        gameFacade.botCycle();
     }
     /**
      * pass the new theme colour to the game use cases
@@ -156,5 +168,13 @@ public class Controller {
     }
     public void requestPossibleMoves() {
         gameFacade.displayRealPlayerOptions();
+    }
+
+    /**
+     * pass the type of player ranking the user wants to see to the user profile system
+     * @param rankType string, can only be one of "Games", "Wins", "Win Rate"
+     */
+    public void getPlayerRank(String rankType) {
+        //TODO: implement this method
     }
 }

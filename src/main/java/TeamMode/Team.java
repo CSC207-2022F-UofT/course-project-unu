@@ -13,6 +13,7 @@ public class Team {
     public Team(){
     }
 
+
     /**
      * creates a Team object
      * @param name name of the team
@@ -41,7 +42,7 @@ public class Team {
      * return the all players in the team
      * @return
      */
-    public List<Player> getTeamPlayers(){
+    public List getTeamPlayers(){
         return teamPlayers;
     }
 
@@ -50,7 +51,7 @@ public class Team {
      * @param player - new player
      * @return
      */
-    public boolean addTeamPlayer(TeamPlayer player){
+    public boolean addTeamPlayer(Player player){
         if(teamPlayers.contains(player)){
             return false;
         }

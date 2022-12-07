@@ -21,26 +21,44 @@ public class GameState {
         this.isClockwise = true;
     }
 
+    /**
+     * Return the list of Player objects in the game.
+     */
     public List<Player> getPlayers() {
         return this.players;
     }
 
+    /**
+     * Return a list of Card objects contained in the GameState's hand.
+     */
     public List<Card> getDeck() {
         return this.deck;
     }
 
+    /**
+     * Return the last played Card.
+     */
     public Card getLastPlayed() {
         return this.lastPlayed;
     }
 
+    /**
+     * Return a list of Card objects contained in the GameState's discard pile.
+     */
     public List<Card> getDiscardPile() {
         return this.discardPile;
     }
 
+    /**
+     * Return the index of the player whose turn it is.
+     */
     public int getToMove() {
         return this.toMove;
     }
 
+    /**
+     * Return the index of the player whose turn it is next.
+     */
     public int getNextPlayer() {
         int nextPlayer;
 
@@ -53,34 +71,65 @@ public class GameState {
         return nextPlayer;
     }
 
+    /**
+     * Return whether the game turn order is clockwise.
+     * Returns True if clockwise, returns False if not clockwise.
+     */
     public boolean getIsClockwise() {
         return this.isClockwise;
     }
 
+    /**
+     * Set the GameState's last played Card.
+     * @param lastPlayed the last played card in the game
+     */
     public void setLastPlayed(Card lastPlayed) {
         this.lastPlayed = lastPlayed;
     }
 
+    /**
+     * Set the GameState's deck.
+     * @param deck the game's deck
+     */
     public void setDeck(List<Card> deck) {
         this.deck = deck;
     }
 
+    /**
+     * Set the GameState's discard pile.
+     * @param discardPile the game's discard pile
+     */
     public void setDiscardPile(List<Card> discardPile) {
         this.discardPile = discardPile;
     }
 
+    /**
+     * Set the index of the player whose turn it is.
+     * @param toMove the index of the player whose turn it is
+     */
     public void setToMove(int toMove) {
         this.toMove = toMove;
     }
 
+    /**
+     * Switch the direction of turns.
+     * Clockwise becomes counterclockwise and vice versa.
+     */
     public void changeDirection() {
         this.isClockwise = !isClockwise;
     }
 
+    /**
+     * Shuffle the cards in the deck.
+     * @param deck deck of Card objects to be shuffled
+     */
     public void shuffleDeck(List<Card> deck) {
         Collections.shuffle(deck);
     }
 
+    /**
+     * Add the cards in the GameState's discard pile to its deck and shuffle the new deck.
+     */
     public void reshuffle() {
         this.deck = new ArrayList<>(discardPile);
         this.deck.remove(lastPlayed);
@@ -91,6 +140,9 @@ public class GameState {
         shuffleDeck(this.deck);
     }
 
+    /**
+     * Create and return a new deck of Cards.
+     */
     private List<Card> newDeck() {
         CardFactory cardFactory = new CardFactory();
 
