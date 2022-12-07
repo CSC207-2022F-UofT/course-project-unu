@@ -9,8 +9,8 @@ public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
     /**
      * creates a team player
      *
-     * @param name
-     * @param team
+     * @param name name
+     * @param team team
      */
     public TeamRealPlayer(String name, Team team) {
         super(name);
@@ -19,8 +19,7 @@ public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
 
     /**
      * return team name
-     *
-     * @return
+     * @return team name
      */
     public String getTeamName() {
         return teamOfPlayer.getName();
@@ -28,8 +27,6 @@ public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
 
     /**
      * sets team name
-     *
-     * @return
      */
     public void setTeamName(String name) {
         this.teamOfPlayer.setName(name);
@@ -37,8 +34,6 @@ public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
 
     /**
      * sets team
-     *
-     * @return
      */
     public void setTeamOfPlayer(Team teamOfPlayer) {
         this.teamOfPlayer = teamOfPlayer;
@@ -46,8 +41,7 @@ public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
 
     /**
      * returns team
-     *
-     * @return
+     * @return team
      */
     public Team getTeam() {
         return this.teamOfPlayer;

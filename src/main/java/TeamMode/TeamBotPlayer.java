@@ -6,8 +6,8 @@ public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
     private Team teamOfPlayer;
     /**
      * creates a team player
-     * @param name
-     * @param team
+     * @param name name
+     * @param team team
      */
     public TeamBotPlayer(String name,String level, Team team){
         super(name,level);
@@ -17,14 +17,13 @@ public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
 
     /**
      * return team name
-     * @return
+     * @return team name
      */
     public String getTeamName() {
         return teamOfPlayer.getName();
     }
     /**
      * sets team name
-     * @return
      */
     public void setTeamName(String name) {
         this.teamOfPlayer.setName(name);
@@ -32,14 +31,13 @@ public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
 
     /**
      * sets team
-     * @return
      */
     public void setTeamOfPlayer(Team teamOfPlayer) {
         this.teamOfPlayer = teamOfPlayer;
     }
     /**
      * returns team
-     * @return
+     * @return the team
      */
     public Team getTeam(){
         return this.teamOfPlayer;
