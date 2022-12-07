@@ -1,5 +1,6 @@
 package UI;
 
+import gateway.CSVGateway;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
@@ -25,11 +26,13 @@ public class ResultPage extends UIComponent{
      */
     public ResultPage(Controller c, boolean isWin) {
         super(c);
+        new CSVGateway("db/stats.csv").recordNewGame(isWin);
         if (isWin) {
             this.resultMessage = "WIN";
         } else {
             this.resultMessage = "LOSE";
         }
+
         generateScreen();
     }
 
@@ -41,6 +44,7 @@ public class ResultPage extends UIComponent{
      */
     public ResultPage(Controller c, boolean isWin, String winTeam) {
         super(c);
+        new CSVGateway("db/stats.csv").recordNewGame(isWin);
         if (isWin) {
             this.resultMessage = "WIN";
         } else {
@@ -48,6 +52,7 @@ public class ResultPage extends UIComponent{
         }
         this.winTeam = winTeam;
         generateScreen();
+
     }
 
     /**
