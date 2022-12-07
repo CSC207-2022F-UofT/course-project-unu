@@ -93,13 +93,13 @@ public class ViewMethods implements View {
         gameBoard.displayAvailableCards(cardList);
     }
 
-    /**
-     * create a choosing colour page after the user played a wild or +4 card
-     */
-    @Override
-    public void requestColourChange() {
-        new ChooseColourPage(c);
-    }
+//    /**
+//     * create a choosing colour page after the user played a wild or +4 card
+//     */
+//    @Override
+//    public void requestColourChange() {
+//        new ChooseColourPage(c);
+//    }
 
     /**
      * generate the play card window that the user can play a card by clicking on a

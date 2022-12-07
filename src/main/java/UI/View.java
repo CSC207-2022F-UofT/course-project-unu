@@ -73,10 +73,10 @@ public interface View {
      */
     void updateBot3Card(String card);
 
-    /**
-     * display a colour choosing window after a wild card is played
-     */
-    void requestColourChange();
+//    /**
+//     * display a colour choosing window after a wild card is played
+//     */
+//    void requestColourChange();
 
     /**
      * display all the possible moves that the real player can make
