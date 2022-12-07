@@ -10,6 +10,7 @@ public class GameManager {
     ViewMethods ui;
 
     public GameManager() {
+
         this.ui = new ViewMethods();
     }
 
