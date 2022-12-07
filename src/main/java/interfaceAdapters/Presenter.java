@@ -87,8 +87,6 @@ public class Presenter implements Presenter_Interface {
 
     @Override
     public void showWinner(Player player,boolean teamMode) {
-        System.out.println(player.getName());
-        System.out.println("Player hand"+player.getHand().size());
         if(teamMode==true){
             viewMethods.displayResultPage(player.getPlayerType().equalsIgnoreCase("real"),((TeamPlayer)player).getTeam().getName());
             //cast player to teamPlayer and get his team
