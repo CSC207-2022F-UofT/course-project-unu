@@ -1,7 +1,7 @@
 package interfaceAdapters;
 
-import UI.View;
 import entities.players.Player;
+import useCases.Presenter_Interface;
 
 import java.util.List;
 

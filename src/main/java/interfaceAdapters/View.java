@@ -1,4 +1,4 @@
-package UI;
+package interfaceAdapters;
 
 import interfaceAdapters.Controller;
 

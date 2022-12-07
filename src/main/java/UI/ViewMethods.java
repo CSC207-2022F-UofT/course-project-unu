@@ -1,12 +1,14 @@
 package UI;
 
 import interfaceAdapters.Controller;
+import interfaceAdapters.View;
+
 import java.util.List;
 
 /**
  * the UI handler that implements the methods in the view interface
  */
-public class ViewMethods implements View{
+public class ViewMethods implements View {
 
     GameBoard gameBoard;
     Controller c;

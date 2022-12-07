@@ -1,4 +1,4 @@
-package interfaceAdapters;
+package useCases;
 
 
 import entities.players.Player;

@@ -1,6 +1,6 @@
 package entities.cards;
 
-import interfaceAdapters.Presenter_Interface;
+import useCases.Presenter_Interface;
 
 public class ColourChange_UseCaseInteractor {
 
