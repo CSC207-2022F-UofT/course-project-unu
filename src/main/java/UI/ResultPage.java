@@ -3,6 +3,10 @@ package UI;
 import interfaceAdapters.Controller;
 
 import javax.swing.*;
+
+import gateway.CSVGateway;
+import gateway.DBGateway;
+
 import java.awt.*;
 
 /**
@@ -17,8 +21,7 @@ public class ResultPage extends UIComponent {
     JLabel resultLabel;
     String resultMessage;
     String winTeam;
-    int totalGames;
-    int totalLosses;
+    DBGateway dbGateway;
 
     /**
      * Constructor of ResultPage for regular mode
@@ -26,16 +29,17 @@ public class ResultPage extends UIComponent {
      * @param c     the controller that the result page interacts with
      * @param isWin isWin is true if the user won the game, vice versa
      */
-    public ResultPage(Controller c, boolean isWin, int losses, int totalGames) {
+    public ResultPage(Controller c, boolean isWin) {
         super(c);
+
+        this.dbGateway = new CSVGateway("db/stats.csv");
+        this.dbGateway.recordNewGame(isWin);
+
         if (isWin) {
             this.resultMessage = "WIN";
         } else {
             this.resultMessage = "LOSE";
         }
-
-        this.totalGames = totalGames;
-        this.totalLosses = losses;
 
         this.generateScreen();
     }
@@ -47,16 +51,18 @@ public class ResultPage extends UIComponent {
      * @param isWin   isWin is true if the user won the game, vice versa
      * @param winTeam the winner team name
      */
-    public ResultPage(Controller c, boolean isWin, String winTeam, int losses, int totalGames) {
+    public ResultPage(Controller c, boolean isWin, String winTeam) {
         super(c);
+
+        this.dbGateway = new CSVGateway("db/stats.csv");
+        this.dbGateway.recordNewGame(isWin);
+
         if (isWin) {
             this.resultMessage = "WIN";
         } else {
             this.resultMessage = "LOSE";
         }
         this.winTeam = winTeam;
-        this.totalGames = totalGames;
-        this.totalLosses = losses;
         generateScreen();
     }
 
@@ -82,17 +88,17 @@ public class ResultPage extends UIComponent {
         addResultPageButtons(resultLabel);
 
         // display the wins and losses
-        JLabel totalGames = new JLabel("Total Games: " + this.totalGames);
-        JLabel losses = new JLabel("Total Losses: " + this.totalLosses);
+        JLabel totalGames = new JLabel("Total Games: " + Integer.toString(this.dbGateway.getTotalGames()));
+        JLabel totalWins = new JLabel("Total Wins: " + Integer.toString(this.dbGateway.getTotalWins()));
 
         totalGames.setFont(new Font("Arial", Font.BOLD, 20));
         totalGames.setBounds(250, 200, 200, 50);
 
-        losses.setFont(new Font("Arial", Font.BOLD, 20));
-        losses.setBounds(250, 220, 200, 50);
+        totalWins.setFont(new Font("Arial", Font.BOLD, 20));
+        totalWins.setBounds(250, 220, 200, 50);
 
         resultLabel.add(totalGames);
-        resultLabel.add(losses);
+        resultLabel.add(totalWins);
     }
 
     /**
@@ -131,7 +137,7 @@ public class ResultPage extends UIComponent {
      * @param bg the background label
      */
     public void addResultPageButtons(JLabel bg) {
-        //New Game Button
+        // New Game Button
         JButton newGame = new JButton("New Game");
         newGame.setBounds(200, 300, 100, 50);
         newGame.addActionListener(e -> {
@@ -140,7 +146,7 @@ public class ResultPage extends UIComponent {
         });
         bg.add(newGame);
 
-        //Player Ranking Buttons
+        // Player Ranking Buttons
         JLabel message = new JLabel("Player Rankings:");
         message.setBounds(420, 200, 200, 50);
         message.setForeground(Color.white);
@@ -161,6 +167,5 @@ public class ResultPage extends UIComponent {
         bg.add(winRate);
 
     }
-
 
 }

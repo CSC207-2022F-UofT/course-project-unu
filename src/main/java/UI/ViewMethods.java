@@ -93,13 +93,13 @@ public class ViewMethods implements View {
         gameBoard.displayAvailableCards(cardList);
     }
 
-//    /**
-//     * create a choosing colour page after the user played a wild or +4 card
-//     */
-//    @Override
-//    public void requestColourChange() {
-//        new ChooseColourPage(c);
-//    }
+    // /**
+    // * create a choosing colour page after the user played a wild or +4 card
+    // */
+    // @Override
+    // public void requestColourChange() {
+    // new ChooseColourPage(c);
+    // }
 
     /**
      * generate the play card window that the user can play a card by clicking on a
@@ -119,8 +119,8 @@ public class ViewMethods implements View {
      *              lost the game
      */
     @Override
-    public void displayResultPage(boolean isWin, int losses, int totalGames) {
-        new ResultPage(c, isWin, losses, totalGames);
+    public void displayResultPage(boolean isWin) {
+        new ResultPage(c, isWin);
         gameBoard.discardWindow();
     }
 
@@ -133,15 +133,16 @@ public class ViewMethods implements View {
      * @param winTeam winner team name
      */
     @Override
-    public void displayResultPage(boolean isWin, String winTeam, int losses, int totalGames) {
-        new ResultPage(c, isWin, winTeam, losses, totalGames);
+    public void displayResultPage(boolean isWin, String winTeam) {
+        new ResultPage(c, isWin, winTeam);
         gameBoard.discardWindow();
     }
 
     /**
      * display the player ranking UI
+     * 
      * @param rankType the criteria of how the players are ranked
-     * @param players a sorted ArrayList of players
+     * @param players  a sorted ArrayList of players
      */
     @Override
     public void displayPlayerRanking(String rankType, List<String> players) {
