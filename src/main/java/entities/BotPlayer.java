@@ -75,15 +75,14 @@ public class BotPlayer extends Player implements ComputerMoves {
 		}
 
 		Random rand = new Random();
-		int n = rand.nextInt(possibleMoves.size());
 
-		return n;
+		return rand.nextInt(possibleMoves.size());
 	}
 
 	/**
 	 * Is the next player about to Uno?
 	 * 
-	 * @param nextPlayerCards
+	 * @param nextPlayerCards the next player's hand
 	 */
 	private int upsetNextPlayerWeight(List<Card> nextPlayerCards) {
 		if (nextPlayerCards.size() <= 2) {
@@ -96,21 +95,22 @@ public class BotPlayer extends Player implements ComputerMoves {
 	/**
 	 * Return the card of the move to make based on the difficulty.
 	 * 
-	 * @param nextPlayerCards
+	 * @param lastPlayed the last played card in the game
+	 * @param nextPlayerHand the hand of the next player
 	 */
 	public Card makeMove(Card lastPlayed, List<Card> nextPlayerHand) {
 		int toPlay = -1;
 
-		if (this.difficulty.equals("easy")) {
-			toPlay = getRandomMove(lastPlayed);
-		}
-
-		else if (this.difficulty.equals("medium")) {
-			toPlay = getMovesFromWeights(lastPlayed);
-		}
-
-		else if (this.difficulty.equals("hard")) {
-			toPlay = getBestMove(lastPlayed, nextPlayerHand);
+		switch (this.difficulty) {
+			case "easy":
+				toPlay = getRandomMove(lastPlayed);
+				break;
+			case "medium":
+				toPlay = getMovesFromWeights(lastPlayed);
+				break;
+			case "hard":
+				toPlay = getBestMove(lastPlayed, nextPlayerHand);
+				break;
 		}
 
 		if (toPlay == -1) {

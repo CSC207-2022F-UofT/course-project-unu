@@ -9,7 +9,7 @@ public class CSVGateway implements DBGateway {
 
   /**
    * Increase the total number of wins by the specified amount 
-   * @param amount
+   * @param amount the number of wins
    */
   private void increaseTotalWins(int amount) {
     this.csvHandler.setColValue("Total Wins", Integer.toString(this.getTotalWins() + amount));

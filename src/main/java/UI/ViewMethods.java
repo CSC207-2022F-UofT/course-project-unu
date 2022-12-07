@@ -2,7 +2,6 @@ package UI;
 
 import interfaceAdapters.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,9 +17,7 @@ public class ViewMethods implements View {
      */
     public ViewMethods() {
         this.c = new Controller(this);
-        displayResultPage(true);
         new StartPage(c);
-        // this.displayResultPage(true, 2, 10);
     }
 
     /**

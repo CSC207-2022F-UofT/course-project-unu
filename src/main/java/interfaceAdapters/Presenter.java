@@ -3,7 +3,6 @@ package interfaceAdapters;
 import TeamMode.TeamPlayer;
 import UI.View;
 import entities.Player;
-import useCases.Play;
 import gateway.*;
 
 import java.util.List;
@@ -61,14 +60,19 @@ public class Presenter implements Presenter_Interface {
      */
     @Override
     public void updateDraw(String player) {
-        if (player.equals("player1")) {
-            viewMethods.updateMyLastPlayedCard("D");
-        } else if (player.equals("player2")) {
-            viewMethods.updateBot1Card("D");
-        } else if (player.equals("player3")) {
-            viewMethods.updateBot2Card("D");
-        } else if (player.equals("player4")) {
-            viewMethods.updateBot3Card("D");
+        switch (player) {
+            case "player1":
+                viewMethods.updateMyLastPlayedCard("D");
+                break;
+            case "player2":
+                viewMethods.updateBot1Card("D");
+                break;
+            case "player3":
+                viewMethods.updateBot2Card("D");
+                break;
+            case "player4":
+                viewMethods.updateBot3Card("D");
+                break;
         }
     }
 
@@ -86,7 +90,7 @@ public class Presenter implements Presenter_Interface {
 
     @Override
     public void showWinner(Player player,boolean teamMode) {
-        if(teamMode==true){
+        if(teamMode){
             viewMethods.displayResultPage(player.getPlayerType().equalsIgnoreCase("real"),((TeamPlayer)player).getTeam().getName());
             //cast player to teamPlayer and get his team
         }

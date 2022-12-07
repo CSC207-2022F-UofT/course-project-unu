@@ -88,8 +88,8 @@ public class ResultPage extends UIComponent {
         addResultPageButtons(resultLabel);
 
         // display the wins and losses
-        JLabel totalGames = new JLabel("Total Games: " + Integer.toString(this.dbGateway.getTotalGames()));
-        JLabel totalWins = new JLabel("Total Wins: " + Integer.toString(this.dbGateway.getTotalWins()));
+        JLabel totalGames = new JLabel("Total Games: " + this.dbGateway.getTotalGames());
+        JLabel totalWins = new JLabel("Total Wins: " + this.dbGateway.getTotalWins());
 
         totalGames.setFont(new Font("Arial", Font.BOLD, 20));
         totalGames.setBounds(250, 200, 200, 50);

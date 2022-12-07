@@ -29,18 +29,6 @@ public class Controller {
         isTeamMode = teamMode;
     }
 
-
-    /**
-     * Setup Page methods (mode choosing)
-     * for simplicity, default:
-     * - four players
-     * - two teams
-     * - first two players are in one team, the last two players are another team
-     * - the first player is the real player and the rest three players are AI (types)
-     */
-    //TODO: feel free to change the type of the three variables below to list if needed
-    // I'm not sure if coming up with a list of players and cards count as dependency to the entity layer
-    // If is, we still need to make subtle change on that to make it adhere to clean architecture
     /**
      * the list of player names
      */
@@ -57,7 +45,7 @@ public class Controller {
 
     /**
      * appends playerName with playerNames List
-     * @param playerName
+     * @param playerName the player name
      */
     public void addPlayerName(String playerName) {
         playerNames.add(playerName);
@@ -65,7 +53,7 @@ public class Controller {
 
     /**
      * appends teamName with teamNames List
-     * @param teamName
+     * @param teamName the team name
      */
     public void addTeamName (String teamName) {
         teamNames.add(teamName);
@@ -73,15 +61,15 @@ public class Controller {
 
     /**
      * appends botLevels with botLevel (will be one of "easy", "medium", "hard")
-     * @param botLevel
+     * @param botLevel the bot level
      */
     public void addBotLevel (String botLevel) {
         botLevels.add(botLevel);
     }
 
     /**
-     * return the list of teamplayers that can be used to initialize the game
-     * @return
+     * return the list of team players that can be used to initialize the game
+     * @return list of team players
      */
     private List<Player> teamPlayerList() {
         List<Player> teamPlayers = new ArrayList<>();
@@ -101,7 +89,7 @@ public class Controller {
 
     /**
      * returns the list of players that can be used to initialize the game
-     * @return
+     * @return the list of players
      */
     private List<Player> regularPlayerList() {
         List<Player> playerList = new ArrayList<>();
@@ -133,17 +121,7 @@ public class Controller {
 
         //this has to be called in case the flipped card is a skip or reverse
         gameFacade.botCycle();
-        /*while(!gameFacade.checkWin()){
-
-        }
-        this.game = new Game(regularPlayerList(),true,new Presenter(ui));
-        ui.generateGameBoard(this);
-
-        //TODO: initialize a new game object using the playerlist and standardCardDeck we have in the previous method
-        // this.game = new Game(...);
-        game.setup();*/
-
-    }
+}
 
 
 
