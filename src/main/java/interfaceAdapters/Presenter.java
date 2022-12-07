@@ -1,5 +1,6 @@
 package interfaceAdapters;
 
+import TeamMode.TeamPlayer;
 import UI.View;
 import entities.players.Player;
 
@@ -16,13 +17,13 @@ public class Presenter implements Presenter_Interface {
     public Presenter(View view) {
         viewMethods = view;
     }
-    @Override
-    public void requestNewColour() {
-        viewMethods.requestColourChange();
-        /*
-        Calls a View Interface and a method in it.
-         */
-    }
+//    @Override
+//    public void requestNewColour() {
+//        viewMethods.requestColourChange();
+//        /*
+//        Calls a View Interface and a method in it.
+//         */
+//    }
 
     @Override
     public void updateHand(String[] cards) {
@@ -31,7 +32,9 @@ public class Presenter implements Presenter_Interface {
 
     @Override
     public void updateLastPlayed(String card, int toMove) {
-        viewMethods.updateLastCardPlayed(card);
+        if (!card.equals("D")) { // if the player's last move is not draw
+            viewMethods.updateLastCardPlayed(card);
+        }
 
         switch (toMove) {
             case 0:
@@ -75,14 +78,22 @@ public class Presenter implements Presenter_Interface {
         viewMethods.updateLastCardPlayed(card);
     }
 
-
+    /**
+     * the method shows the winner depending on whether it is the team mode or not
+     * @param player - player who won
+     * @param teamMode - is it a teamMode or not
+     */
 
     @Override
     public void showWinner(Player player,boolean teamMode) {
+        System.out.println(player.getName());
+        System.out.println("Player hand"+player.getHand().size());
         if(teamMode==true){
+            viewMethods.displayResultPage(player.getPlayerType().equalsIgnoreCase("real"),((TeamPlayer)player).getTeam().getName());
             //cast player to teamPlayer and get his team
         }
         else{
+            viewMethods.displayResultPage(player.getPlayerType().equalsIgnoreCase("real"));
             //get the name of the player and show
         }
     }}

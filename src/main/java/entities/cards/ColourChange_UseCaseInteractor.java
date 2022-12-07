@@ -13,7 +13,7 @@ public class ColourChange_UseCaseInteractor {
     ColourChange_UseCaseInteractor(Presenter_Interface presenter) {
         this.presenter = presenter;
     }
-    public void requestColourChange() {
-        presenter.requestNewColour();
-    }
+//    public void requestColourChange() {
+//        presenter.requestNewColour();
+//    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * An interface of methods that lower level objects can freely interface with.
  */
 public interface Presenter_Interface {
-    void requestNewColour();
+    //void requestNewColour();
 
     void updateHand(String[] cards);
 

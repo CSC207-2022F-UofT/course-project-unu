@@ -15,8 +15,16 @@ public class ChooseColourPage extends UIComponent {
 
     JFrame window;
     JPanel colourPanel;
-    public ChooseColourPage(Controller c) {
+    String cardStr;
+
+    /**
+     * Constructor of chooseColourPage
+     * @param c the controller this UI component passes input to
+     * @param cardStr the string representation of wild card, can only be either "W" or "+4"
+     */
+    public ChooseColourPage(Controller c, String cardStr) {
         super(c);
+        this.cardStr = cardStr;
         generateScreen();
     }
 
@@ -45,6 +53,7 @@ public class ChooseColourPage extends UIComponent {
             int finalI = i;
             colorButton.addActionListener(e -> {
                 c.changeColour(colourStr[finalI]);
+                c.playCard(cardStr);
                 window.setVisible(false);
             });
             colourPanel.add(colorButton);

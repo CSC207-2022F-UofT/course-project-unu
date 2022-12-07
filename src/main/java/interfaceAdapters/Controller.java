@@ -118,7 +118,12 @@ public class Controller {
      * initialization
      */
     public void startGame() {
-        gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
+        if(isTeamMode){
+            gameFacade = new GameFacade(teamPlayerList(),new Presenter(ui),isTeamMode);
+        }
+        else{
+            gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
+        }
         ui.generateGameBoard(this);
         gameFacade.setup();
 
