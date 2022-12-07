@@ -1,6 +1,6 @@
 package moves;
 import cards.Card;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ComputerMoves extends Moves {
     /**
@@ -8,7 +8,7 @@ public interface ComputerMoves extends Moves {
      * If a move doesn't exist, return -1.
      * @param playedCards the entire list of played cards. 
      */
-    public int getBestMove(ArrayList<Card> playedCards, ArrayList<Card> nextPlayerHand);
+    public int getBestMove(Card lastPlayed, List<Card> nextPlayerHand);
 
     /**
      * Return the index of the from Player's hand of a random Card that Player can play.

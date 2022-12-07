@@ -27,6 +27,11 @@ public class CardFactory {
         }
     }
 
+    /**
+     * Return a card object of the given cardType where the card does not have a colour.
+     * This applies to Wild Cards and +4 Cards.
+     * @param cardType the type of Card
+     */
     public Card getCard(String cardType) {
         if (cardType.equalsIgnoreCase("wild")) {
             return new WildCard(cardType, 2);
