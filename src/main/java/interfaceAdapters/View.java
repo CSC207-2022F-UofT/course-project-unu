@@ -1,6 +1,4 @@
-package UI;
-
-import interfaceAdapters.Controller;
+package interfaceAdapters;
 
 import java.util.List;
 

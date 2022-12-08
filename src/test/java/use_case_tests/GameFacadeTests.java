@@ -3,7 +3,7 @@ import entities.cards.WildCard;
 import entities.BotPlayer;
 import entities.Player;
 import entities.RealPlayer;
-import interfaceAdapters.Presenter_Interface;
+import useCases.Presenter_Interface;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import useCases.GameFacade;

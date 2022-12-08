@@ -1,6 +1,7 @@
 package UI;
 
 import interfaceAdapters.Controller;
+import interfaceAdapters.View;
 
 import java.util.List;
 

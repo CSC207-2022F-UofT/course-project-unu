@@ -2,7 +2,6 @@ package useCases;
 
 import entities.GameState;
 import entities.Player;
-import interfaceAdapters.Presenter_Interface;
 
 import java.util.List;
 

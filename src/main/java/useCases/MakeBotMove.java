@@ -4,7 +4,6 @@ import entities.GameState;
 import entities.Player;
 import entities.BotPlayer;
 import java.util.List;
-import interfaceAdapters.Presenter_Interface;
 
 public class MakeBotMove {
     // Should only be called when toMove is not 0 (so toMove is a bot player).

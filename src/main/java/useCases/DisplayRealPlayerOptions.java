@@ -3,7 +3,6 @@ package useCases;
 import entities.GameState;
 import entities.Player;
 import entities.cards.Card;
-import interfaceAdapters.Presenter_Interface;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package interfaceAdapters;
 import entities.teammode.Team;
 import entities.teammode.TeamBotPlayer;
 import entities.teammode.TeamRealPlayer;
-import UI.View;
 import entities.BotPlayer;
 import entities.Player;
 import entities.RealPlayer;
