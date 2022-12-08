@@ -9,28 +9,10 @@ public class WildCard extends Card {
     }
 
     /**
-     * Allows the player to change the colour of this card.
+     * Makes no changes to the game in the current build of the game.
      *
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(GameFacade game) {
-//        Thread pauseGame = new Thread() {
-//            @Override
-//            public void run() {
-//                while (true) {
-//                    if (isInterrupted()) {
-//                        break;
-//                    }
-//                }
-//            }
-//        };
-//        game.getPresenter().requestColourChange(pauseGame);
-//        pauseGame.start();
-//        try {
-//            pauseGame.join();
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-    }
+    public void playedEffect(GameFacade game) {}
 }

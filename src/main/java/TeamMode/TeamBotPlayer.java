@@ -3,7 +3,7 @@ package TeamMode;
 import entities.BotPlayer;
 
 public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
-    private Team teamOfPlayer;
+    private final Team teamOfPlayer;
     /**
      * creates a team player
      * @param name name
@@ -13,27 +13,6 @@ public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
         super(name,level);
         teamOfPlayer = team;
         team.addTeamPlayer(this);
-    }
-
-    /**
-     * return team name
-     * @return team name
-     */
-    public String getTeamName() {
-        return teamOfPlayer.getName();
-    }
-    /**
-     * sets team name
-     */
-    public void setTeamName(String name) {
-        this.teamOfPlayer.setName(name);
-    }
-
-    /**
-     * sets team
-     */
-    public void setTeamOfPlayer(Team teamOfPlayer) {
-        this.teamOfPlayer = teamOfPlayer;
     }
     /**
      * returns team

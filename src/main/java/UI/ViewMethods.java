@@ -91,6 +91,7 @@ public class ViewMethods implements View {
     }
 
     // /**
+    // * We may use this in a future build of the game!
     // * create a choosing colour page after the user played a wild or +4 card
     // */
     // @Override

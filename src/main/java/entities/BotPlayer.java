@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class BotPlayer extends Player implements ComputerMoves {
 	private final static String playerType = "bot";
-	private String difficulty;
+	private final String difficulty;
 
 	public BotPlayer(String name, String difficulty) {
 		super(name);
@@ -90,35 +90,6 @@ public class BotPlayer extends Player implements ComputerMoves {
 		}
 
 		return 0;
-	}
-
-	/**
-	 * Return the card of the move to make based on the difficulty.
-	 * 
-	 * @param lastPlayed the last played card in the game
-	 * @param nextPlayerHand the hand of the next player
-	 */
-	public Card makeMove(Card lastPlayed, List<Card> nextPlayerHand) {
-		int toPlay = -1;
-
-		switch (this.difficulty) {
-			case "easy":
-				toPlay = getRandomMove(lastPlayed);
-				break;
-			case "medium":
-				toPlay = getMovesFromWeights(lastPlayed);
-				break;
-			case "hard":
-				toPlay = getBestMove(lastPlayed, nextPlayerHand);
-				break;
-		}
-
-		if (toPlay == -1) {
-			return this.playCard(toPlay);
-
-		}
-
-		return null;
 	}
 
 	/**

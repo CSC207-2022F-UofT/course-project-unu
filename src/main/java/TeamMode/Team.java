@@ -9,7 +9,7 @@ public class Team {
     /**
      * list of the team players
      */
-    private List<Player> teamPlayers;
+    private final List<Player> teamPlayers;
     private String name;
 
     /**
@@ -35,14 +35,6 @@ public class Team {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * return the all players in the team
-     * @return all players
-     */
-    public List getTeamPlayers(){
-        return teamPlayers;
     }
 
     /**
