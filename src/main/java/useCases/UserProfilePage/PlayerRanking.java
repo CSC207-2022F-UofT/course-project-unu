@@ -26,6 +26,7 @@ public class PlayerRanking {
                 }
             }
         }
+        //Returns a List of Player names, ranked by games played
         return RankByGames;
     }
 
@@ -45,6 +46,7 @@ public class PlayerRanking {
                 }
             }
         }
+        //Returns a List of Player names, ranked by games won
         return RankByWins;
     }
 
@@ -64,6 +66,7 @@ public class PlayerRanking {
                 }
             }
         }
+        //Returns a List of Player names, ranked by Win rate
         return RankByWinrate;
     }
 }
