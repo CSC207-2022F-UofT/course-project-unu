@@ -1,8 +1,8 @@
 package card_tests;
 
-import cards.Card;
-import cards.NumberCard;
-import cards.WildCard;
+import entities.cards.Card;
+import entities.cards.NumberCard;
+import entities.cards.WildCard;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

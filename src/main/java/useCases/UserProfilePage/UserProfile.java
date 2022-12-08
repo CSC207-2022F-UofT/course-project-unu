@@ -1,4 +1,4 @@
-package UserProfilePage;
+package useCases.UserProfilePage;
 
 public class UserProfile{
     public String name;

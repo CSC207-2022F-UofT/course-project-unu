@@ -4,8 +4,8 @@ import interfaceAdapters.Controller;
 
 import javax.swing.*;
 
-import gateway.CSVGateway;
-import gateway.DBGateway;
+import interfaceAdapters.gateway.CSVGateway;
+import interfaceAdapters.gateway.DBGateway;
 
 import java.awt.*;
 

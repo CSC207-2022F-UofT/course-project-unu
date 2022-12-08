@@ -1,5 +1,5 @@
 package use_case_tests;
-import cards.WildCard;
+import entities.cards.WildCard;
 import entities.BotPlayer;
 import entities.Player;
 import entities.RealPlayer;

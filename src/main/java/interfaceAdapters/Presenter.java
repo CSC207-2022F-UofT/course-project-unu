@@ -1,9 +1,10 @@
 package interfaceAdapters;
 
-import TeamMode.TeamPlayer;
+import entities.teammode.TeamPlayer;
 import UI.View;
 import entities.Player;
-import gateway.*;
+import interfaceAdapters.gateway.CSVGateway;
+import interfaceAdapters.gateway.DBGateway;
 
 import java.util.List;
 
@@ -34,17 +35,10 @@ public class Presenter implements Presenter_Interface {
         }
 
         switch (toMove) {
-            case 0:
-                viewMethods.updateMyLastPlayedCard(card);
-                break;
-            case 1:
-                viewMethods.updateBot1Card(card);
-                break;
-            case 2:
-                viewMethods.updateBot2Card(card);
-                break;
-            case 3:
-                viewMethods.updateBot3Card(card);
+            case 0 -> viewMethods.updateMyLastPlayedCard(card);
+            case 1 -> viewMethods.updateBot1Card(card);
+            case 2 -> viewMethods.updateBot2Card(card);
+            case 3 -> viewMethods.updateBot3Card(card);
         }
     }
 
@@ -61,18 +55,10 @@ public class Presenter implements Presenter_Interface {
     @Override
     public void updateDraw(String player) {
         switch (player) {
-            case "player1":
-                viewMethods.updateMyLastPlayedCard("D");
-                break;
-            case "player2":
-                viewMethods.updateBot1Card("D");
-                break;
-            case "player3":
-                viewMethods.updateBot2Card("D");
-                break;
-            case "player4":
-                viewMethods.updateBot3Card("D");
-                break;
+            case "player1" -> viewMethods.updateMyLastPlayedCard("D");
+            case "player2" -> viewMethods.updateBot1Card("D");
+            case "player3" -> viewMethods.updateBot2Card("D");
+            case "player4" -> viewMethods.updateBot3Card("D");
         }
     }
 
@@ -89,7 +75,7 @@ public class Presenter implements Presenter_Interface {
      */
 
     @Override
-    public void showWinner(Player player,boolean teamMode) {
+    public void showWinner(Player player, boolean teamMode) {
         if(teamMode){
             viewMethods.displayResultPage(player.getPlayerType().equalsIgnoreCase("real"),((TeamPlayer)player).getTeam().getName());
             //cast player to teamPlayer and get his team

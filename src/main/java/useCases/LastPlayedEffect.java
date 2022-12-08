@@ -1,6 +1,6 @@
 package useCases;
 
-import cards.Card;
+import entities.cards.Card;
 
 public class LastPlayedEffect {
 

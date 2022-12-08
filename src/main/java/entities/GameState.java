@@ -1,6 +1,6 @@
 package entities;
 
-import cards.Card;
+import entities.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;

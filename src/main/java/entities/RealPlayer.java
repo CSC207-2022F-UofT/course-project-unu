@@ -1,8 +1,7 @@
 package entities;
 
-import moves.Moves;
 
-public class RealPlayer extends Player implements Moves{
+public class RealPlayer extends Player{
 
     private final static String playerType = "real";
 

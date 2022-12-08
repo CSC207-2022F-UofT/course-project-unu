@@ -1,4 +1,4 @@
-package gateway;
+package interfaceAdapters.gateway;
 
 public interface DBGateway {
   /**

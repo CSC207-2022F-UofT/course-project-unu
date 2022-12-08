@@ -1,12 +1,12 @@
 package entities;
 
-import cards.Card;
-import cards.NumberCard;
-import cards.ReverseCard;
-import cards.PlusTwoCard;
-import cards.PlusFourCard;
-import cards.SkipCard;
-import cards.WildCard;
+import entities.cards.Card;
+import entities.cards.NumberCard;
+import entities.cards.ReverseCard;
+import entities.cards.PlusTwoCard;
+import entities.cards.PlusFourCard;
+import entities.cards.SkipCard;
+import entities.cards.WildCard;
 
 public class CardFactory {
 

@@ -1,4 +1,4 @@
-package TeamMode;
+package entities.teammode;
 
 import entities.RealPlayer;
 

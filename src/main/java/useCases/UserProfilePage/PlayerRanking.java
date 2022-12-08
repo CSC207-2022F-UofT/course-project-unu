@@ -1,4 +1,4 @@
-package UserProfilePage;
+package useCases.UserProfilePage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
