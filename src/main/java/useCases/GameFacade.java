@@ -20,8 +20,8 @@ public class GameFacade {
     private final DisplayRealPlayerOptions displayRealPlayerOptions;
     private final Presenter_Interface presenter;
 
-    public GameFacade(List<Player> listOfThePlayers, Presenter_Interface presenter, boolean teamMode) {
-        this.gameState = new GameState(listOfThePlayers);
+    public GameFacade(Helper helper, Presenter_Interface presenter, boolean teamMode) {
+        this.gameState = new GameState(helper.getListOfPlayers());
         this.gameSetup = new GameSetup();
         this.draw = new Draw();
         this.play = new Play();

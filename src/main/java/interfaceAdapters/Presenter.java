@@ -1,6 +1,6 @@
 package interfaceAdapters;
 
-import entities.teammode.TeamPlayer;
+import useCases.teammode.TeamPlayer;
 import entities.Player;
 import interfaceAdapters.gateway.CSVGateway;
 import interfaceAdapters.gateway.DBGateway;
