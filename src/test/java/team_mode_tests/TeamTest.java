@@ -1,9 +1,9 @@
 
 package team_mode_tests;
-import TeamMode.Team;
-import TeamMode.TeamBotPlayer;
-import TeamMode.TeamPlayer;
-import TeamMode.TeamRealPlayer;
+import entities.teammode.Team;
+import entities.teammode.TeamBotPlayer;
+import entities.teammode.TeamPlayer;
+import entities.teammode.TeamRealPlayer;
 import entities.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

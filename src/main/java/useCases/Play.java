@@ -1,6 +1,6 @@
 package useCases;
 
-import cards.Card;
+import entities.cards.Card;
 import entities.GameState;
 import entities.Player;
 import interfaceAdapters.Presenter_Interface;

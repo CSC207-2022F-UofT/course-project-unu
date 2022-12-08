@@ -1,13 +1,12 @@
 package entities;
 
-import cards.Card;
-import moves.Moves;
+import entities.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Player implements Moves {
+public abstract class Player {
 
     private final String name;
     private final List<Card> hand = new ArrayList<>();

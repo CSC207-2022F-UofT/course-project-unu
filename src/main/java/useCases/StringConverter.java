@@ -1,6 +1,6 @@
 package useCases;
 
-import cards.Card;
+import entities.cards.Card;
 import java.util.List;
 import entities.GameState;
 import entities.Player;

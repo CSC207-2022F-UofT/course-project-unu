@@ -1,6 +1,6 @@
 package userprofiletests;
 
-import UserProfilePage.UserProfile;
+import useCases.UserProfilePage.UserProfile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,5 @@
 package gateway_tests;
-import gateway.CSVGateway;
+import interfaceAdapters.gateway.CSVGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

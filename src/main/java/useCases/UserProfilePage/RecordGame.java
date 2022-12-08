@@ -1,5 +1,4 @@
-package UserProfilePage;
-import java.util.ArrayList;
+package useCases.UserProfilePage;
 import java.util.List;
 import entities.Player;
 

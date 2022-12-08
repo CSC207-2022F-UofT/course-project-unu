@@ -3,9 +3,10 @@ package player_tests;
 import entities.Player;
 import entities.RealPlayer;
 import entities.CardFactory;
-import cards.*;
 import java.util.List;
 import java.util.ArrayList;
+
+import entities.cards.Card;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

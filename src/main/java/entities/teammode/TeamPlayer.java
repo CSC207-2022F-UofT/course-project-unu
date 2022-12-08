@@ -1,4 +1,4 @@
-package TeamMode;
+package entities.teammode;
 
 public interface TeamPlayer {
     //to use the polymorphism of the clean architecture I created a teamMode interface which will help cast the player to this type

@@ -1,4 +1,4 @@
-package gateway;
+package interfaceAdapters.gateway;
 
 public class CSVGateway implements DBGateway {
   CSVHandler csvHandler;

@@ -1,12 +1,12 @@
 package entities;
 
-import moves.ComputerMoves;
-import cards.Card;
-import java.util.Random;
+import entities.cards.Card;
+
 import java.util.List;
+import java.util.Random;
 import java.util.Arrays;
 
-public class BotPlayer extends Player implements ComputerMoves {
+public class BotPlayer extends Player {
 	private final static String playerType = "bot";
 	private final String difficulty;
 
