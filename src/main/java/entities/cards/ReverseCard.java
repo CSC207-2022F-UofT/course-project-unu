@@ -17,4 +17,13 @@ public class ReverseCard extends Card {
     public void playedEffect(GameFacade game) {
         game.changeDirection();
     }
+
+    /**
+     * Convert the Card into a string with the following format:
+     * - reverse card "R-red"
+     */
+    @Override
+    public String toString() {
+        return "R-" + this.getColour().toLowerCase();
+    }
 }

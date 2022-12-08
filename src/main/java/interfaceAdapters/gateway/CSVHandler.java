@@ -34,7 +34,7 @@ public class CSVHandler {
   /**
    * Saves the current headings and data to the CSV file
    * Returns true if successful, false if not
-   * @returns boolean
+   * @return boolean
    */
   public boolean writeToFile() {
     try {
@@ -55,7 +55,7 @@ public class CSVHandler {
 
   /**
    * Finds the col index with given heading name
-   * @param String colName
+   * @param colName column name
    */
   public int findColIndexByHeading(String colName) {
     if (this.headings == null) {
@@ -73,7 +73,7 @@ public class CSVHandler {
 
   /**
    * Gets the value of the first row with a given heading name
-   * @param String colName
+   * @param colName column name
    * @return Int
    */
   public String getColValue(String colName) {
@@ -87,8 +87,8 @@ public class CSVHandler {
 
   /**
    * Sets the value of the first row with a given heading name
-   * @param String colName
-   * @param Int newValue
+   * @param colName column name
+   * @param newValue the new value of the first row
    */
   public void setColValue(String colName, String newValue) {
     int colOfVal = this.findColIndexByHeading(colName);

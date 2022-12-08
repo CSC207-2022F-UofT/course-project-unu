@@ -73,11 +73,6 @@ public interface View {
      */
     void updateBot3Card(String card);
 
-//    /**
-//     * display a colour choosing window after a wild card is played
-//     */
-//    void requestColourChange();
-
     /**
      * display all the possible moves that the real player can make
      * 
@@ -92,7 +87,7 @@ public interface View {
      * @param isWin game result, true if the user won the game, false if the use
      *              lost the game
      */
-    void displayResultPage(boolean isWin, int losses, int totalGames);
+    void displayResultPage(boolean isWin);
 
     /**
      * Overload method, display the result page after a team game ends
@@ -102,12 +97,13 @@ public interface View {
      *                lost the game
      * @param winTeam winner team name
      */
-    void displayResultPage(boolean isWin, String winTeam, int losses, int totalGames);
+    void displayResultPage(boolean isWin, String winTeam);
 
     /**
      * display the player ranking UI
+     * 
      * @param rankType the criteria of how the players are ranked
-     * @param players a sorted ArrayList of players
+     * @param players  a sorted ArrayList of players
      */
     void displayPlayerRanking(String rankType, List<String> players);
 }

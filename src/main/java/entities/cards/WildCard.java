@@ -9,19 +9,10 @@ public class WildCard extends Card {
     }
 
     /**
-     * Allows the player to change the colour of this card.
+     * Makes no changes to the game in the current build of the game.
      *
      * @param game the Game object this card is affecting
      */
     @Override
-    public void playedEffect(GameFacade game) {
-        //new ColourChange_UseCaseInteractor(game.getPresenter()).requestColourChange();
-        /*
-        new RequestColourChange().requestColourChange();
-        Get this to call the use case while preserving Clean Architecture.
-
-        Current Flow of Code:
-        WildCard > RequestColourChange (Use Case) > Presenter (Interface) > View (Interface)
-        */
-    }
+    public void playedEffect(GameFacade game) {}
 }

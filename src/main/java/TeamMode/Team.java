@@ -9,11 +9,8 @@ public class Team {
     /**
      * list of the team players
      */
-    private List<Player> teamPlayers;
+    private final List<Player> teamPlayers;
     private String name;
-    public Team(){
-    }
-
 
     /**
      * creates a Team object
@@ -26,7 +23,7 @@ public class Team {
 
     /**
      * returns name
-     * @return
+     * @return name
      */
     public String getName() {
         return name;
@@ -34,24 +31,16 @@ public class Team {
 
     /**
      * sets new name
-     * @param name
+     * @param name name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * return the all players in the team
-     * @return
-     */
-    public List getTeamPlayers(){
-        return teamPlayers;
-    }
-
-    /**
      * adds new team player
      * @param player - new player
-     * @return
+     * @return whether teamPlayers contains player
      */
     public boolean addTeamPlayer(Player player){
         if(teamPlayers.contains(player)){

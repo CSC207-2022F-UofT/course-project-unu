@@ -6,8 +6,8 @@ import entities.players.Player;
 import java.util.List;
 
 public class GameFacade {
-    private GameState gameState;
-    private boolean teamMode;
+    private final GameState gameState;
+    private final boolean teamMode;
     private final GameSetup gameSetup;
     private final Draw draw;
     private final Play play;
@@ -18,13 +18,10 @@ public class GameFacade {
     private final ChangeDirection changeDirection;
     private final CheckWin checkWin;
     private final DisplayRealPlayerOptions displayRealPlayerOptions;
-    private final GameRecorder gameRecorder;
     private final Presenter_Interface presenter;
-    private final List<Player> listOfThePlayers;
 
     public GameFacade(List<Player> listOfThePlayers, Presenter_Interface presenter, boolean teamMode) {
-        this.listOfThePlayers = listOfThePlayers;
-        this.gameState = new GameState(this.listOfThePlayers);
+        this.gameState = new GameState(listOfThePlayers);
         this.gameSetup = new GameSetup();
         this.draw = new Draw();
         this.play = new Play();
@@ -35,7 +32,6 @@ public class GameFacade {
         this.changeDirection = new ChangeDirection();
         this.checkWin = new CheckWin();
         this.displayRealPlayerOptions = new DisplayRealPlayerOptions();
-        this.gameRecorder = new GameRecorder();
         this.presenter = presenter;
         this.teamMode = teamMode;
     }
@@ -71,13 +67,6 @@ public class GameFacade {
      * The method should be called at the end of a user's turn (called in play() and draw() methods.)
      */
     public void botCycle() {
-        //While no one has won and it's not the user's turn
-//        while (!checkWin.checkGameOver(this.gameState) && this.gameState.getToMove() != 0) {
-//            makeBotMove.makeBotPlay(this.gameState, presenter); //make bot move
-//            lastPlayedEffect.doEffect(this);
-//            changeTurn.setNextTurn(this.gameState);
-//        }
-
         if (checkWin.checkGameOver(this.gameState)) {
             //end game
             //try this
@@ -87,6 +76,7 @@ public class GameFacade {
         setNextTurn();
         if (getGameState().getPlayers().get(getGameState().getToMove()).getPlayerType().equalsIgnoreCase("bot")) {
             this.makeBotMove();
+            this.doLastPlayedEffect();
             botCycle();
         }
     }
@@ -139,8 +129,6 @@ public class GameFacade {
         displayRealPlayerOptions.displayRealPlayerOptions(this.gameState, this.presenter);
     }
 
-    //Unimplemented
-    public void recordResult() {}
     public boolean getTeamMode(){
         return this.teamMode;
     }

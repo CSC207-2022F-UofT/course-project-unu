@@ -17,4 +17,13 @@ public class PlusTwoCard extends Card {
     public void playedEffect(GameFacade game) {
         game.draw(2, game.getGameState().getNextPlayer());
     }
+
+    /**
+     * Convert the Card into a string with the following format:
+     * - plus two card "+2-red"
+     */
+    @Override
+    public String toString() {
+        return "+2-" + this.getColour().toLowerCase();
+    }
 }

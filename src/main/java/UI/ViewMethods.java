@@ -1,7 +1,6 @@
 package UI;
 
 import interfaceAdapters.Controller;
-import interfaceAdapters.View;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class ViewMethods implements View {
 
     /**
      * create a game board page
+     * 
      * @param c the controller that the game board interacts with
      */
     @Override
@@ -32,6 +32,7 @@ public class ViewMethods implements View {
 
     /**
      * update UI the last card played in the game
+     * 
      * @param card the string representation of the last played card
      */
     @Override
@@ -41,6 +42,7 @@ public class ViewMethods implements View {
 
     /**
      * update UI the last card the user played
+     * 
      * @param card the string representation of the last card the user played
      */
     @Override
@@ -50,6 +52,7 @@ public class ViewMethods implements View {
 
     /**
      * update UI the last card bot1 played
+     * 
      * @param card the string representation of bot1's last played card
      */
     @Override
@@ -59,6 +62,7 @@ public class ViewMethods implements View {
 
     /**
      * update UI the last card bot2 played
+     * 
      * @param card the string representation of bot2's last played card
      */
     @Override
@@ -68,6 +72,7 @@ public class ViewMethods implements View {
 
     /**
      * update UI the last card bot3 played
+     * 
      * @param card the string representation of bot3's last played card
      */
     @Override
@@ -77,6 +82,7 @@ public class ViewMethods implements View {
 
     /**
      * update UI the user's cards on hand after the user drew or played a card
+     * 
      * @param cardList a list of cards strings on the real player's hand
      */
     @Override
@@ -84,16 +90,19 @@ public class ViewMethods implements View {
         gameBoard.displayAvailableCards(cardList);
     }
 
-    /**
-     * create a choosing colour page after the user played a wild or +4 card
-     */
-    @Override
-    public void requestColourChange() {
-        new ChooseColourPage(c);
-    }
+    // /**
+    // * We may use this in a future build of the game!
+    // * create a choosing colour page after the user played a wild or +4 card
+    // */
+    // @Override
+    // public void requestColourChange() {
+    // new ChooseColourPage(c);
+    // }
 
     /**
-     * generate the play card window that the user can play a card by clicking on a card button
+     * generate the play card window that the user can play a card by clicking on a
+     * card button
+     * 
      * @param cards a list of strings of all the possible moves the user can make
      */
     @Override
@@ -103,7 +112,9 @@ public class ViewMethods implements View {
 
     /**
      * generate the result page after the game ends
-     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * 
+     * @param isWin game result, true if the user won the game, false if the user
+     *              lost the game
      */
     @Override
     public void displayResultPage(boolean isWin) {
@@ -114,13 +125,26 @@ public class ViewMethods implements View {
     /**
      * Overload method, display the result page after a team game ends
      * should be called by the presenter after the game ends
-     * @param isWin game result, true if the user won the game, false if the user lost the game
+     * 
+     * @param isWin   game result, true if the user won the game, false if the user
+     *                lost the game
      * @param winTeam winner team name
      */
     @Override
     public void displayResultPage(boolean isWin, String winTeam) {
         new ResultPage(c, isWin, winTeam);
         gameBoard.discardWindow();
+    }
+
+    /**
+     * display the player ranking UI
+     * 
+     * @param rankType the criteria of how the players are ranked
+     * @param players  a sorted ArrayList of players
+     */
+    @Override
+    public void displayPlayerRanking(String rankType, List<String> players) {
+        new ScoreBoard(rankType, players);
     }
 
 }

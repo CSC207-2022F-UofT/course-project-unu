@@ -12,13 +12,18 @@ public interface Presenter_Interface {
     //void requestNewColour();
 
     void updateHand(String[] cards);
-
     void updateLastPlayed(String card, int toMove);
     void displayOptions(List<String> cards);
-    // tell the UI that this player has drawn a card
+    /**
+     * Tell the UI that this player has drawn a card.
+     */
     void updateDraw(String player);
-    // show the last played card of the last player
+    /**
+     * Show the last played card of the last player.
+     */
     void updateGameLastCard(String card);
-    //show the winner
+    /**
+     * Show the winner.
+     */
     void showWinner(Player player, boolean teamMode);
 }
