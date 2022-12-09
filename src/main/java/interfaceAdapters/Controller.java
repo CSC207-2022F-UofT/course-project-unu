@@ -1,5 +1,6 @@
 package interfaceAdapters;
 import useCases.GameFacade;
+import useCases.UserProfilePage.PlayerRanking;
 import useCases.Helper;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class Controller {
      */
     private final List<String> botLevels = new ArrayList<>(); //should have length 3 as there are 3 AI players
 
+    private PlayerRanking playerRanking = new PlayerRanking();
 
     /**
      * appends playerName with playerNames List
@@ -116,6 +118,15 @@ public class Controller {
      * @param rankType string, can only be one of "Games", "Wins", "Win Rate"
      */
     public void getPlayerRank(String rankType) {
-        //TODO: implement this method
+        playerRanking = new PlayerRanking();
+        if (rankType.equals("Games")){
+            playerRanking.getRankByGames();
+        }
+        if (rankType.equals("Wins")) {
+            playerRanking.getRankByWins();
+        }
+        if (rankType.equals("Win Rate")) {
+            playerRanking.getRankByWinrate();
+        }
     }
 }

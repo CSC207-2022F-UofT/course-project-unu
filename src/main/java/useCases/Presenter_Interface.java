@@ -26,4 +26,6 @@ public interface Presenter_Interface {
      * Show the winner.
      */
     void showWinner(Player player, boolean teamMode);
+
+    void showRanking(String rankType);
 }
