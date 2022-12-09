@@ -1,4 +1,4 @@
-package entities.teammode;
+package useCases.teammode;
 
 import entities.Player;
 

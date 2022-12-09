@@ -1,24 +1,27 @@
-package entities.teammode;
+package useCases.teammode;
 
-import entities.BotPlayer;
+import entities.RealPlayer;
 
-public class TeamBotPlayer extends BotPlayer  implements TeamPlayer{
+public class TeamRealPlayer extends RealPlayer implements TeamPlayer{
+
     private final Team teamOfPlayer;
+
     /**
      * creates a team player
+     *
      * @param name name
      * @param team team
      */
-    public TeamBotPlayer(String name,String level, Team team){
-        super(name,level);
+    public TeamRealPlayer(String name, Team team) {
+        super(name);
         teamOfPlayer = team;
         team.addTeamPlayer(this);
     }
     /**
      * returns team
-     * @return the team
+     * @return team
      */
-    public Team getTeam(){
+    public Team getTeam() {
         return this.teamOfPlayer;
     }
 }
