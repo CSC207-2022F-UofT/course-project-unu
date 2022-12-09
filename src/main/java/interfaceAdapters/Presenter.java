@@ -101,4 +101,10 @@ public class Presenter implements Presenter_Interface {
             //get the name of the player and show
         }
     }
+
+    @Override
+    public void showRanking(String rankType){
+        //
+    }
+
 }
