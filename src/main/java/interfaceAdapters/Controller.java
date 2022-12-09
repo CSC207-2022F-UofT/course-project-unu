@@ -1,13 +1,7 @@
 package interfaceAdapters;
-import entities.teammode.Team;
-import entities.teammode.TeamBotPlayer;
-import entities.teammode.TeamRealPlayer;
-import entities.BotPlayer;
-import entities.Player;
-import entities.RealPlayer;
 import useCases.GameFacade;
 import useCases.UserProfilePage.PlayerRanking;
-
+import useCases.Helper;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,52 +62,16 @@ public class Controller {
         botLevels.add(botLevel);
     }
 
-    /**
-     * return the list of team players that can be used to initialize the game
-     * @return list of team players
-     */
-    private List<Player> teamPlayerList() {
-        List<Player> teamPlayers = new ArrayList<>();
-        Team team1 = new Team(teamNames.get(0));
-        Player player1 = new TeamRealPlayer(playerNames.get(0),team1);
-        Player player2 = new TeamBotPlayer(playerNames.get(1),botLevels.get(0),team1);
-        teamPlayers.add(player1);
-        teamPlayers.add(player2);
-        Team team2 = new Team(teamNames.get(1));
-        //k - bot levels name
-        for(int i=2, k=1; i<playerNames.size();i++,k++){
-            Player player = new TeamBotPlayer(playerNames.get(i),botLevels.get(k),team2);
-            teamPlayers.add(player);
-        }
-        return teamPlayers;
-    }
 
-    /**
-     * returns the list of players that can be used to initialize the game
-     * @return the list of players
-     */
-    private List<Player> regularPlayerList() {
-        List<Player> playerList = new ArrayList<>();
-        Player player = new RealPlayer(playerNames.get(0));
-        playerList.add(player);
 
-        for(int k=1, i = 0;k<playerNames.size();k++, i++){
-            player = new BotPlayer(playerNames.get(k), botLevels.get(i));
-            playerList.add(player);
-        }
-        return playerList;
-    }
+
+
     private GameFacade gameFacade;
     /**
      * initialization
      */
     public void startGame() {
-        if(isTeamMode){
-            gameFacade = new GameFacade(teamPlayerList(),new Presenter(ui),isTeamMode);
-        }
-        else{
-            gameFacade = new GameFacade(regularPlayerList(),new Presenter(ui),isTeamMode);
-        }
+        gameFacade = new GameFacade(new Helper(playerNames,teamNames,botLevels,isTeamMode),new Presenter(ui),isTeamMode);
         ui.generateGameBoard(this);
         gameFacade.setup();
 
