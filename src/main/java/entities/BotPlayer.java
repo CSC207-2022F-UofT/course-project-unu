@@ -19,6 +19,12 @@ public class BotPlayer extends Player {
 		return playerType;
 	}
 
+	/**
+	 * get the best move fpr the bot player
+	 * @param lastPlayed last played card
+	 * @param nextPlayerHand next player's hand
+	 * @return the index of the best move card
+	 */
 	public int getBestMove(Card lastPlayed, List<Card> nextPlayerHand) {
 		List<Card> possibleMoves = this.getPossibleMoves(lastPlayed);
 
@@ -44,6 +50,11 @@ public class BotPlayer extends Player {
 		return bestMove;
 	}
 
+	/**
+	 * get the best move
+	 * @param lastPlayed last played card by the previous player
+	 * @return the index of the best move card
+	 */
 	public int getMovesFromWeights(Card lastPlayed) {
 		List<Card> possibleMoves = this.getPossibleMoves(lastPlayed);
 		int bestMove = -1;
@@ -66,6 +77,11 @@ public class BotPlayer extends Player {
 		return bestMove;
 	}
 
+	/**
+	 * generate a random possible move
+	 * @param lastPlayed last played card in the game
+	 * @return the index of the move
+	 */
 	public int getRandomMove(Card lastPlayed) {
 		List<Card> possibleMoves = this.getPossibleMoves(lastPlayed);
 		int numberOfPossibleMoves = possibleMoves.size();

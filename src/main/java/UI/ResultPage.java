@@ -1,12 +1,10 @@
 package UI;
 
 import interfaceAdapters.Controller;
-
-import javax.swing.*;
-
 import interfaceAdapters.gateway.CSVGateway;
 import interfaceAdapters.gateway.DBGateway;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
